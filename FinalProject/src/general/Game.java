@@ -3,7 +3,11 @@ package general;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
+import javax.swing.SwingUtilities;
+
 import graphics.Display;
+import scenes.GameScene;
+import scenes.Scene;
 
 public class Game {
 
@@ -23,6 +27,9 @@ public class Game {
 	
 	private InputManager inputManager;
 	
+	private Scene currentScene;
+	private GameScene gameScene;
+	
 	public Game(int width, int height, int scale) {
 		this.width = width;
 		this.height = height;
@@ -33,13 +40,19 @@ public class Game {
 	}
 	
 	
-	
 	private void init() {
 		
 		inputManager = new InputManager();
 		
 		display = new Display(width, height, scale, title);
 		display.getJFrame().addKeyListener(inputManager);
+		//display.getJFrame().addMouseListener(inputManager);
+		//display.getJFrame().addMouseMotionListener(inputManager);
+		display.getCanvas().addMouseListener(inputManager);
+		display.getCanvas().addMouseMotionListener(inputManager);
+		
+		gameScene = new GameScene(this, Difficulty.MEDIUM);
+		changeCurrentScene(gameScene);
 	}
 	
 	private void run() {
@@ -79,7 +92,9 @@ public class Game {
 	
 	
 	private void update() {
-		
+		inputManager.update();
+		if (currentScene != null)
+			currentScene.update();
 	}
 	
 	private void render() {
@@ -92,13 +107,19 @@ public class Game {
 		
 		g.clearRect(0, 0, (int)((width) * scale), (int)((height) * scale));
 		
-		//if (currentScene != null)
-			//currentScene.render(g);
+		if (currentScene != null)
+			currentScene.render(g);
 
 		bs.show();
 		g.dispose();
 	}
 
+	private void changeCurrentScene(Scene scene) {
+		if (currentScene != null)
+			currentScene.onStop();
+		currentScene = scene;
+		currentScene.onStart();
+	}
 	
 	public int getWidth() { return width; }
 	
@@ -106,4 +127,5 @@ public class Game {
 	
 	public int getScale() { return scale; }
 	
+	public InputManager getInputManager() { return inputManager; }
 }
