@@ -2,6 +2,7 @@ package scenes;
 
 import java.awt.Graphics2D;
 
+import gameobjects.Square;
 import general.Difficulty;
 import general.Game;
 import general.Vector2;
@@ -28,16 +29,17 @@ public class GameScene extends Scene {
 			break;
 		}
 	}
+	
+	Square square = new Square(this, Vector2.zero());
 
 	@Override
 	public void update() {
-
+		square.update();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		Vector2 mousePos = game.getInputManager().getMousePos();
-		g.fillRect((int)mousePos.x, (int)mousePos.y, 50, 50);
+		square.render(g);
 	}
 
 	@Override

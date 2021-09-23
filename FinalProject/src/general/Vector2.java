@@ -10,4 +10,10 @@ public class Vector2 {
 		this.y = y;
 	}
 	
+	public Vector2(Vector2 v) {
+		this.x = v.x;
+		this.y = v.y;
+	}
+	
+	public static Vector2 zero() { return new Vector2(0, 0); }
 }

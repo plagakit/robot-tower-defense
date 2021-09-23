@@ -94,7 +94,7 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	public void mouseMoved(MouseEvent e) {
 		mousePos.x = e.getX();
 		mousePos.y = e.getY();
-		System.out.println("moved");
+		//System.out.println("moved");
 	}
 	
 	public Vector2 getMousePos() { return mousePos; }

@@ -20,4 +20,5 @@ public abstract class Scene {
 	
 	public abstract void onStop();
 	
+	public Game getGame() { return game; }
 }
