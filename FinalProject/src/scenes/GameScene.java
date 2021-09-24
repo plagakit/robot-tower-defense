@@ -1,8 +1,9 @@
 package scenes;
 
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
-import gameobjects.Square;
+import gameobjects.Tower;
 import general.Difficulty;
 import general.Game;
 import general.Vector2;
@@ -30,16 +31,21 @@ public class GameScene extends Scene {
 		}
 	}
 	
-	Square square = new Square(this, Vector2.zero());
+	Tower spawn = new Tower(this, "Tower", new Vector2(200, 200));
 
 	@Override
 	public void update() {
-		square.update();
+		spawn.update();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		square.render(g);
+		spawn.render(g);
+		
+		//Divider
+		int scale = game.getScale();
+		g.setStroke(new BasicStroke());
+		g.drawLine(480 * scale, 0, 480 * scale, 360 * scale);
 	}
 
 	@Override

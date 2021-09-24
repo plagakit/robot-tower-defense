@@ -17,7 +17,7 @@ public abstract class GameObject {
 	public GameObject(GameScene scene, String name, Vector2 pos) {
 		this.scene = scene;
 		this.name = name;
-		this.pos = new Vector2(pos);
+		this.pos = pos;
 	}
 	
 	public abstract void update();

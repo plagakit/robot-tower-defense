@@ -13,6 +13,8 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	private boolean[] keys, justPressed, cantPress;
 	
 	private Vector2 mousePos;
+	private boolean lmbHeld, lmbJustPressed, lmbCantPress;
+	private boolean dragging;
 
 	public InputManager() {
 		keys = new boolean[KEY_SIZE];
@@ -33,6 +35,15 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 			if (!cantPress[i] && keys[i])
 				justPressed[i] = true;
 		}
+		
+		if (lmbCantPress && !lmbHeld)
+			lmbCantPress = false;
+		else if (lmbJustPressed) {
+			lmbCantPress = true;
+			lmbJustPressed = false;
+		}
+		if (!lmbCantPress & lmbHeld)
+			lmbJustPressed = true;
 	}
 	
 	@Override
@@ -56,32 +67,30 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getButton() == MouseEvent.BUTTON1)
+			lmbHeld = true;
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (e.getButton() == MouseEvent.BUTTON1)
+			lmbHeld = false;
 	}
 
 	@Override
@@ -99,4 +108,11 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	
 	public Vector2 getMousePos() { return mousePos; }
 	
+	public boolean isLmbHeld() { return lmbHeld; }
+	
+	public boolean isLmbJustPressed() { return lmbJustPressed; }
+	
+	public boolean isDragging() { return dragging; }
+	
+	public void setDragging(boolean dragging) { this.dragging = dragging; }
 }
