@@ -1,0 +1,5 @@
+# File where all image names are listed
+#
+# Sprites:
+smile.png
+# Tracks:
