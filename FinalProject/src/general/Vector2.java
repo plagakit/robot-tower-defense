@@ -15,6 +15,8 @@ public class Vector2 {
 		this.y = v.y;
 	}
 	
+	public String toString() { return String.format("%f %f", x, y); }
+	
 	public static Vector2 zero() { return new Vector2(0, 0); }
 	
 	public static float distance(Vector2 v1, Vector2 v2) {

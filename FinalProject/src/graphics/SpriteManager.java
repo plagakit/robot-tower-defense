@@ -37,4 +37,8 @@ public class SpriteManager {
 		
 		sc.close();
 	}
+	
+	public Sprite getSprite(String name) {
+		return spriteList.get(name);
+	}
 }

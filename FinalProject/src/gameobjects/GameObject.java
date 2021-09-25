@@ -36,4 +36,19 @@ public abstract class GameObject {
 	public abstract void update();
 	
 	public abstract void render(Graphics2D g);
+	
+	public GameScene getGameScene() { return scene; }
+	
+	public String getName() { return name; }
+	
+	public boolean getActive() { return active; }
+	
+	public Vector2 getPos() { return pos; }
+	
+	public Vector2 getVel( ) { return vel; }
+	
+	public float getRotation() { return rotation; }
+	
+	public Sprite getSprite() { return sprite; }
+	
 }
