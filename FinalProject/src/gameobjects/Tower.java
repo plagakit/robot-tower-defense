@@ -13,6 +13,12 @@ public class Tower extends GameObject {
 	public Tower(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
 	}
+	
+	@Override
+	protected void initSprite() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void update() {

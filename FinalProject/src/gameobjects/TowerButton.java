@@ -12,6 +12,11 @@ public class TowerButton extends Button {
 		super(scene, name, pos);
 		
 	}
+	
+	@Override
+	protected void initSprite() {
+		
+	}
 
 	@Override
 	protected void onClick() {

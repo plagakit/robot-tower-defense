@@ -9,13 +9,13 @@ public class Sprite {
 	private int width;
 	private int height;
 	
-	public Sprite(String name, BufferedImage image, int width, int height) {
+	public Sprite(String name, BufferedImage image) {
 		this.name = name;
 		this.image = image;
-		this.width = width;
-		this.height = height;
+		this.width = image.getWidth();
+		this.height = image.getHeight();
 	}
-
+	
 	public String getName() { return name; }
 	
 	public BufferedImage getImage() { return image; }

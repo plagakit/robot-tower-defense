@@ -3,9 +3,8 @@ package general;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
-import javax.swing.SwingUtilities;
-
 import graphics.Display;
+import graphics.SpriteManager;
 import scenes.GameScene;
 import scenes.Scene;
 
@@ -26,6 +25,7 @@ public class Game {
 	private BufferStrategy bs;
 	
 	private InputManager inputManager;
+	private SpriteManager spriteManager;
 	
 	private Scene currentScene;
 	private GameScene gameScene;
@@ -43,6 +43,7 @@ public class Game {
 	private void init() {
 		
 		inputManager = new InputManager();
+		spriteManager = new SpriteManager();
 		
 		display = new Display(width, height, scale, title);
 		display.getJFrame().addKeyListener(inputManager);
@@ -52,7 +53,7 @@ public class Game {
 		display.getCanvas().addMouseMotionListener(inputManager);
 		
 		gameScene = new GameScene(this, Difficulty.MEDIUM);
-		changeCurrentScene(gameScene);
+		setCurrentScene(gameScene);
 	}
 	
 	private void run() {
@@ -114,7 +115,7 @@ public class Game {
 		g.dispose();
 	}
 
-	private void changeCurrentScene(Scene scene) {
+	private void setCurrentScene(Scene scene) {
 		if (currentScene != null)
 			currentScene.onStop();
 		currentScene = scene;
@@ -128,4 +129,6 @@ public class Game {
 	public int getScale() { return scale; }
 	
 	public InputManager getInputManager() { return inputManager; }
+	
+	public SpriteManager getSpriteManager() { return spriteManager; }
 }
