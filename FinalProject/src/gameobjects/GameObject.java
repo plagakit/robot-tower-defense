@@ -2,6 +2,7 @@ package gameobjects;
 
 import java.awt.Graphics2D;
 
+import components.RenderComponent;
 import general.Vector2;
 import graphics.Sprite;
 import scenes.GameScene;
@@ -17,6 +18,7 @@ public abstract class GameObject {
 	protected Vector2 vel;
 	protected float rotation;
 	
+	private RenderComponent renderComponent;
 	protected Sprite sprite;
 	
 	public GameObject(GameScene scene, String name, Vector2 pos) {
@@ -26,12 +28,16 @@ public abstract class GameObject {
 		vel = Vector2.zero();
 		rotation = 0;
 		
+		renderComponent = new RenderComponent(this);
+		
 		active = true;
 	}
 	
 	public abstract void update();
 	
-	public abstract void render(Graphics2D g);
+	public void render(Graphics2D g) {
+		renderComponent.render(g, sprite);
+	}
 	
 	public GameScene getGameScene() { return scene; }
 	
