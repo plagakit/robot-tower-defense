@@ -1,15 +1,9 @@
 package gameobjects;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.lang.reflect.Constructor;
+import java.awt.Graphics2D;import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import components.Box;
-import components.RenderComponent;
-import general.Game;
 import general.Vector2;
 import scenes.GameScene;
 
@@ -39,16 +33,6 @@ public class TowerButton extends Button {
 		try {
 			scene.addGameObject(towerConstructor.newInstance(scene, new Vector2(pos)));
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) { e.printStackTrace(); }
-	}
-	
-	@Override 
-	public void update() {
-		super.update();
-	}
-
-	@Override
-	public void render(Graphics2D g) {
-		super.render(g);
 	}
 
 }
