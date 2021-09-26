@@ -12,8 +12,12 @@ import graphics.Sprite;
 // https://gameprogrammingpatterns.com/component.html
 
 
-public class RenderComponent {
+public class RenderComponent extends Component {
 	
+	public RenderComponent(GameObject parent) {
+		super(parent);
+	}
+
 	public void render(Graphics2D g, GameObject go, Sprite sprite) {
 		if (!go.getActive() || sprite == null)
 			return;
