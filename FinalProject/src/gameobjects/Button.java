@@ -23,4 +23,5 @@ public abstract class Button extends GameObject {
 	
 	protected abstract void onClick();
 	
+	public Box getBounds() { return bounds; }
 }
