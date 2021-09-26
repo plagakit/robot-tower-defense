@@ -9,6 +9,8 @@ import java.awt.event.MouseMotionListener;
 /** The InputManager class is used to register key press, mouse movement, and mouse clicks and then store them for use in game. */
 public class InputManager implements KeyListener, MouseListener, MouseMotionListener {
 
+	private Game game;
+	
 	private final int KEY_SIZE = 256;
 	private boolean[] keys, justPressed, cantPress;
 	
@@ -16,7 +18,8 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	private boolean lmbHeld, lmbJustPressed, lmbCantPress;
 	private boolean dragging;
 
-	public InputManager() {
+	public InputManager(Game game) {
+		this.game = game;
 		keys = new boolean[KEY_SIZE];
 		justPressed = new boolean[KEY_SIZE];
 		cantPress = new boolean[KEY_SIZE];
@@ -63,23 +66,16 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {	}
+	public void keyTyped(KeyEvent e) {}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		
-	}
+	public void mouseClicked(MouseEvent e) {}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-
-	}
+	public void mouseEntered(MouseEvent e) {}
 
 	@Override
-	public void mouseExited(MouseEvent e) {
-
-		
-	}
+	public void mouseExited(MouseEvent e) {}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -106,7 +102,11 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 		//System.out.println("moved");
 	}
 	
-	public Vector2 getMousePos() { return mousePos; }
+	public Vector2 getAbsoluteMousePos() { return mousePos; }
+	
+	public Vector2 getMousePos() { 
+		return new Vector2(mousePos.x / game.getScale(), mousePos.y / game.getScale());
+	}
 	
 	public boolean isLmbHeld() { return lmbHeld; }
 	

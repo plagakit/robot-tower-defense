@@ -42,7 +42,7 @@ public class Game {
 	
 	private void init() {
 		
-		inputManager = new InputManager();
+		inputManager = new InputManager(this);
 		spriteManager = new SpriteManager();
 		
 		display = new Display(width, height, scale, title);
