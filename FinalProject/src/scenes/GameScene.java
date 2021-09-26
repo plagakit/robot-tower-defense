@@ -2,7 +2,10 @@ package scenes;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
+import gameobjects.GameObject;
 import gameobjects.Robot;
 import gameobjects.TowerButton;
 import general.Difficulty;
@@ -14,6 +17,8 @@ public class GameScene extends Scene {
 	private Difficulty difficulty;
 	private int maxLives;
 	private int currentLives;
+	
+	private List<GameObject> gameObjects;
 	
 	public GameScene(Game game, Difficulty difficulty) {
 		super(game);
@@ -32,16 +37,28 @@ public class GameScene extends Scene {
 		}
 	}
 	
+	@Override
+	public void onStart() {
+		currentLives = maxLives;
+		gameObjects = new ArrayList<GameObject>();
+	}
+	
 	TowerButton tb = new TowerButton(this, new Vector2(300, 100), Robot.class, "smileicon.png");
 
 	@Override
 	public void update() {
 		tb.update();
+		
+		for (GameObject go : gameObjects)
+			go.update();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		tb.render(g);
+		
+		for (GameObject go : gameObjects)
+			go.render(g);
 		
 		//Divider
 		int scale = game.getScale();
@@ -50,13 +67,13 @@ public class GameScene extends Scene {
 	}
 
 	@Override
-	public void onStart() {
-		currentLives = maxLives;
-	}
-
-	@Override
 	public void onStop() {
 
+	}
+	
+	public void addGameObject(GameObject go) {
+		if (!gameObjects.contains(go))
+			gameObjects.add(go);
 	}
 
 }
