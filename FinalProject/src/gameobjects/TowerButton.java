@@ -7,15 +7,10 @@ import general.Vector2;
 import scenes.GameScene;
 
 public class TowerButton extends Button {
-
-	public TowerButton(GameScene scene, String name, Vector2 pos) {
-		super(scene, name, pos);
-		
-	}
 	
-	@Override
-	protected void initSprite() {
-		
+	public TowerButton(GameScene scene, Vector2 pos, Class<? extends Tower> tower, String iconName) {
+		super(scene, tower.getName() + "Button", pos);
+		sprite = scene.getGame().getSpriteManager().getSprite(iconName);
 	}
 
 	@Override
