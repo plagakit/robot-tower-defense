@@ -13,7 +13,7 @@ public class Robot extends Tower {
 	public Robot(GameScene scene, Vector2 pos) {
 		super(scene, "Robot", pos);
 		sprite = scene.getGame().getSpriteManager().getSprite("smile.png");
-		renderComponent = new RenderComponent();
+		renderComponent = new RenderComponent(this);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class Robot extends Tower {
 
 	@Override
 	public void render(Graphics2D g) {
-		renderComponent.render(g, this, sprite);		
+		renderComponent.render(g, sprite);		
 	}
 
 }

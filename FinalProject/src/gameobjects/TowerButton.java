@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import components.Box;
 import components.RenderComponent;
 import general.Game;
 import general.Vector2;
@@ -22,9 +23,9 @@ public class TowerButton extends Button {
 	public TowerButton(GameScene scene, Vector2 pos, Class<? extends Tower> towerClass, String iconName) {
 		super(scene, "TowerButton", pos);
 		
-		renderComponent = new RenderComponent();
+		renderComponent = new RenderComponent(this);
 		sprite = scene.getGame().getSpriteManager().getSprite(iconName);
-		bounds = new Rectangle(-10, -10, 20, 20);
+		bounds = new Box(this, -10, -10, 20, 20);
 		
 		this.towerClass = towerClass;
 		try {
@@ -52,7 +53,7 @@ public class TowerButton extends Button {
 	@Override
 	public void render(Graphics2D g) {
 
-		renderComponent.render(g, this, sprite);
+		renderComponent.render(g, sprite);
 		
 		if (Game.DEBUG) {
 			int gameScale = scene.getGame().getScale();

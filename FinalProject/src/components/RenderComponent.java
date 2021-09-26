@@ -18,12 +18,12 @@ public class RenderComponent extends Component {
 		super(parent);
 	}
 
-	public void render(Graphics2D g, GameObject go, Sprite sprite) {
-		if (!go.getActive() || sprite == null)
+	public void render(Graphics2D g, Sprite sprite) {
+		if (!parent.getActive() || sprite == null)
 			return;
 		
-		int gameScale = go.getGameScene().getGame().getScale();
-		Vector2 pos = go.getPos();
+		int gameScale = parent.getGameScene().getGame().getScale();
+		Vector2 pos = parent.getPos();
 		
 		int x = (int)(pos.x - sprite.getWidth()/2.0) * gameScale;
 		int y = (int)(pos.y - sprite.getHeight()/2.0) * gameScale;
@@ -33,13 +33,13 @@ public class RenderComponent extends Component {
 		float midx = x + (width / 2.0f);
 		float midy = y + (height / 2.0f);
 		
-		if (go.getRotation() != 0) 
-			g.rotate(Math.toRadians(go.getRotation()), midx, midy);
+		if (parent.getRotation() != 0) 
+			g.rotate(Math.toRadians(parent.getRotation()), midx, midy);
 		
 		g.drawImage(sprite.getImage(), x, y, width, height, null);
 		
-		if (go.getRotation() != 0) 
-			g.rotate(Math.toRadians(-go.getRotation()), midx, midy);
+		if (parent.getRotation() != 0) 
+			g.rotate(Math.toRadians(-parent.getRotation()), midx, midy);
 		
 		if (Game.DEBUG) {
 			// Position
