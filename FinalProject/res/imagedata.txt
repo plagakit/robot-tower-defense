@@ -2,4 +2,5 @@
 #
 # Sprites:
 smile.png
+smileicon.png
 # Tracks:

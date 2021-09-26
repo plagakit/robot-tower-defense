@@ -32,18 +32,15 @@ public class GameScene extends Scene {
 		}
 	}
 	
-	Robot spawn = new Robot(this, new Vector2(200, 200));
 	TowerButton tb = new TowerButton(this, new Vector2(300, 100), Robot.class, "smileicon.png");
 
 	@Override
 	public void update() {
-		spawn.update();
 		tb.update();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
-		spawn.render(g);
 		tb.render(g);
 		
 		//Divider

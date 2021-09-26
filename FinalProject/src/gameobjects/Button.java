@@ -1,11 +1,15 @@
 package gameobjects;
 
+import java.awt.Rectangle;
+
 import general.InputManager;
 import general.Vector2;
 import scenes.GameScene;
 
 public abstract class Button extends GameObject {
 
+	protected Rectangle bounds;
+	
 	public Button(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
 	}
@@ -14,8 +18,22 @@ public abstract class Button extends GameObject {
 	public void update() {
 		InputManager im = scene.getGame().getInputManager();
 
+		if (im.isLmbJustPressed()) {
+			System.out.println("clicked");
+			if (contains(im.getMousePos()))
+				System.out.println("clicked inside");
+		}
 	}
 	
 	protected abstract void onClick();
 
+	protected boolean contains(Vector2 point) {
+		float x1 = pos.x + bounds.x;
+		float x2 = x1 + bounds.width;
+		float y1 = pos.y + bounds.y;
+		float y2 = y1 + bounds.height;
+		System.out.format("%f %f - %f %f %f %f\n", point.x, point.y, x1, y1, x2, y2);
+		return point.x > x1 && point.x < x2 && point.y > y1 && point.y < y2;
+	}
+	
 }
