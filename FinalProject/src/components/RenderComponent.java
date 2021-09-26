@@ -14,13 +14,12 @@ import graphics.Sprite;
 
 public class RenderComponent {
 	
-	public void render(Graphics2D g, GameObject o) {
-		if (!o.getActive())
+	public void render(Graphics2D g, GameObject go, Sprite sprite) {
+		if (!go.getActive())
 			return;
 		
-		int gameScale = o.getGameScene().getGame().getScale();
-		Sprite sprite = o.getSprite();
-		Vector2 pos = o.getPos();
+		int gameScale = go.getGameScene().getGame().getScale();
+		Vector2 pos = go.getPos();
 		
 		int x = (int)(pos.x - sprite.getWidth()/2.0) * gameScale;
 		int y = (int)(pos.y - sprite.getHeight()/2.0) * gameScale;
@@ -30,13 +29,13 @@ public class RenderComponent {
 		float midx = x + (width / 2.0f);
 		float midy = y + (height / 2.0f);
 		
-		if (o.getRotation() != 0) 
-			g.rotate(Math.toRadians(o.getRotation()), midx, midy);
+		if (go.getRotation() != 0) 
+			g.rotate(Math.toRadians(go.getRotation()), midx, midy);
 		
 		g.drawImage(sprite.getImage(), x, y, width, height, null);
 		
-		if (o.getRotation() != 0) 
-			g.rotate(Math.toRadians(-o.getRotation()), midx, midy);
+		if (go.getRotation() != 0) 
+			g.rotate(Math.toRadians(-go.getRotation()), midx, midy);
 		
 		if (Game.DEBUG) {
 			// Position
