@@ -36,14 +36,11 @@ public class Tower extends GameObject {
 				im.setDragging(false);
 			}
 		}
-		
-		System.out.println(pos.toString());
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		renderComponent.render(g, this);
-		//g.fillOval((int)(pos.x - 25), (int)(pos.y - 25), 50, 50);
 	}
 
 }
