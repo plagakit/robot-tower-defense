@@ -7,9 +7,9 @@ import general.InputManager;
 import general.Vector2;
 import scenes.GameScene;
 
-public class Tower extends GameObject {
+public abstract class Tower extends GameObject {
 
-	private boolean placed;
+	protected boolean placed;
 	
 	RenderComponent renderComponent;
 	
@@ -17,11 +17,6 @@ public class Tower extends GameObject {
 		super(scene, name, pos);
 		
 		renderComponent = new RenderComponent();
-	}
-	
-	@Override
-	protected void initSprite() {
-		sprite = scene.getGame().getSpriteManager().getSprite("smile.png");
 	}
 
 	@Override

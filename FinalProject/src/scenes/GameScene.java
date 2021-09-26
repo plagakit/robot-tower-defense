@@ -3,6 +3,7 @@ package scenes;
 import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
+import gameobjects.Robot;
 import gameobjects.Tower;
 import general.Difficulty;
 import general.Game;
@@ -31,7 +32,7 @@ public class GameScene extends Scene {
 		}
 	}
 	
-	Tower spawn = new Tower(this, "Tower", new Vector2(200, 200));
+	Robot spawn = new Robot(this, "Robot", new Vector2(200, 200));
 
 	@Override
 	public void update() {
