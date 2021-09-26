@@ -15,7 +15,7 @@ import graphics.Sprite;
 public class RenderComponent {
 	
 	public void render(Graphics2D g, GameObject go, Sprite sprite) {
-		if (!go.getActive())
+		if (!go.getActive() || sprite == null)
 			return;
 		
 		int gameScale = go.getGameScene().getGame().getScale();

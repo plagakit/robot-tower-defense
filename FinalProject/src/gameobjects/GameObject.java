@@ -26,12 +26,8 @@ public abstract class GameObject {
 		vel = Vector2.zero();
 		rotation = 0;
 		
-		initSprite();
-		
 		active = true;
 	}
-	
-	protected abstract void initSprite();
 	
 	public abstract void update();
 	
