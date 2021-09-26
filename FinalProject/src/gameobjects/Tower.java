@@ -26,8 +26,8 @@ public class Tower extends GameObject {
 
 	@Override
 	public void update() {
+		InputManager im = scene.getGame().getInputManager();
 		if (!placed) {
-			InputManager im = scene.getGame().getInputManager();
 			pos.x = im.getMousePos().x / scene.getGame().getScale();
 			pos.y = im.getMousePos().y / scene.getGame().getScale();
 			
@@ -40,7 +40,7 @@ public class Tower extends GameObject {
 
 	@Override
 	public void render(Graphics2D g) {
-		renderComponent.render(g, this);
+		renderComponent.render(g, this, sprite);
 	}
 
 }
