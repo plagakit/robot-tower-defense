@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import gameobjects.Button;
 import gameobjects.GameObject;
 import general.Game;
 import general.Vector2;
@@ -44,10 +45,22 @@ public class RenderComponent extends Component {
 		if (Game.DEBUG) {
 			// Position
 			g.setColor(Color.blue);
-			g.setStroke(new BasicStroke(10));
+			g.setStroke(new BasicStroke(gameScale * 5));
 			g.drawLine((int)(pos.x * gameScale), (int)(pos.y * gameScale), (int)(pos.x * gameScale), (int)(pos.y * gameScale)); 
 			
+			if (parent instanceof Button) {
+				Button button = (Button)parent;
+				g.setColor(Color.GREEN);
+				g.setStroke(new BasicStroke(gameScale));
+				g.drawRect(
+						(int)(pos.x + button.getBounds().x) * gameScale, 
+						(int)(pos.y + button.getBounds().y)* gameScale, 
+						button.getBounds().width * gameScale, 
+						button.getBounds().height * gameScale);
+			}
+			
 			g.setStroke(new BasicStroke(1));
+			g.setColor(Color.RED);
 		}
 	}
 }
