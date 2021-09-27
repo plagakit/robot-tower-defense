@@ -1,6 +1,6 @@
 package gameobjects;
 
-import java.awt.Graphics2D;import java.lang.reflect.Constructor;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import components.Box;
