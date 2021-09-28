@@ -1,15 +1,19 @@
 package gameobjects;
 
+import components.CircleBounds;
 import general.InputManager;
 import general.Vector2;
 import scenes.GameScene;
 
 public abstract class Tower extends GameObject {
 
-	protected boolean placed;
+	private boolean placed;
+	
+	protected CircleBounds bounds;
 	
 	public Tower(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
+		bounds = new CircleBounds(this, 32);
 	}
 
 	@Override
@@ -26,4 +30,5 @@ public abstract class Tower extends GameObject {
 		}
 	}
 
+	public CircleBounds getBounds() { return bounds; }
 }
