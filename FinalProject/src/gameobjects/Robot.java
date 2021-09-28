@@ -7,7 +7,7 @@ public class Robot extends Tower {
 	
 	public Robot(GameScene scene, Vector2 pos) {
 		super(scene, "Robot", pos);
-		sprite = scene.getGame().getSpriteManager().getSprite("smile.png");
+		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
 	}
 
 	@Override

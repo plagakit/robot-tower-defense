@@ -4,4 +4,5 @@
 smile.png
 smileicon.png
 roboticon.png
+robot.png
 # Tracks:
