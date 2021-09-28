@@ -2,6 +2,7 @@ package components;
 
 import gameobjects.GameObject;
 import general.Vector2;
+import graphics.Sprite;
 
 public class Box extends Component {
 	public int x;
@@ -15,6 +16,14 @@ public class Box extends Component {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+	}
+	
+	public Box(GameObject parent, Sprite sprite) {
+		super(parent);
+		this.x = -sprite.getWidth()/2;
+		this.y = -sprite.getHeight()/2;
+		this.width = sprite.getWidth();
+		this.height = sprite.getHeight();
 	}
 	
 	public boolean contains(Vector2 point) {

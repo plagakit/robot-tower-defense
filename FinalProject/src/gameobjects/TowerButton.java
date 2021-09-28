@@ -16,7 +16,7 @@ public class TowerButton extends Button {
 		super(scene, "TowerButton", pos);
 		
 		sprite = scene.getGame().getSpriteManager().getSprite(iconName);
-		bounds = new Box(this, -10, -10, 20, 20);
+		bounds = new Box(this, sprite);
 		
 		this.towerClass = towerClass;
 		try {

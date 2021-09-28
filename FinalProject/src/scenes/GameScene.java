@@ -43,7 +43,7 @@ public class GameScene extends Scene {
 		gameObjects = new ArrayList<GameObject>();
 	}
 	
-	TowerButton tb = new TowerButton(this, new Vector2(300, 100), Robot.class, "smileicon.png");
+	TowerButton tb = new TowerButton(this, new Vector2(300, 100), Robot.class, "roboticon.png");
 
 	@Override
 	public void update() {
