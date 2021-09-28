@@ -14,6 +14,8 @@ public class CircleBounds extends Component {
 
 	public int getRadius() { return radius; }
 	
+	public void setRadius(int radius) { this.radius = radius; }
+	
 	public boolean contains(Vector2 point) {
 		// Pythagorean theorem -> a^2 + b^2 = c^2
 		float distanceSquared = (point.x*point.x) + (point.y*point.y);
