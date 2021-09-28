@@ -5,10 +5,10 @@ import general.Vector2;
 import graphics.Sprite;
 
 public class BoxBounds extends Component {
-	public int x;
-	public int y;
-	public int width;
-	public int height;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
 	
 	public BoxBounds(GameObject parent, int x, int y, int width, int height) {
 		super(parent);
@@ -34,4 +34,12 @@ public class BoxBounds extends Component {
 		float y2 = y1 + height;
 		return point.x > x1 && point.x < x2 && point.y > y1 && point.y < y2;
 	}
+	
+	public int getX() { return x; }
+	
+	public int getY() { return y; }
+	
+	public int getWidth() { return width; }
+	
+	public int getHeight() { return height; }
 }
