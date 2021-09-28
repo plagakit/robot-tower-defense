@@ -3,4 +3,5 @@
 # Sprites:
 smile.png
 smileicon.png
+roboticon.png
 # Tracks:
