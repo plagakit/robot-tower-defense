@@ -3,7 +3,7 @@ package gameobjects;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import components.Box;
+import components.BoxBounds;
 import general.Vector2;
 import scenes.GameScene;
 
@@ -16,7 +16,7 @@ public class TowerButton extends Button {
 		super(scene, "TowerButton", pos);
 		
 		sprite = scene.getGame().getSpriteManager().getSprite(iconName);
-		bounds = new Box(this, sprite);
+		bounds = new BoxBounds(this, sprite);
 		
 		this.towerClass = towerClass;
 		try {

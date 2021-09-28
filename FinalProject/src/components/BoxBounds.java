@@ -4,13 +4,13 @@ import gameobjects.GameObject;
 import general.Vector2;
 import graphics.Sprite;
 
-public class Box extends Component {
+public class BoxBounds extends Component {
 	public int x;
 	public int y;
 	public int width;
 	public int height;
 	
-	public Box(GameObject parent, int x, int y, int width, int height) {
+	public BoxBounds(GameObject parent, int x, int y, int width, int height) {
 		super(parent);
 		this.x = x;
 		this.y = y;
@@ -18,7 +18,7 @@ public class Box extends Component {
 		this.height = height;
 	}
 	
-	public Box(GameObject parent, Sprite sprite) {
+	public BoxBounds(GameObject parent, Sprite sprite) {
 		super(parent);
 		this.x = -sprite.getWidth()/2;
 		this.y = -sprite.getHeight()/2;

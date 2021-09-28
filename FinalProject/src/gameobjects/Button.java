@@ -1,13 +1,13 @@
 package gameobjects;
 
-import components.Box;
+import components.BoxBounds;
 import general.InputManager;
 import general.Vector2;
 import scenes.GameScene;
 
 public abstract class Button extends GameObject {
 
-	protected Box bounds;
+	protected BoxBounds bounds;
 	
 	public Button(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
@@ -23,5 +23,5 @@ public abstract class Button extends GameObject {
 	
 	protected abstract void onClick();
 	
-	public Box getBounds() { return bounds; }
+	public BoxBounds getBounds() { return bounds; }
 }
