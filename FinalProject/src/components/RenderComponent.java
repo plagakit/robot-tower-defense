@@ -1,11 +1,13 @@
 package components;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 import gameobjects.Button;
 import gameobjects.GameObject;
+import gameobjects.Tower;
 import general.Game;
 import general.Vector2;
 import graphics.Sprite;
@@ -43,21 +45,36 @@ public class RenderComponent extends Component {
 			g.rotate(Math.toRadians(-parent.getRotation()), midx, midy);
 		
 		if (Game.DEBUG) {
-			// Position
-			g.setColor(Color.blue);
-			g.setStroke(new BasicStroke(gameScale * 5));
-			g.drawLine((int)(pos.x * gameScale), (int)(pos.y * gameScale), (int)(pos.x * gameScale), (int)(pos.y * gameScale)); 
 			
+			// Button outline
 			if (parent instanceof Button) {
 				Button button = (Button)parent;
 				g.setColor(Color.GREEN);
 				g.setStroke(new BasicStroke(gameScale));
 				g.drawRect(
-						(int)(pos.x + button.getBounds().x) * gameScale, 
-						(int)(pos.y + button.getBounds().y)* gameScale, 
-						button.getBounds().width * gameScale, 
-						button.getBounds().height * gameScale);
+						(int)(pos.x + button.getBounds().getX()) * gameScale, 
+						(int)(pos.y + button.getBounds().getY())* gameScale, 
+						button.getBounds().getWidth() * gameScale, 
+						button.getBounds().getHeight() * gameScale);
 			}
+			
+			// Tower circle bounds & range
+			if (parent instanceof Tower) {
+				Tower tower = (Tower)parent;
+				g.setColor(Color.GREEN);
+				g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+				g.fillOval(
+						(int)(pos.x - tower.getBounds().getRadius()/2.0) * gameScale, 
+						(int)(pos.y - tower.getBounds().getRadius()/2.0) * gameScale, 
+						tower.getBounds().getRadius() * gameScale, 
+						tower.getBounds().getRadius() * gameScale);
+				g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+			}
+			
+			// Position
+			g.setColor(Color.PINK);
+			g.setStroke(new BasicStroke(gameScale * 5));
+			g.drawLine((int)(pos.x * gameScale), (int)(pos.y * gameScale), (int)(pos.x * gameScale), (int)(pos.y * gameScale)); 
 			
 			g.setStroke(new BasicStroke(1));
 			g.setColor(Color.RED);
