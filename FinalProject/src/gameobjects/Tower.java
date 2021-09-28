@@ -10,10 +10,12 @@ public abstract class Tower extends GameObject {
 	private boolean placed;
 	
 	protected CircleBounds bounds;
+	protected CircleBounds range;
 	
 	public Tower(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
 		bounds = new CircleBounds(this, 32);
+		range = new CircleBounds(this, 100);
 	}
 
 	@Override
@@ -31,4 +33,6 @@ public abstract class Tower extends GameObject {
 	}
 
 	public CircleBounds getBounds() { return bounds; }
+	
+	public CircleBounds getRangeBounds() { return range; }
 }
