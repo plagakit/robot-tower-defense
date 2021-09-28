@@ -11,7 +11,7 @@ import scenes.Scene;
 public class Game {
 
 	private boolean running;
-	public static final boolean DEBUG = true;
+	public static boolean DEBUG = true;
 	
 	private int width;
 	private int height;
@@ -94,6 +94,10 @@ public class Game {
 	
 	private void update() {
 		inputManager.update();
+		
+		if (inputManager.isDebugPressed())
+			DEBUG = !DEBUG;
+		
 		if (currentScene != null)
 			currentScene.update();
 	}

@@ -13,6 +13,7 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	
 	private final int KEY_SIZE = 256;
 	private boolean[] keys, justPressed, cantPress;
+	private boolean debugButton;
 	
 	private Vector2 mousePos;
 	private boolean lmbHeld, lmbJustPressed, lmbCantPress;
@@ -47,6 +48,8 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 		}
 		if (!lmbCantPress & lmbHeld)
 			lmbJustPressed = true;
+		
+		debugButton = justPressed[KeyEvent.VK_F1];
 	}
 	
 	@Override
@@ -115,4 +118,6 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	public boolean isDragging() { return dragging; }
 	
 	public void setDragging(boolean dragging) { this.dragging = dragging; }
+
+	public boolean isDebugPressed() { return debugButton; }
 }
