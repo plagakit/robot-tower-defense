@@ -45,43 +45,6 @@ public class RenderComponent extends Component {
 			g.rotate(Math.toRadians(-parent.getRotation()), midx, midy);
 		
 		if (Game.DEBUG) {
-			
-			// Button outline
-			if (parent instanceof Button) {
-				Button button = (Button)parent;
-				g.setColor(Color.GREEN);
-				g.setStroke(new BasicStroke(gameScale));
-				g.drawRect(
-						(int)(pos.x + button.getBounds().getX()) * gameScale, 
-						(int)(pos.y + button.getBounds().getY())* gameScale, 
-						button.getBounds().getWidth() * gameScale, 
-						button.getBounds().getHeight() * gameScale);
-			}
-			
-			// Tower circle bounds & range
-			if (parent instanceof Tower) {
-				Tower tower = (Tower)parent;
-				g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-				
-				// Bounds
-				g.setColor(Color.GREEN);
-				g.fillOval(
-						(int)(pos.x - tower.getBounds().getRadius()/2.0) * gameScale, 
-						(int)(pos.y - tower.getBounds().getRadius()/2.0) * gameScale, 
-						tower.getBounds().getRadius() * gameScale, 
-						tower.getBounds().getRadius() * gameScale);
-				
-				// Range
-				g.setColor(Color.GRAY);
-				g.fillOval(
-						(int)(pos.x - tower.getRangeBounds().getRadius()/2.0) * gameScale, 
-						(int)(pos.y - tower.getRangeBounds().getRadius()/2.0) * gameScale, 
-						tower.getRangeBounds().getRadius() * gameScale, 
-						tower.getRangeBounds().getRadius() * gameScale);
-				
-				g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-			}
-			
 			// Position
 			g.setColor(Color.PINK);
 			g.setStroke(new BasicStroke(gameScale * 5));
