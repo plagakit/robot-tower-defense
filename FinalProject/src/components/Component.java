@@ -10,4 +10,6 @@ public abstract class Component {
 		this.parent = parent;
 	}
 	
+	public GameObject getParent() { return parent; }
+	
 }
