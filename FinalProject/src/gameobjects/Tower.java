@@ -13,7 +13,7 @@ import scenes.GameScene;
 public abstract class Tower extends GameObject {
 
 	private boolean placed;
-	private boolean validPos = true;
+	private boolean validPos;
 	
 	private boolean selected;
 	
@@ -23,7 +23,7 @@ public abstract class Tower extends GameObject {
 	public Tower(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
 		bounds = new CircleBounds(this, 32);
-		range = new CircleBounds(this, 100);
+		range = new CircleBounds(this, 150);
 		
 		placed = false;
 		selected = true;
@@ -37,16 +37,26 @@ public abstract class Tower extends GameObject {
 			pos.x = im.getMousePos().x;
 			pos.y = im.getMousePos().y;
 			
+			validPos = validatePosition();
+			
 			if (!im.isLmbHeld()) {
 				if (validPos) {
 					placed = true;
 					selected = false;
 					im.setDragging(false);
-				} else {
-					
 				}
 			}
 		}
+	}
+	
+	private boolean validatePosition() {
+		for (Tower t : scene.getTowers().getList())
+			if (t == this) 
+				continue;
+			else if (t.getBounds().collides(bounds))
+				return false;
+			
+		return true;	
 	}
 	
 	@Override
