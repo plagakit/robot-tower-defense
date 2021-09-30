@@ -32,6 +32,6 @@ public class CircleBounds extends Component {
 		
 		// Pythagorean theorem -> a^2 + b^2 = c^2
 		float distance = (float)Math.sqrt((x*x) + (y*y));
-		return distance < radius;
+		return distance < (radius + bounds.getRadius());
 	}
 }

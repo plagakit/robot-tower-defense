@@ -22,8 +22,8 @@ public abstract class Tower extends GameObject {
 	
 	public Tower(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
-		bounds = new CircleBounds(this, 32);
-		range = new CircleBounds(this, 150);
+		bounds = new CircleBounds(this, 15);
+		range = new CircleBounds(this, 80);
 		
 		placed = false;
 		selected = true;
@@ -46,6 +46,12 @@ public abstract class Tower extends GameObject {
 					im.setDragging(false);
 				}
 			}
+		} else {
+			
+			if (im.isLmbJustPressed()) {
+				System.out.println(bounds.isInside(im.getMousePos()));
+			}
+			
 		}
 	}
 	
@@ -71,20 +77,20 @@ public abstract class Tower extends GameObject {
 		if (Game.DEBUG) {
 			g.setColor(Color.GREEN);
 			g.fillOval(
-					(int)(pos.x - bounds.getRadius()/2.0) * gameScale, 
-					(int)(pos.y - bounds.getRadius()/2.0) * gameScale, 
-					bounds.getRadius() * gameScale, 
-					bounds.getRadius() * gameScale);
+					(int)(pos.x - bounds.getRadius()) * gameScale, 
+					(int)(pos.y - bounds.getRadius()) * gameScale, 
+					bounds.getRadius() * 2 * gameScale, 
+					bounds.getRadius() * 2 * gameScale);
 		}
 		
 		// Range
 		if (selected) {
 			g.setColor(validPos ? Color.GRAY : Color.RED);
 			g.fillOval(
-					(int)(pos.x - range.getRadius()/2.0) * gameScale, 
-					(int)(pos.y - range.getRadius()/2.0) * gameScale, 
-					range.getRadius() * gameScale, 
-					range.getRadius() * gameScale);
+					(int)(pos.x - range.getRadius()) * gameScale, 
+					(int)(pos.y - range.getRadius()) * gameScale, 
+					range.getRadius() * 2 * gameScale, 
+					range.getRadius() * 2 * gameScale);
 		}
 		
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
