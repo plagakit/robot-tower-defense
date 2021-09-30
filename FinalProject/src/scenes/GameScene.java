@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gameobjects.GameObject;
+import gameobjects.ObjectGroup;
 import gameobjects.Robot;
+import gameobjects.Tower;
 import gameobjects.TowerButton;
 import general.Difficulty;
 import general.Game;
@@ -18,7 +20,7 @@ public class GameScene extends Scene {
 	private int maxLives;
 	private int currentLives;
 	
-	private List<GameObject> gameObjects;
+	private ObjectGroup<Tower> towers;
 	
 	public GameScene(Game game, Difficulty difficulty) {
 		super(game);
@@ -40,25 +42,24 @@ public class GameScene extends Scene {
 	@Override
 	public void onStart() {
 		currentLives = maxLives;
-		gameObjects = new ArrayList<GameObject>();
+		
+		towers = new ObjectGroup<Tower>();
 	}
 	
 	TowerButton tb = new TowerButton(this, new Vector2(300, 100), Robot.class, "roboticon.png");
-
+	
 	@Override
 	public void update() {
 		tb.update();
 		
-		for (GameObject go : gameObjects)
-			go.update();
+		towers.update();
 	}
 
 	@Override
 	public void render(Graphics2D g) {
 		tb.render(g);
 		
-		for (GameObject go : gameObjects)
-			go.render(g);
+		towers.render(g);
 		
 		//Divider
 		int scale = game.getScale();
@@ -71,9 +72,6 @@ public class GameScene extends Scene {
 
 	}
 	
-	public void addGameObject(GameObject go) {
-		if (!gameObjects.contains(go))
-			gameObjects.add(go);
-	}
+	public ObjectGroup<Tower> getTowers() { return towers; }
 
 }
