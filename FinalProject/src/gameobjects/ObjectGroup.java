@@ -51,7 +51,7 @@ public class ObjectGroup<T extends GameObject> {
 	
 	public void remove(T object) {
 		if (!removeQueue.contains(object) && objects.contains(object))
-			removeQueue.remove(object);
+			removeQueue.add(object);
 	}
 	
 }
