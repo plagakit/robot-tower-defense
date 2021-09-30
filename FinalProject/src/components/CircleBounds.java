@@ -16,6 +16,8 @@ public class CircleBounds extends Component {
 	
 	public void setRadius(int radius) { this.radius = radius; }
 	
+	public int getDiameter() { return radius * 2; }
+	
 	public boolean isInside(Vector2 point) {
 		float x = point.x - parent.getPos().x;
 		float y = point.y - parent.getPos().y;

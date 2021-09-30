@@ -79,8 +79,8 @@ public abstract class Tower extends GameObject {
 			g.fillOval(
 					(int)(pos.x - bounds.getRadius()) * gameScale, 
 					(int)(pos.y - bounds.getRadius()) * gameScale, 
-					bounds.getRadius() * 2 * gameScale, 
-					bounds.getRadius() * 2 * gameScale);
+					bounds.getDiameter() * gameScale, 
+					bounds.getDiameter() * gameScale);
 		}
 		
 		// Range
@@ -89,8 +89,8 @@ public abstract class Tower extends GameObject {
 			g.fillOval(
 					(int)(pos.x - range.getRadius()) * gameScale, 
 					(int)(pos.y - range.getRadius()) * gameScale, 
-					range.getRadius() * 2 * gameScale, 
-					range.getRadius() * 2 * gameScale);
+					range.getDiameter() * gameScale, 
+					range.getDiameter() * gameScale);
 		}
 		
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
