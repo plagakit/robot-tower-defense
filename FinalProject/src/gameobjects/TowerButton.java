@@ -31,7 +31,7 @@ public class TowerButton extends Button {
 	@Override
 	protected void onClick() {
 		try {
-			scene.addGameObject(towerConstructor.newInstance(scene, new Vector2(pos)));
+			scene.getTowers().add(towerConstructor.newInstance(scene, new Vector2(pos)));
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) { e.printStackTrace(); }
 	}
 

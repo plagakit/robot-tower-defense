@@ -20,6 +20,7 @@ public class GameScene extends Scene {
 	private int maxLives;
 	private int currentLives;
 	
+	private ObjectGroup<GameObject> gameObjects;
 	private ObjectGroup<Tower> towers;
 	
 	public GameScene(Game game, Difficulty difficulty) {
@@ -43,6 +44,7 @@ public class GameScene extends Scene {
 	public void onStart() {
 		currentLives = maxLives;
 		
+		gameObjects = new ObjectGroup<GameObject>();
 		towers = new ObjectGroup<Tower>();
 	}
 	
@@ -71,6 +73,8 @@ public class GameScene extends Scene {
 	public void onStop() {
 
 	}
+	
+	public ObjectGroup<GameObject> getGameObjects() { return gameObjects; }
 	
 	public ObjectGroup<Tower> getTowers() { return towers; }
 
