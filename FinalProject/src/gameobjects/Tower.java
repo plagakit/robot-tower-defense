@@ -46,10 +46,17 @@ public abstract class Tower extends GameObject {
 					im.setDragging(false);
 				}
 			}
-		} else {
+		} 
+		else {
 			
-			if (im.isLmbJustPressed()) {
-				System.out.println(bounds.isInside(im.getMousePos()));
+			if (im.isLmbJustPressed() && bounds.isInside(im.getMousePos())) {
+				if (selected) {
+					selected = false;
+					scene.setTowerSelection(null);
+				} else {
+					selected = true;
+					scene.setTowerSelection(this);
+				}
 			}
 			
 		}
@@ -99,4 +106,6 @@ public abstract class Tower extends GameObject {
 	public CircleBounds getBounds() { return bounds; }
 	
 	public CircleBounds getRangeBounds() { return range; }
+	
+	public void setSelected(boolean selected) { this.selected = selected; }
 }
