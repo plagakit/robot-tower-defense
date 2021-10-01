@@ -1,9 +1,8 @@
 package scenes;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
 
 import gameobjects.GameObject;
 import gameobjects.ObjectGroup;
@@ -22,6 +21,7 @@ public class GameScene extends Scene {
 	
 	private ObjectGroup<GameObject> gameObjects;
 	private ObjectGroup<Tower> towers;
+	private Tower currentTowerSelection;
 	
 	public GameScene(Game game, Difficulty difficulty) {
 		super(game);
@@ -63,10 +63,13 @@ public class GameScene extends Scene {
 		
 		towers.render(g);
 		
-		//Divider
+		//Divider & text temporary
 		int scale = game.getScale();
+		g.setColor(Color.BLACK);
 		g.setStroke(new BasicStroke());
 		g.drawLine(480 * scale, 0, 480 * scale, 360 * scale);
+		if (currentTowerSelection != null)
+			g.drawString(currentTowerSelection.getName(), 0, 200);
 	}
 
 	@Override
@@ -78,4 +81,10 @@ public class GameScene extends Scene {
 	
 	public ObjectGroup<Tower> getTowers() { return towers; }
 
+	public void setTowerSelection(Tower t) { 
+		if (currentTowerSelection != null)
+			currentTowerSelection.setSelected(false);
+		currentTowerSelection = t; 
+	}
+	
 }
