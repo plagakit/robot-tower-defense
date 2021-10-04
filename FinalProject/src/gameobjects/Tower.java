@@ -40,11 +40,11 @@ public abstract class Tower extends GameObject {
 			validPos = validatePosition();
 			
 			if (!im.isLmbHeld()) {
-				if (validPos) {
-					placed = true;
-					selected = false;
-					im.setDragging(false);
-				}
+				if (validPos) placed = true;
+				else scene.getTowers().remove(this);
+				
+				selected = false;
+				im.setDragging(false);
 			}
 		} 
 		else {
