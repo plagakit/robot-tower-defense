@@ -63,12 +63,15 @@ public abstract class Tower extends GameObject {
 	}
 	
 	private boolean validatePosition() {
-		for (Tower t : scene.getTowers().getList())
+		for (Tower t : scene.getTowers().getList())	
 			if (t == this) 
 				continue;
 			else if (t.getBounds().collides(bounds))
 				return false;
-			
+		
+		if (!scene.getTrack().validateTowerPosition(this))
+			return false;
+		
 		return true;	
 	}
 	

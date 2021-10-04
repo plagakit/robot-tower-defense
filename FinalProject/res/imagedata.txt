@@ -6,3 +6,5 @@ smileicon.png
 roboticon.png
 robot.png
 # Tracks:
+testTrack.png
+testMask.png

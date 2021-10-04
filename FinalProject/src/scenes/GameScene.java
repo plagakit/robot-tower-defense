@@ -12,12 +12,15 @@ import gameobjects.TowerButton;
 import general.Difficulty;
 import general.Game;
 import general.Vector2;
+import tracks.Track;
 
 public class GameScene extends Scene {
 
 	private Difficulty difficulty;
 	private int maxLives;
 	private int currentLives;
+	
+	private Track track;
 	
 	private ObjectGroup<GameObject> gameObjects;
 	private ObjectGroup<Tower> towers;
@@ -44,6 +47,8 @@ public class GameScene extends Scene {
 	public void onStart() {
 		currentLives = maxLives;
 		
+		track = new Track(game, "testTrack.png", "testMask.png");
+		
 		gameObjects = new ObjectGroup<GameObject>();
 		towers = new ObjectGroup<Tower>();
 	}
@@ -56,10 +61,13 @@ public class GameScene extends Scene {
 		
 		towers.update();
 	}
-
+	
 	@Override
 	public void render(Graphics2D g) {
+		track.render(g);
+		
 		tb.render(g);
+		
 		
 		towers.render(g);
 		
@@ -86,5 +94,7 @@ public class GameScene extends Scene {
 			currentTowerSelection.setSelected(false);
 		currentTowerSelection = t; 
 	}
+	
+	public Track getTrack() { return track; }
 	
 }
