@@ -4,12 +4,15 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import gameobjects.Button;
 import gameobjects.GameObject;
 import gameobjects.ObjectGroup;
-import gameobjects.Shop;
+import gameobjects.Robot;
 import gameobjects.Tower;
+import gameobjects.TowerButton;
 import general.Difficulty;
 import general.Game;
+import general.Vector2;
 import tracks.Track;
 
 public class GameScene extends Scene {
@@ -18,7 +21,8 @@ public class GameScene extends Scene {
 	private int maxLives;
 	private int currentLives;
 	
-	private Shop shop;
+	private Button[] shopButtons;
+
 	private Track track;
 	
 	private ObjectGroup<GameObject> gameObjects;
@@ -46,7 +50,10 @@ public class GameScene extends Scene {
 	public void onStart() {
 		currentLives = maxLives;
 		
-		shop = new Shop(this);
+		shopButtons = new Button[] {
+				new TowerButton(this, new Vector2(505, 32), Robot.class, "roboticon.png")
+		};
+
 		track = new Track(game, "testTrack.png", "testMask.png");
 		
 		gameObjects = new ObjectGroup<GameObject>();
@@ -55,14 +62,20 @@ public class GameScene extends Scene {
 	
 	@Override
 	public void update() {
-		shop.update();
+
+		for (Button b : shopButtons)
+			b.update();
+		
 		towers.update();
 	}
 	
 	@Override
 	public void render(Graphics2D g) {
 		track.render(g);
-		shop.render(g);
+
+		for (Button b : shopButtons)
+			b.render(g);
+		
 		towers.render(g);
 		
 		//Divider & text temporary
