@@ -27,6 +27,11 @@ public class TowerButton extends Button {
 		} catch (NoSuchMethodException | SecurityException e) { e.printStackTrace(); }
 	
 	}
+	
+	@Override
+	protected void onHover() {
+		//System.out.format("Hovered over %s %s\n", towerClass.getName(), name);
+	}
 
 	@Override
 	protected void onClick() {

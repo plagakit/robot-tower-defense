@@ -22,8 +22,12 @@ public abstract class Button extends GameObject {
 	public void update() {
 		InputManager im = scene.getGame().getInputManager();
 
-		if (im.isLmbJustPressed() && bounds.contains(im.getMousePos()))
-			onClick();
+		if (bounds.contains(im.getMousePos())) {
+			onHover();
+			if (im.isLmbJustPressed())
+				onClick();
+		}
+
 	}
 	
 	@Override
@@ -44,6 +48,8 @@ public abstract class Button extends GameObject {
 	}
 	
 	protected abstract void onClick();
+	
+	protected abstract void onHover();
 	
 	public BoxBounds getBounds() { return bounds; }
 }
