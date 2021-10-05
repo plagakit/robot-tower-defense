@@ -2,6 +2,7 @@ package scenes;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 import gameobjects.Button;
@@ -18,6 +19,8 @@ import tracks.Track;
 public class GameScene extends Scene {
 
 	private Difficulty difficulty;
+	private int maxRounds;
+	private int currentRound;
 	private int maxLives;
 	private int currentLives;
 	
@@ -36,12 +39,15 @@ public class GameScene extends Scene {
 		switch (difficulty) {
 		case EASY:
 			maxLives = 100;
+			maxRounds = 50;
 			break;
 		case MEDIUM:
 			maxLives = 50;
+			maxRounds = 75;
 			break;
 		case HARD:
 			maxLives = 1;
+			maxRounds = 100;
 			break;
 		}
 	}
@@ -49,9 +55,10 @@ public class GameScene extends Scene {
 	@Override
 	public void onStart() {
 		currentLives = maxLives;
+		currentRound = 0;
 		
 		shopButtons = new Button[] {
-				new TowerButton(this, new Vector2(505, 32), Robot.class, "roboticon.png")
+				new TowerButton(this, new Vector2(505, 24), Robot.class, "roboticon.png")
 		};
 
 		track = new Track(game, "testTrack.png", "testMask.png");
@@ -83,8 +90,11 @@ public class GameScene extends Scene {
 		g.setColor(Color.BLACK);
 		g.setStroke(new BasicStroke());
 		g.drawLine(480 * scale, 0, 480 * scale, 360 * scale);
+		
+		g.setFont(new Font("Arial", Font.BOLD, 15 * scale));
+		//g.drawString(String.format("Round %d/%d", currentRound, maxRounds), 0, 15 * scale);
 		if (currentTowerSelection != null)
-			g.drawString(currentTowerSelection.getName(), 0, 200);
+			g.drawString(currentTowerSelection.getName(), 480 * scale, 15 * scale);
 	}
 
 	@Override
