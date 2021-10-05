@@ -49,14 +49,20 @@ public abstract class Tower extends GameObject {
 		} 
 		else {
 			
-			if (im.isLmbJustPressed() && bounds.isInside(im.getMousePos())) {
-				if (selected) {
-					selected = false;
-					scene.setTowerSelection(null);
-				} else {
-					selected = true;
-					scene.setTowerSelection(this);
+			if (im.isLmbJustPressed()) {
+				if (bounds.isInside(im.getMousePos())) {
+					if (selected) {
+						selected = false;
+						scene.setTowerSelection(null);
+					} else {
+						selected = true;
+						scene.setTowerSelection(this);
+					}
 				}
+				
+				//https://en.wikipedia.org/wiki/Atan2
+				Vector2 lookTo = new Vector2(im.getMousePos().x - pos.x, im.getMousePos().y - pos.y);
+				rotation = (float)Math.toDegrees(Math.atan2(lookTo.y, lookTo.x)) + 90;
 			}
 			
 		}
