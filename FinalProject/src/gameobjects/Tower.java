@@ -12,6 +12,9 @@ import scenes.GameScene;
 
 public abstract class Tower extends GameObject {
 
+	protected static String description = "N/A";
+	protected static int baseCost = 0;
+	
 	private boolean placed;
 	private boolean validPos;
 	
@@ -22,6 +25,7 @@ public abstract class Tower extends GameObject {
 	
 	public Tower(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
+		
 		bounds = new CircleBounds(this, 15);
 		range = new CircleBounds(this, 80);
 		
@@ -58,11 +62,11 @@ public abstract class Tower extends GameObject {
 						selected = true;
 						scene.setTowerSelection(this);
 					}
+				} else {
+					//https://en.wikipedia.org/wiki/Atan2
+					Vector2 lookTo = new Vector2(im.getMousePos().x - pos.x, im.getMousePos().y - pos.y);
+					rotation = (float)Math.toDegrees(Math.atan2(lookTo.y, lookTo.x)) + 90;
 				}
-				
-				//https://en.wikipedia.org/wiki/Atan2
-				Vector2 lookTo = new Vector2(im.getMousePos().x - pos.x, im.getMousePos().y - pos.y);
-				rotation = (float)Math.toDegrees(Math.atan2(lookTo.y, lookTo.x)) + 90;
 			}
 			
 		}
@@ -117,4 +121,9 @@ public abstract class Tower extends GameObject {
 	public CircleBounds getRangeBounds() { return range; }
 	
 	public void setSelected(boolean selected) { this.selected = selected; }
+	
+	public static String getDescription() { return description; }
+	
+	public static int getBaseCost() { return baseCost; }
+
 }
