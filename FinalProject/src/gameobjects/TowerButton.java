@@ -9,11 +9,14 @@ import scenes.GameScene;
 
 public class TowerButton extends Button {
 	
-	Tower tower;
-	Constructor<? extends Tower> towerConstructor;
+	private Shop shop;
 	
-	public TowerButton(GameScene scene, Vector2 pos, Tower tower, String iconName) {
+	private Tower tower;
+	private Constructor<? extends Tower> towerConstructor;
+	
+	public TowerButton(GameScene scene, Shop shop, Vector2 pos, Tower tower, String iconName) {
 		super(scene, "TowerButton", pos);
+		this.shop = shop;
 		
 		sprite = scene.getGame().getSpriteManager().getSprite(iconName);
 		bounds = new BoxBounds(this, sprite);
@@ -30,8 +33,7 @@ public class TowerButton extends Button {
 	
 	@Override
 	protected void onHover() {
-		BuyInfo info = tower.getInfo();
-		System.out.format("%s %s %d\n", info.getTitle(), info.getDescription(), info.getBaseCost());
+		shop.setCurrentTowerButtonInfo(tower.getInfo());
 	}
 
 	@Override
