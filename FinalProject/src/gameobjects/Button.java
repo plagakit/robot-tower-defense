@@ -12,6 +12,7 @@ import scenes.GameScene;
 
 public abstract class Button extends GameObject {
 
+	private boolean hovering;
 	protected BoxBounds bounds;
 	
 	public Button(GameScene scene, String name, Vector2 pos) {
@@ -23,9 +24,19 @@ public abstract class Button extends GameObject {
 		InputManager im = scene.getGame().getInputManager();
 
 		if (bounds.contains(im.getMousePos())) {
-			onHover();
+			
+			if (!hovering) {
+				onMouseEnter();
+				hovering = true;
+			}
+			
 			if (im.isLmbJustPressed())
 				onClick();
+			
+		} 
+		else if (hovering) {
+			onMouseExit();
+			hovering = false;
 		}
 
 	}
@@ -49,7 +60,9 @@ public abstract class Button extends GameObject {
 	
 	protected abstract void onClick();
 	
-	protected abstract void onHover();
+	protected abstract void onMouseEnter();
+	
+	protected abstract void onMouseExit();
 	
 	public BoxBounds getBounds() { return bounds; }
 }

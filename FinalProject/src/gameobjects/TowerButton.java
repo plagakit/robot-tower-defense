@@ -32,8 +32,13 @@ public class TowerButton extends Button {
 	}
 	
 	@Override
-	protected void onHover() {
+	protected void onMouseEnter() {
 		shop.setCurrentTowerButtonInfo(tower.getInfo());
+	}
+	
+	@Override
+	protected void onMouseExit() {
+		shop.setCurrentTowerButtonInfo(null);
 	}
 
 	@Override
