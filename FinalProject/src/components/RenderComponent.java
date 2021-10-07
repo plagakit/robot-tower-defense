@@ -1,13 +1,10 @@
 package components;
 
-import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import gameobjects.Button;
 import gameobjects.GameObject;
-import gameobjects.Tower;
 import general.Game;
 import general.Vector2;
 import graphics.Sprite;

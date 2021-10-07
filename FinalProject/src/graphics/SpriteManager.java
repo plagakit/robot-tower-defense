@@ -3,7 +3,6 @@ package graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
