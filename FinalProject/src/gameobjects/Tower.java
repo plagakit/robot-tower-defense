@@ -12,6 +12,7 @@ import scenes.GameScene;
 
 public abstract class Tower extends GameObject {
 
+	protected static String towerName = "Tower";
 	protected static String description = "N/A";
 	protected static int baseCost = 0;
 	
@@ -121,6 +122,9 @@ public abstract class Tower extends GameObject {
 	public CircleBounds getRangeBounds() { return range; }
 	
 	public void setSelected(boolean selected) { this.selected = selected; }
+	
+	
+	public static String getTowerName() { return towerName; }
 	
 	public static String getDescription() { return description; }
 	

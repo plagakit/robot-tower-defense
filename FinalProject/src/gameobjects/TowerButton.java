@@ -2,7 +2,6 @@ package gameobjects;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import components.BoxBounds;
 import general.Vector2;
@@ -33,9 +32,10 @@ public class TowerButton extends Button {
 	protected void onHover() {
 		try {
 			
-			Method getDescription = towerClass.getMethod("getDescription");
-			String description = (String)getDescription.invoke(null);
-			System.out.println(description);
+			String towerName = (String)towerClass.getMethod("getTowerName").invoke(null);
+			String description = (String)towerClass.getMethod("getDescription").invoke(null);
+			Integer baseCost = (Integer)towerClass.getMethod("getBaseCost").invoke(null);
+			System.out.format("%s %s %d\n", towerName, description, baseCost);
 			
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) { e.printStackTrace(); }
 	}
