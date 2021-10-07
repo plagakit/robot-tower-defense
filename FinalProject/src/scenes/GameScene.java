@@ -58,7 +58,7 @@ public class GameScene extends Scene {
 		currentRound = 0;
 		
 		shopButtons = new Button[] {
-				new TowerButton(this, new Vector2(505, 24), Robot.class, "roboticon.png")
+				new TowerButton(this, new Vector2(505, 24), new Robot(this, null), "roboticon.png")
 		};
 
 		track = new Track(game, "testTrack.png", "testMask.png");

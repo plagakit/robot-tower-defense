@@ -11,10 +11,8 @@ import general.Vector2;
 import scenes.GameScene;
 
 public abstract class Tower extends GameObject {
-
-	protected static String towerName = "Tower";
-	protected static String description = "N/A";
-	protected static int baseCost = 0;
+	
+	protected final BuyInfo info;
 	
 	private boolean placed;
 	private boolean validPos;
@@ -24,8 +22,9 @@ public abstract class Tower extends GameObject {
 	protected CircleBounds bounds;
 	protected CircleBounds range;
 	
-	public Tower(GameScene scene, String name, Vector2 pos) {
+	public Tower(GameScene scene, String name, Vector2 pos, BuyInfo info) {
 		super(scene, name, pos);
+		this.info = info;
 		
 		bounds = new CircleBounds(this, 15);
 		range = new CircleBounds(this, 80);
@@ -116,18 +115,13 @@ public abstract class Tower extends GameObject {
 		
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 	}
+	
+	public BuyInfo getInfo() { return info; }
 
 	public CircleBounds getBounds() { return bounds; }
 	
 	public CircleBounds getRangeBounds() { return range; }
 	
 	public void setSelected(boolean selected) { this.selected = selected; }
-	
-	
-	public static String getTowerName() { return towerName; }
-	
-	public static String getDescription() { return description; }
-	
-	public static int getBaseCost() { return baseCost; }
 
 }

@@ -6,7 +6,7 @@ import scenes.GameScene;
 public class Robot extends Tower {
 	
 	public Robot(GameScene scene, Vector2 pos) {
-		super(scene, "Robot", pos);
+		super(scene, "Robot", pos, new BuyInfo("TEST", "test", 100));
 		
 		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
 	}
@@ -15,4 +15,5 @@ public class Robot extends Tower {
 	public void update() {
 		super.update();
 	}
+	
 }
