@@ -38,9 +38,6 @@ public abstract class Tower extends GameObject {
 	public void update() {
 		InputManager im = scene.getGame().getInputManager();
 		
-		pos.x += 1.5;
-		pos.y += 2.5;
-		
 		if (!placed) {
 			pos.x = im.getMousePos().x;
 			pos.y = im.getMousePos().y;
