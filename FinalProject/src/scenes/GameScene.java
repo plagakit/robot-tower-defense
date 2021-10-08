@@ -1,20 +1,15 @@
 package scenes;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import gameobjects.Button;
 import gameobjects.GameObject;
 import gameobjects.ObjectGroup;
-import gameobjects.Robot;
 import gameobjects.Shop;
 import gameobjects.Tower;
-import gameobjects.TowerButton;
 import general.Difficulty;
 import general.Game;
-import general.Vector2;
 import tracks.Track;
 
 public class GameScene extends Scene {
@@ -82,7 +77,6 @@ public class GameScene extends Scene {
 		
 		//Divider & text temporary
 		g.setColor(Color.BLACK);
-		g.setStroke(new BasicStroke());
 		g.drawLine(480, 0, 480, 360);
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
