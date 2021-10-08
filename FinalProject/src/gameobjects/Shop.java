@@ -54,7 +54,7 @@ public class Shop {
 			g.drawString(tbInfo.getDescription(), 490, 120);
  		}
 		
-		g.drawLine(480, 150, 640, 150);
+		g.drawLine(480, 130, 640, 130);
 		
 		if (currentSelectedTower != null)
 			g.drawString(currentSelectedTower.getName(), 485, 165);
