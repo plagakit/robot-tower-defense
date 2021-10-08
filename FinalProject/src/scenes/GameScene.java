@@ -87,8 +87,6 @@ public class GameScene extends Scene {
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
 		//g.drawString(String.format("Round %d/%d", currentRound, maxRounds), 0, 15);
-		if (currentTowerSelection != null)
-			g.drawString(currentTowerSelection.getName(), 480, 15);
 	}
 
 	@Override
@@ -104,6 +102,7 @@ public class GameScene extends Scene {
 		if (currentTowerSelection != null)
 			currentTowerSelection.setSelected(false);
 		currentTowerSelection = t; 
+		shop.setTowerSelection(t);
 	}
 	
 	public Shop getShop() { return shop; }

@@ -15,14 +15,19 @@ public class Shop {
 	
 	private TowerButton[] towerButtons;
 	private BuyInfo tbInfo;
+	private Tower currentSelectedTower;
 	
 	public Shop(GameScene scene, long startingMoney) {
 		this.scene = scene;
 		this.money = startingMoney;
 		
 		towerButtons = new TowerButton[] {
-			new TowerButton(scene, this, new Vector2(505, 24), new Robot(scene, null), "roboticon.png"),
-			new TowerButton(scene, this, new Vector2(550, 24), new Robot(scene, null), "roboticon.png")
+			new TowerButton(scene, this, new Vector2(515, 24), new Robot(scene, null), "roboticon.png"),
+			new TowerButton(scene, this, new Vector2(560, 24), new Robot(scene, null), "roboticon.png"),
+			new TowerButton(scene, this, new Vector2(605, 24), new Robot(scene, null), "roboticon.png"),
+			new TowerButton(scene, this, new Vector2(515, 68), new Robot(scene, null), "roboticon.png"),
+			new TowerButton(scene, this, new Vector2(560, 68), new Robot(scene, null), "roboticon.png"),
+			new TowerButton(scene, this, new Vector2(605, 68), new Robot(scene, null), "roboticon.png")
 		};
 	}
 	
@@ -39,21 +44,33 @@ public class Shop {
 		
 		if (tbInfo != null) {
 			g.setFont(new Font("Arial", Font.BOLD, 15));
-			g.drawString(tbInfo.getTitle(), 485, 65);
-			g.drawString("$" + tbInfo.getBaseCost(), 590, 65);
+			g.drawString(tbInfo.getTitle(), 485, 105);
+			
+			String costStr = "$" + tbInfo.getBaseCost();
+			int costStrWidth = g.getFontMetrics().stringWidth(costStr);
+			g.drawString(costStr, 635 - costStrWidth, 105);
 			
 			g.setFont(new Font("Arial", Font.PLAIN, 10 ));
-			g.drawString(tbInfo.getDescription(), 490, 80);
+			g.drawString(tbInfo.getDescription(), 490, 120);
  		}
+		
+		g.drawLine(480, 150, 640, 150);
+		
+		if (currentSelectedTower != null)
+			g.drawString(currentSelectedTower.getName(), 485, 165);
+		
+		
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
 		String moneyStr = "$" + money;
-		int strWidth = g.getFontMetrics().stringWidth(moneyStr);
-		g.drawString(moneyStr, 480 - strWidth, 15);
+		int moneyStrWidth = g.getFontMetrics().stringWidth(moneyStr);
+		g.drawString(moneyStr, 475 - moneyStrWidth, 15);
+		
 	}
 	
 	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }
 	
+	public void setTowerSelection(Tower tower) { currentSelectedTower = tower; }
 	
 	public long getMoney() { return money; }
 	
