@@ -15,5 +15,10 @@ public class Robot extends Tower {
 	public void update() {
 		super.update();
 	}
+
+	@Override
+	protected void fire() {
+		// TODO Auto-generated method stub
+	}
 	
 }

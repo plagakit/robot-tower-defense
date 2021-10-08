@@ -32,7 +32,6 @@ public abstract class Tower extends GameObject {
 		placed = false;
 		selected = true;
 	}
-
 	
 	@Override
 	public void update() {
@@ -75,6 +74,8 @@ public abstract class Tower extends GameObject {
 			
 		}
 	}
+	
+	protected abstract void fire();
 	
 	private boolean validatePosition() {
 		for (Tower t : scene.getTowers().getList())	
