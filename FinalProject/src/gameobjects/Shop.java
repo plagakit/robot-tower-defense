@@ -11,11 +11,14 @@ public class Shop {
 
 	private GameScene scene;
 	
+	private long money;
+	
 	private TowerButton[] towerButtons;
 	private BuyInfo tbInfo;
 	
-	public Shop(GameScene scene) {
+	public Shop(GameScene scene, long startingMoney) {
 		this.scene = scene;
+		this.money = startingMoney;
 		
 		towerButtons = new TowerButton[] {
 			new TowerButton(scene, this, new Vector2(505, 24), new Robot(scene, null), "roboticon.png"),
@@ -44,8 +47,19 @@ public class Shop {
 			g.drawString(tbInfo.getDescription(), 490 * scale, 80 * scale);
  		}
 		
-		
+		g.setFont(new Font("Arial", Font.BOLD, 15 * scale));
+		String moneyStr = "$" + money;
+		int strWidth = g.getFontMetrics().stringWidth(moneyStr);
+		g.drawString(moneyStr, 480 * scale - strWidth, 15 * scale);
 	}
 	
 	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }
+	
+	
+	public long getMoney() { return money; }
+	
+	public void addMoney(long add) { money += add; }
+	
+	public void subtractMoney(long subtract) { money -= subtract; }
+	
 }

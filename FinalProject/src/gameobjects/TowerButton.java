@@ -43,6 +43,10 @@ public class TowerButton extends Button {
 
 	@Override
 	protected void onClick() {
+		
+		if (shop.getMoney() < tower.getInfo().getBaseCost())
+			return;
+		
 		try {
 			Tower tower = towerConstructor.newInstance(scene, new Vector2(pos));
 			scene.getTowers().add(tower);

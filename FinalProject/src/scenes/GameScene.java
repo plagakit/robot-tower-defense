@@ -24,6 +24,7 @@ public class GameScene extends Scene {
 	private int currentRound;
 	private int maxLives;
 	private int currentLives;
+	private int startingMoney;
 
 	private Shop shop;
 	private Track track;
@@ -40,14 +41,17 @@ public class GameScene extends Scene {
 		case EASY:
 			maxLives = 100;
 			maxRounds = 50;
+			startingMoney = 500;
 			break;
 		case MEDIUM:
 			maxLives = 50;
 			maxRounds = 75;
+			startingMoney = 400;
 			break;
 		case HARD:
 			maxLives = 1;
 			maxRounds = 100;
+			startingMoney = 300;
 			break;
 		}
 	}
@@ -57,7 +61,7 @@ public class GameScene extends Scene {
 		currentLives = maxLives;
 		currentRound = 0;
 
-		shop = new Shop(this);
+		shop = new Shop(this, startingMoney);
 		track = new Track(game, "testTrack.png", "testMask.png");
 		
 		gameObjects = new ObjectGroup<GameObject>();
@@ -102,6 +106,8 @@ public class GameScene extends Scene {
 			currentTowerSelection.setSelected(false);
 		currentTowerSelection = t; 
 	}
+	
+	public Shop getShop() { return shop; }
 	
 	public Track getTrack() { return track; }
 	
