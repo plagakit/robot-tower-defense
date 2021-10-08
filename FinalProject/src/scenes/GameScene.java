@@ -80,7 +80,7 @@ public class GameScene extends Scene {
 		g.drawLine(480, 0, 480, 360);
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
-		//g.drawString(String.format("Round %d/%d", currentRound, maxRounds), 0, 15);
+		g.drawString(String.format("R%d/%d", currentRound, maxRounds), 5, 15);
 	}
 
 	@Override
