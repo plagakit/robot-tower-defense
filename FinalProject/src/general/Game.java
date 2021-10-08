@@ -1,6 +1,7 @@
 package general;
 
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 
 import graphics.Display;
@@ -110,7 +111,8 @@ public class Game {
 		}
 		g = (Graphics2D)bs.getDrawGraphics();
 		
-		g.clearRect(0, 0, (int)((width) * scale), (int)((height) * scale));
+		g.scale(scale, scale);
+		g.clearRect(0, 0, width, height);
 		
 		if (currentScene != null)
 			currentScene.render(g);
@@ -130,7 +132,7 @@ public class Game {
 	
 	public int getHeight() { return height; }
 	
-	public int getScale() { return scale; }
+	public int getScale() { return scale; } 
 	
 	public InputManager getInputManager() { return inputManager; }
 	

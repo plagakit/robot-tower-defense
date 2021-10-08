@@ -35,22 +35,21 @@ public class Shop {
 		for (Button b : towerButtons)
 			b.render(g);
 		
-		int scale = scene.getGame().getScale();
 		g.setColor(Color.BLACK);
 		
 		if (tbInfo != null) {
-			g.setFont(new Font("Arial", Font.BOLD, 15 * scale));
-			g.drawString(tbInfo.getTitle(), 485 * scale, 65 * scale);
-			g.drawString("$" + tbInfo.getBaseCost(), 590 * scale, 65 * scale);
+			g.setFont(new Font("Arial", Font.BOLD, 15));
+			g.drawString(tbInfo.getTitle(), 485, 65);
+			g.drawString("$" + tbInfo.getBaseCost(), 590, 65);
 			
-			g.setFont(new Font("Arial", Font.PLAIN, 10 * scale));
-			g.drawString(tbInfo.getDescription(), 490 * scale, 80 * scale);
+			g.setFont(new Font("Arial", Font.PLAIN, 10 ));
+			g.drawString(tbInfo.getDescription(), 490, 80);
  		}
 		
-		g.setFont(new Font("Arial", Font.BOLD, 15 * scale));
+		g.setFont(new Font("Arial", Font.BOLD, 15));
 		String moneyStr = "$" + money;
 		int strWidth = g.getFontMetrics().stringWidth(moneyStr);
-		g.drawString(moneyStr, 480 * scale - strWidth, 15 * scale);
+		g.drawString(moneyStr, 480 - strWidth, 15);
 	}
 	
 	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }

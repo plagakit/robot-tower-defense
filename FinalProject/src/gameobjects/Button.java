@@ -44,17 +44,16 @@ public abstract class Button extends GameObject {
 	@Override
 	public void render(Graphics2D g) {
 		super.render(g);
-		
-		int gameScale = scene.getGame().getScale();
+
 		if (Game.DEBUG) {
 			// Button outline
 			g.setColor(Color.GREEN);
-			g.setStroke(new BasicStroke(gameScale));
+			g.setStroke(new BasicStroke(1));
 			g.drawRect(
-					(int)(pos.x + bounds.getX()) * gameScale, 
-					(int)(pos.y + bounds.getY())* gameScale, 
-					bounds.getWidth() * gameScale, 
-					bounds.getHeight() * gameScale);
+					(int)(pos.x + bounds.getX()), 
+					(int)(pos.y + bounds.getY()), 
+					bounds.getWidth(), 
+					bounds.getHeight());
 		}
 	}
 	

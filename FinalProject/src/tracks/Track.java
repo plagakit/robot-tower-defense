@@ -72,8 +72,7 @@ public class Track {
 	}
 	
 	public void render(Graphics2D g) {
-		int scale = game.getScale();
-		g.drawImage(background.getImage(), 0, 0, width * scale, height * scale, null);
+		g.drawImage(background.getImage(), 0, 0, width, height, null);
 		
 		/* Draw mask
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));

@@ -81,15 +81,14 @@ public class GameScene extends Scene {
 		towers.render(g);
 		
 		//Divider & text temporary
-		int scale = game.getScale();
 		g.setColor(Color.BLACK);
 		g.setStroke(new BasicStroke());
-		g.drawLine(480 * scale, 0, 480 * scale, 360 * scale);
+		g.drawLine(480, 0, 480, 360);
 		
-		g.setFont(new Font("Arial", Font.BOLD, 15 * scale));
-		//g.drawString(String.format("Round %d/%d", currentRound, maxRounds), 0, 15 * scale);
+		g.setFont(new Font("Arial", Font.BOLD, 15));
+		//g.drawString(String.format("Round %d/%d", currentRound, maxRounds), 0, 15);
 		if (currentTowerSelection != null)
-			g.drawString(currentTowerSelection.getName(), 480 * scale, 15 * scale);
+			g.drawString(currentTowerSelection.getName(), 480, 15);
 	}
 
 	@Override

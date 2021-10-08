@@ -33,9 +33,13 @@ public abstract class Tower extends GameObject {
 		selected = true;
 	}
 
+	
 	@Override
 	public void update() {
 		InputManager im = scene.getGame().getInputManager();
+		
+		pos.x += 1.5;
+		pos.y += 2.5;
 		
 		if (!placed) {
 			pos.x = im.getMousePos().x;
@@ -93,27 +97,26 @@ public abstract class Tower extends GameObject {
 		super.render(g);
 		
 		// Tower circle bounds & range
-		int gameScale = scene.getGame().getScale();
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
 
 		// Bounds
 		if (Game.DEBUG) {
 			g.setColor(Color.GREEN);
 			g.fillOval(
-					(int)(pos.x - bounds.getRadius()) * gameScale, 
-					(int)(pos.y - bounds.getRadius()) * gameScale, 
-					bounds.getDiameter() * gameScale, 
-					bounds.getDiameter() * gameScale);
+					(int)(pos.x - bounds.getRadius()), 
+					(int)(pos.y - bounds.getRadius()), 
+					bounds.getDiameter(), 
+					bounds.getDiameter());
 		}
 		
 		// Range
 		if (selected) {
 			g.setColor(validPos ? Color.GRAY : Color.RED);
 			g.fillOval(
-					(int)(pos.x - range.getRadius()) * gameScale, 
-					(int)(pos.y - range.getRadius()) * gameScale, 
-					range.getDiameter() * gameScale, 
-					range.getDiameter() * gameScale);
+					(int)(pos.x - range.getRadius()), 
+					(int)(pos.y - range.getRadius()), 
+					range.getDiameter(), 
+					range.getDiameter());
 		}
 		
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));

@@ -22,13 +22,12 @@ public class RenderComponent extends Component {
 		if (!parent.getActive() || sprite == null)
 			return;
 		
-		int gameScale = parent.getGameScene().getGame().getScale();
 		Vector2 pos = parent.getPos();
 		
-		int x = (int)(pos.x - sprite.getWidth()/2.0) * gameScale;
-		int y = (int)(pos.y - sprite.getHeight()/2.0) * gameScale;
-		int width = sprite.getWidth() * gameScale;
-		int height = sprite.getHeight() * gameScale;
+		int x = (int)(pos.x - sprite.getWidth()/2.0);
+		int y = (int)(pos.y - sprite.getHeight()/2.0);
+		int width = sprite.getWidth();
+		int height = sprite.getHeight();
 		
 		float midx = x + (width / 2.0f);
 		float midy = y + (height / 2.0f);
@@ -44,8 +43,8 @@ public class RenderComponent extends Component {
 		if (Game.DEBUG) {
 			// Position
 			g.setColor(Color.PINK);
-			g.setStroke(new BasicStroke(gameScale * 5));
-			g.drawLine((int)(pos.x * gameScale), (int)(pos.y * gameScale), (int)(pos.x * gameScale), (int)(pos.y * gameScale)); 
+			g.setStroke(new BasicStroke(5));
+			g.drawLine((int)(pos.x), (int)(pos.y), (int)(pos.x), (int)(pos.y)); 
 			
 			g.setStroke(new BasicStroke(1));
 			g.setColor(Color.RED);
