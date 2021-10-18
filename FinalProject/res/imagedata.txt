@@ -5,6 +5,9 @@ smile.png
 smileicon.png
 roboticon.png
 robot.png
+pellet.png
+# Bloons:
+redbloon.png
 # Tracks:
 testTrack.png
 testMask.png
