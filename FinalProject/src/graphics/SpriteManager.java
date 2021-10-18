@@ -38,6 +38,9 @@ public class SpriteManager {
 	}
 	
 	public Sprite getSprite(String name) {
-		return spriteList.get(name);
+		Sprite s = spriteList.get(name);
+		if (s == null)
+			System.out.format("Warning: Sprite %s is not found\n", name);
+		return s;
 	}
 }

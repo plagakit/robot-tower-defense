@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import components.BoxBounds;
 import general.Vector2;
 import scenes.GameScene;
+import towers.Tower;
 
 public class TowerButton extends Button {
 	
@@ -48,7 +49,7 @@ public class TowerButton extends Button {
 			return;
 		
 		try {
-			Tower tower = towerConstructor.newInstance(scene, new Vector2(pos));
+			Tower tower = towerConstructor.newInstance(scene, pos);
 			scene.getTowers().add(tower);
 			scene.setTowerSelection(null);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) { e.printStackTrace(); }

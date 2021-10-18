@@ -1,10 +1,13 @@
-package gameobjects;
+package towers;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 import components.CircleBounds;
+import gameobjects.Bloon;
+import gameobjects.BuyInfo;
+import gameobjects.GameObject;
 import general.Game;
 import general.InputManager;
 import general.Vector2;
@@ -21,6 +24,8 @@ public abstract class Tower extends GameObject {
 	
 	protected CircleBounds bounds;
 	protected CircleBounds range;
+	protected int damage;
+	protected int pierce;
 	
 	public Tower(GameScene scene, String name, Vector2 pos, BuyInfo info) {
 		super(scene, name, pos);
@@ -66,16 +71,14 @@ public abstract class Tower extends GameObject {
 						scene.setTowerSelection(this);
 					}
 				} else {
-					//https://en.wikipedia.org/wiki/Atan2
-					Vector2 lookTo = new Vector2(im.getMousePos().x - pos.x, im.getMousePos().y - pos.y);
-					rotation = (float)Math.toDegrees(Math.atan2(lookTo.y, lookTo.x)) + 90;
+					rotation = Vector2.lookAtAngle(pos, im.getMousePos()) + 90;
 				}
 			}
 			
 		}
 	}
 	
-	protected abstract void fire();
+	protected abstract void fire(Bloon target);
 	
 	private boolean validatePosition() {
 		for (Tower t : scene.getTowers().getList())	

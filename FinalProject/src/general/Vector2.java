@@ -10,18 +10,35 @@ public class Vector2 {
 		this.y = y;
 	}
 	
-	public Vector2(Vector2 v) {
-		this.x = v.x;
-		this.y = v.y;
-	}
-	
 	public String toString() { return String.format("%f %f", x, y); }
 	
 	public static Vector2 zero() { return new Vector2(0, 0); }
 	
-	public static float distance(Vector2 v1, Vector2 v2) {
-		float x = v2.x - v1.x;
-		float y = v2.y - v1.y;
+	public static float distance(Vector2 start, Vector2 end) {
+		float x = end.x - start.x;
+		float y = end.y - start.y;
 		return (float)Math.abs(Math.sqrt((x*x) + (y*y)));
+	}
+
+	public static Vector2 direction(Vector2 start, Vector2 end) {
+		//https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-vectors/a/vector-magnitude-normalization
+		Vector2 unnormalized = new Vector2(end.x - start.x, end.y - start.y);
+		float magnitude = Math.abs(Vector2.distance(start, end));
+		
+		return new Vector2(unnormalized.x / magnitude, unnormalized.y / magnitude);
+	}
+	
+	public static float lookAtAngle(Vector2 self, Vector2 target) {
+		//https://en.wikipedia.org/wiki/Atan2
+		Vector2 lookAt = new Vector2(target.x - self.x, target.y - self.y);
+		return (float)Math.toDegrees(Math.atan2(lookAt.y, lookAt.x));
+	}
+	
+	public static Vector2 multiply(Vector2 v, float multiplier) {
+		return new Vector2(v.x * multiplier, v.y * multiplier);
+	}
+	
+	public static Vector2 multiply(Vector2 v1, Vector2 v2) {
+		return new Vector2(v1.x * v2.x, v1.y * v2.y);
 	}
 }

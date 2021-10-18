@@ -24,7 +24,7 @@ public abstract class GameObject {
 	public GameObject(GameScene scene, String name, Vector2 pos) {
 		this.scene = scene;
 		this.name = name;
-		this.pos = pos;
+		this.pos = pos == null ? Vector2.zero() : new Vector2(pos.x, pos.y);
 		vel = Vector2.zero();
 		rotation = 0;
 		

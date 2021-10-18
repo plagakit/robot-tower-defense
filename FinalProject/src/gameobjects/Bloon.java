@@ -10,6 +10,7 @@ public class Bloon extends GameObject {
 	
 	public Bloon(GameScene scene, String name, Vector2 pos) {
 		super(scene, name, pos);
+		sprite = scene.getGame().getSpriteManager().getSprite("redbloon.png");
 	}
 
 	@Override

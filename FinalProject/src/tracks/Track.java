@@ -3,10 +3,10 @@ package tracks;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import gameobjects.Tower;
 import general.Game;
 import general.Vector2;
 import graphics.Sprite;
+import towers.Tower;
 
 public class Track {
 

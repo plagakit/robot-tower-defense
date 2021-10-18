@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
-import gameobjects.GameObject;
+import gameobjects.Bloon;
 import gameobjects.ObjectGroup;
 import gameobjects.Shop;
-import gameobjects.Tower;
 import general.Difficulty;
 import general.Game;
+import general.Vector2;
+import projectiles.Projectile;
+import towers.Tower;
 import tracks.Track;
 
 public class GameScene extends Scene {
@@ -24,8 +26,9 @@ public class GameScene extends Scene {
 	private Shop shop;
 	private Track track;
 	
-	private ObjectGroup<GameObject> gameObjects;
 	private ObjectGroup<Tower> towers;
+	private ObjectGroup<Projectile> projectiles;
+	private ObjectGroup<Bloon> bloons;
 	private Tower currentTowerSelection;
 	
 	public GameScene(Game game, Difficulty difficulty) {
@@ -59,21 +62,34 @@ public class GameScene extends Scene {
 		shop = new Shop(this, startingMoney);
 		track = new Track(game, "testTrack.png", "testMask.png");
 		
-		gameObjects = new ObjectGroup<GameObject>();
 		towers = new ObjectGroup<Tower>();
+		projectiles = new ObjectGroup<Projectile>();
+		bloons = new ObjectGroup<Bloon>();
 	}
+	
+	Bloon b = new Bloon(this, "Bloon", new Vector2(300, 200));
 	
 	@Override
 	public void update() {
 		shop.update();
+		
 		towers.update();
+		projectiles.update();
+		bloons.update();
+		
+		b.update();
 	}
 	
 	@Override
 	public void render(Graphics2D g) {
 		track.render(g);
 		shop.render(g);
+		
 		towers.render(g);
+		projectiles.render(g);
+		bloons.render(g);
+		
+		b.render(g);
 		
 		//Divider & text temporary
 		g.setColor(Color.BLACK);
@@ -87,10 +103,6 @@ public class GameScene extends Scene {
 	public void onStop() {
 
 	}
-	
-	public ObjectGroup<GameObject> getGameObjects() { return gameObjects; }
-	
-	public ObjectGroup<Tower> getTowers() { return towers; }
 
 	public void setTowerSelection(Tower t) { 
 		if (currentTowerSelection != null)
@@ -102,5 +114,11 @@ public class GameScene extends Scene {
 	public Shop getShop() { return shop; }
 	
 	public Track getTrack() { return track; }
+	
+	public ObjectGroup<Tower> getTowers() { return towers; }
+	
+	public ObjectGroup<Projectile> getProjectiles() { return projectiles; }
+	
+	public ObjectGroup<Bloon> getBloons() { return bloons; }
 	
 }

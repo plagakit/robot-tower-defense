@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 
 import general.Vector2;
 import scenes.GameScene;
+import towers.Robot;
+import towers.Tower;
 
 public class Shop {
 
