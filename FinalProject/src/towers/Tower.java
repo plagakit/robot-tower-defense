@@ -10,6 +10,7 @@ import gameobjects.BuyInfo;
 import gameobjects.GameObject;
 import general.Game;
 import general.InputManager;
+import general.Timer;
 import general.Vector2;
 import scenes.GameScene;
 
@@ -26,13 +27,19 @@ public abstract class Tower extends GameObject {
 	protected CircleBounds range;
 	protected int damage;
 	protected int pierce;
+	protected int reloadTime;
+	protected final Timer reloadTimer;
 	
-	public Tower(GameScene scene, String name, Vector2 pos, BuyInfo info) {
+	public Tower(GameScene scene, String name, Vector2 pos, int damage, int pierce, int reloadTime, BuyInfo info) {
 		super(scene, name, pos);
 		this.info = info;
 		
 		bounds = new CircleBounds(this, 15);
 		range = new CircleBounds(this, 80);
+		this.damage = damage;
+		this.pierce = pierce;
+		this.reloadTime = reloadTime;
+		reloadTimer = new Timer(scene.getGame(), reloadTime);
 		
 		placed = false;
 		selected = true;
@@ -73,6 +80,12 @@ public abstract class Tower extends GameObject {
 				} else {
 					rotation = Vector2.lookAtAngle(pos, im.getMousePos()) + 90;
 				}
+			}
+			
+			reloadTimer.update();
+			if (reloadTimer.isDone()) {
+				reloadTimer.restart();
+				fire(null);
 			}
 			
 		}
