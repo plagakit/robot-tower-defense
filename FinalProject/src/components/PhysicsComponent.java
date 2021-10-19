@@ -9,9 +9,9 @@ public class PhysicsComponent extends Component {
 	}
 	
 	public void update() {
-		// TODO adjust for fps
-		parent.getPos().x += parent.getVel().x;
-		parent.getPos().y += parent.getVel().y;
+		double timeAdjust = parent.getGameScene().getGame().getTimeAdjust();
+		parent.getPos().x += parent.getVel().x * timeAdjust;
+		parent.getPos().y += parent.getVel().y * timeAdjust;
 	}
 
 }

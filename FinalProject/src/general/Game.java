@@ -19,6 +19,9 @@ public class Game {
 	private final String title = "Tower Defense";
 	
 	private final int FPS = 60;
+	private long currentNanoTime = 0;
+	private int timeScale = 1;
+	private double timeAdjust;
 	
 	private Display display;
 	private Graphics2D g;
@@ -69,14 +72,19 @@ public class Game {
 		
 		while (running) {
 			currentTime = System.nanoTime();
-			deltaTime += (currentTime - lastTime) / timePerUpdate;
-			timer += currentTime - lastTime;
+			long diff = currentTime - lastTime;
+			
+			deltaTime += diff / timePerUpdate;
+			timer += diff;
+			currentNanoTime += diff * timeScale;
+			
 			lastTime = currentTime;
 			
 			if (deltaTime >= 1) {
+				timeAdjust = deltaTime;
 				updates++;
 				deltaTime--;
-				
+				//System.out.format("%f %d\n", timeAdjust, currentNanoTime);
 				update();
 				render();
 			}
@@ -132,6 +140,10 @@ public class Game {
 	public int getHeight() { return height; }
 	
 	public int getScale() { return scale; } 
+	
+	public double getTimeAdjust() { return timeAdjust; }
+	
+	public long getTime() { return currentNanoTime; }
 	
 	public InputManager getInputManager() { return inputManager; }
 	
