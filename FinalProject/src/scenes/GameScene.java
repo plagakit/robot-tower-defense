@@ -59,15 +59,13 @@ public class GameScene extends Scene {
 		currentLives = maxLives;
 		currentRound = 0;
 
-		shop = new Shop(this, startingMoney);
-		track = new Track(game, "testTrack.png", "testMask.png");
-		
 		towers = new ObjectGroup<Tower>();
 		projectiles = new ObjectGroup<Projectile>();
 		bloons = new ObjectGroup<Bloon>();
+		
+		shop = new Shop(this, startingMoney);
+		track = new Track(game, "testTrack.png", "testMask.png");
 	}
-	
-	Bloon b = new Bloon(this, "Bloon", new Vector2(300, 200));
 	
 	@Override
 	public void update() {
@@ -76,21 +74,18 @@ public class GameScene extends Scene {
 		towers.update();
 		projectiles.update();
 		bloons.update();
-		
-		b.update();
 	}
 	
 	@Override
 	public void render(Graphics2D g) {
 		track.render(g);
-		shop.render(g);
 		
 		towers.render(g);
 		projectiles.render(g);
 		bloons.render(g);
 		
-		b.render(g);
-		
+		shop.render(g);
+
 		//Divider & text temporary
 		g.setColor(Color.BLACK);
 		g.drawLine(480, 0, 480, 360);

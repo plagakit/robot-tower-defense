@@ -26,7 +26,8 @@ public class ObjectGroup<T extends GameObject> {
 		}
 		
 		for (T object : objects)
-			object.update();
+			if (object.getActive())
+				object.update();
 		
 		if (removeQueue.size() > 0) {
 			for (T object : removeQueue)
