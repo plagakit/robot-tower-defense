@@ -27,9 +27,10 @@ public abstract class Tower extends GameObject {
 	protected CircleBounds range;
 	protected int damage;
 	protected int pierce;
+	
 	protected int reloadTime;
 	protected final Timer reloadTimer;
-	
+
 	Bloon b;
 	
 	public Tower(GameScene scene, String name, Vector2 pos, int damage, int pierce, int reloadTime, BuyInfo info) {
@@ -82,22 +83,24 @@ public abstract class Tower extends GameObject {
 						selected = true;
 						scene.setTowerSelection(this);
 					}
-				} else {
-					rotation = Vector2.lookAtAngle(pos, im.getMousePos()) + 90;
 				}
 			}
 			
 			reloadTimer.update();
 			if (reloadTimer.isDone()) {
-				reloadTimer.restart();
-				fire(b);
+				for (Bloon b : scene.getBloons().getList()) {
+					if (range.collides(b.getBounds())) {
+						fire(b);
+						reloadTimer.restart();
+						break;
+					}
+				}
 			}
+			
 			
 		}
 	}
-	
-	
-	
+
 	protected abstract void fire(Bloon target);
 	
 	private boolean validatePosition() {

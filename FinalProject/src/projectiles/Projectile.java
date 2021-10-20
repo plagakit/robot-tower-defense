@@ -2,6 +2,7 @@ package projectiles;
 
 import components.CircleBounds;
 import components.PhysicsComponent;
+import gameobjects.Bloon;
 import gameobjects.GameObject;
 import general.Timer;
 import general.Vector2;
@@ -21,6 +22,7 @@ public class Projectile extends GameObject {
 	public Projectile(GameScene scene, String name, Vector2 pos, String spritePath, int damage, int pierce) {
 		super(scene, name, pos);
 		sprite = scene.getGame().getSpriteManager().getSprite(spritePath);
+		bounds = new CircleBounds(this, Math.min(sprite.getWidth(), sprite.getHeight()));
 		this.damage = damage;
 		this.pierce = pierce;
 		
@@ -31,6 +33,12 @@ public class Projectile extends GameObject {
 
 	@Override
 	public void update() {
+		
+		for (Bloon b : scene.getBloons().getList()) {
+			if (bounds != null && bounds.collides(b.getBounds())) {
+				//System.out.println("Collision");
+			}
+		}
 		
 		despawnTimer.update();
 		if (despawnTimer.isDone())

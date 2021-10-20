@@ -1,5 +1,6 @@
 package gameobjects;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -39,11 +40,22 @@ public class Shop {
 	}
 	
 	public void render(Graphics2D g) {
+		
+		// Bg & outline
+		g.setColor(new Color(207, 168, 114));
+		g.fillRect(480, 0, 160, 360);
+		
+		g.setStroke(new BasicStroke(2));
+		g.setColor(Color.BLACK);
+		g.drawLine(480, 0, 480, 360);
+		g.drawLine(480, 130, 640, 130);
+		
+		// Buttons
 		for (Button b : towerButtons)
 			b.render(g);
 		
+		// Text
 		g.setColor(Color.BLACK);
-		
 		if (tbInfo != null) {
 			g.setFont(new Font("Arial", Font.BOLD, 15));
 			g.drawString(tbInfo.getTitle(), 485, 105);
@@ -56,11 +68,8 @@ public class Shop {
 			g.drawString(tbInfo.getDescription(), 490, 120);
  		}
 		
-		g.drawLine(480, 130, 640, 130);
-		
 		if (currentSelectedTower != null)
 			g.drawString(currentSelectedTower.getName(), 485, 165);
-		
 		
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));

@@ -29,6 +29,6 @@ public class Bloon extends GameObject {
 		physicsComponent.update();
 	}
 
-	
+	public CircleBounds getBounds() { return bounds; }
 	
 }
