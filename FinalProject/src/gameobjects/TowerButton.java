@@ -32,6 +32,18 @@ public class TowerButton extends Button {
 	
 	}
 	
+	private void spawnTower() {
+		if (shop.getMoney() < tower.getInfo().getBaseCost())
+			return;
+		
+		try {
+			Tower tower = towerConstructor.newInstance(scene, pos);
+			scene.getTowers().add(tower);
+			scene.setTowerSelection(null);
+		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) { e.printStackTrace(); }
+	
+	}
+	
 	@Override
 	protected void onMouseEnter() {
 		shop.setCurrentTowerButtonInfo(tower.getInfo());
@@ -44,15 +56,7 @@ public class TowerButton extends Button {
 
 	@Override
 	protected void onClick() {
-		
-		if (shop.getMoney() < tower.getInfo().getBaseCost())
-			return;
-		
-		try {
-			Tower tower = towerConstructor.newInstance(scene, pos);
-			scene.getTowers().add(tower);
-			scene.setTowerSelection(null);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) { e.printStackTrace(); }
+		spawnTower();
 	}
 
 }
