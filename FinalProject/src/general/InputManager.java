@@ -119,5 +119,5 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	
 	public void setDragging(boolean dragging) { this.dragging = dragging; }
 
-	public boolean isDebugPressed() { return debugButton; }
+	public boolean isDebugPressed() { return debugButton; } 	
 }
