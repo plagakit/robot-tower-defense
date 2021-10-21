@@ -1,13 +1,20 @@
 # File where all image names are listed
+# Hashtags are comments (ignored)
 #
-# Sprites:
+# General:
+fastforwardoff.png
+fastforwardon.png
+# Towers & Projectiles:
 smile.png
 smileicon.png
 roboticon.png
 robot.png
 pellet.png
+#
 # Bloons:
 redbloon.png
+#
 # Tracks:
 testTrack.png
 testMask.png
+#
