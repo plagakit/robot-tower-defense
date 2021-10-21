@@ -22,7 +22,7 @@ public class Bloon extends GameObject {
 	@Override
 	public void update() {
 		
-		updateNum++;
+		updateNum += scene.getGame().getTimeScale();
 		vel.x = (float)Math.sin(updateNum / 50.0);
 		vel.y = (float)Math.cos(updateNum / 50.0);
 		
