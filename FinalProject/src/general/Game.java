@@ -90,10 +90,9 @@ public class Game {
 			}
 			
 			if (timer >= 1000000000) {
-				if (DEBUG) {
-					System.out.format("FPS: %d\n", updates);
-					updates = 0;			
-				}
+				if (DEBUG)
+					System.out.format("FPS: %d\n", updates);			
+				updates = 0;
 				timer = 0;
 			}
 		}

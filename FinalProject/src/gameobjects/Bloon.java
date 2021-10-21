@@ -29,6 +29,11 @@ public class Bloon extends GameObject {
 		physicsComponent.update();
 	}
 
+	public void despawn() {
+		active = false;
+		scene.getBloons().remove(this);
+	}
+	
 	public CircleBounds getBounds() { return bounds; }
 	
 }

@@ -5,7 +5,7 @@ import scenes.GameScene;
 
 public class Pellet extends Projectile {
 
-	private final float SPEED = 3;
+	private final float SPEED = 5;
 	
 	public Pellet(GameScene scene, Vector2 pos, Vector2 target, String spritePath, int damage, int pierce) {
 		super(scene, "Pellet", pos, spritePath, damage, pierce);

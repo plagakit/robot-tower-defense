@@ -63,6 +63,9 @@ public class GameScene extends Scene {
 		projectiles = new ObjectGroup<Projectile>();
 		bloons = new ObjectGroup<Bloon>();
 		
+		Bloon b = new Bloon(this, "RedBloon",new Vector2(300, 200));
+		bloons.add(b);
+		
 		shop = new Shop(this, startingMoney);
 		track = new Track(game, "testTrack.png", "testMask.png");
 	}

@@ -30,8 +30,6 @@ public abstract class Tower extends GameObject {
 	
 	protected int reloadTime;
 	protected final Timer reloadTimer;
-
-	Bloon b;
 	
 	public Tower(GameScene scene, String name, Vector2 pos, int damage, int pierce, int reloadTime, BuyInfo info) {
 		super(scene, name, pos);
@@ -46,9 +44,6 @@ public abstract class Tower extends GameObject {
 		
 		placed = false;
 		selected = true;
-		
-		b = new Bloon(scene, "Bloon", new Vector2(300, 200));
-		scene.getBloons().add(b);
 	}
 	
 	@Override

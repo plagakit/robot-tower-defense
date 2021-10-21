@@ -1,5 +1,8 @@
 package projectiles;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import components.CircleBounds;
 import components.PhysicsComponent;
 import gameobjects.Bloon;
@@ -15,6 +18,7 @@ public class Projectile extends GameObject {
 	
 	protected int despawnTime;
 	protected final Timer despawnTimer;
+	protected List<Integer> hitList;
 	
 	protected int damage;
 	protected int pierce;
@@ -27,6 +31,7 @@ public class Projectile extends GameObject {
 		this.pierce = pierce;
 		
 		despawnTimer = new Timer(scene.getGame(), 500);
+		hitList = new ArrayList<Integer>();
 		
 		physicsComponent = new PhysicsComponent(this);
 	}
@@ -35,8 +40,12 @@ public class Projectile extends GameObject {
 	public void update() {
 		
 		for (Bloon b : scene.getBloons().getList()) {
+			if (hitList.contains(b.hashCode()))
+				continue;
+			
 			if (bounds != null && bounds.collides(b.getBounds())) {
-				//System.out.println("Collision");
+				System.out.format("Collision with %s\n", b);
+				hitList.add(b.hashCode());
 			}
 		}
 		

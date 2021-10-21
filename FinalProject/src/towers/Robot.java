@@ -24,10 +24,8 @@ public class Robot extends Tower {
 	protected void fire(Bloon target) {
 		rotation = Vector2.lookAtAngle(pos, target.getPos()) + 90;
 		
-		for (int i =0;i<10;i++) {
-			Pellet p = new Pellet(scene, pos, target.getPos(), "pellet.png", damage, pierce);
-			scene.getProjectiles().add(p);
-		}
+		Pellet p = new Pellet(scene, pos, target.getPos(), "pellet.png", damage, pierce);
+		scene.getProjectiles().add(p);
 	}
 	
 }
