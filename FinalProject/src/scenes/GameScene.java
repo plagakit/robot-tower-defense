@@ -6,13 +6,13 @@ import java.awt.Graphics2D;
 
 import gameobjects.Bloon;
 import gameobjects.ObjectGroup;
-import gameobjects.Shop;
 import general.Difficulty;
 import general.Game;
 import general.Vector2;
 import projectiles.Projectile;
 import towers.Tower;
 import tracks.Track;
+import ui.Shop;
 
 public class GameScene extends Scene {
 
