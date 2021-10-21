@@ -1,10 +1,11 @@
-package gameobjects;
+package ui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
 import components.BoxBounds;
+import gameobjects.GameObject;
 import general.Game;
 import general.InputManager;
 import general.Vector2;
