@@ -26,7 +26,7 @@ public class Projectile extends GameObject {
 		this.damage = damage;
 		this.pierce = pierce;
 		
-		despawnTimer = new Timer(scene.getGame(), 3000);
+		despawnTimer = new Timer(scene.getGame(), 500);
 		
 		physicsComponent = new PhysicsComponent(this);
 	}

@@ -9,7 +9,7 @@ import scenes.GameScene;
 public class Robot extends Tower {
 	
 	public Robot(GameScene scene, Vector2 pos) {
-		super(scene, "Robot", pos, 1, 1, 100,
+		super(scene, "Robot", pos, 1, 1, 1000,
 				new BuyInfo("TEST", "This is a test description. Wow!", 100));
 		
 		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
@@ -23,8 +23,11 @@ public class Robot extends Tower {
 	@Override
 	protected void fire(Bloon target) {
 		rotation = Vector2.lookAtAngle(pos, target.getPos()) + 90;
-		Pellet p = new Pellet(scene, pos, target.getPos(), "pellet.png", damage, pierce);
-		scene.getProjectiles().add(p);
+		
+		for (int i =0;i<10;i++) {
+			Pellet p = new Pellet(scene, pos, target.getPos(), "pellet.png", damage, pierce);
+			scene.getProjectiles().add(p);
+		}
 	}
 	
 }

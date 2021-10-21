@@ -9,9 +9,9 @@ public class PhysicsComponent extends Component {
 	}
 	
 	public void update() {
-		double timeAdjust = parent.getGameScene().getGame().getTimeAdjust();
-		parent.getPos().x += parent.getVel().x * timeAdjust;
-		parent.getPos().y += parent.getVel().y * timeAdjust;
+		double timeScale = parent.getGameScene().getGame().getTimeScale();
+		parent.getPos().x += parent.getVel().x * timeScale;
+		parent.getPos().y += parent.getVel().y * timeScale;
 	}
 
 }
