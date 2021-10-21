@@ -1,27 +1,29 @@
-package gameobjects;
+package ui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import gameobjects.BuyInfo;
 import general.Vector2;
 import scenes.GameScene;
 import towers.Robot;
 import towers.Tower;
 
 public class Shop {
-
-	private GameScene scene;
 	
 	private long money;
 	
+	
 	private TowerButton[] towerButtons;
 	private BuyInfo tbInfo;
+	
 	private Tower currentSelectedTower;
 	
+	private FastForwardButton ffButton;
+	
 	public Shop(GameScene scene, long startingMoney) {
-		this.scene = scene;
 		this.money = startingMoney;
 		
 		towerButtons = new TowerButton[] {
@@ -32,11 +34,15 @@ public class Shop {
 			new TowerButton(scene, this, new Vector2(560, 68), new Robot(scene, null), "roboticon.png"),
 			new TowerButton(scene, this, new Vector2(605, 68), new Robot(scene, null), "roboticon.png")
 		};
+		
+		ffButton = new FastForwardButton(scene, new Vector2(500, 340));
 	}
 	
 	public void update() {
 		for (Button b : towerButtons)
 			b.update();
+		
+		ffButton.update();
 	}
 	
 	public void render(Graphics2D g) {
@@ -53,6 +59,7 @@ public class Shop {
 		// Buttons
 		for (Button b : towerButtons)
 			b.render(g);
+		ffButton.render(g);
 		
 		// Text
 		g.setColor(Color.BLACK);
