@@ -71,15 +71,15 @@ public class Shop {
 			int costStrWidth = g.getFontMetrics().stringWidth(costStr);
 			g.drawString(costStr, 635 - costStrWidth, 105);
 			
-			g.setFont(new Font("Arial", Font.PLAIN, 10 ));
+			g.setFont(new Font("Arial", Font.PLAIN, 10));
 			g.drawString(tbInfo.getDescription(), 490, 120);
  		}
 		
-		if (currentSelectedTower != null)
-			g.drawString(currentSelectedTower.getName(), 485, 165);
-		
-		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
+		if (currentSelectedTower != null)
+			g.drawString(currentSelectedTower.getName(), 485, 150);
+		
+		
 		String moneyStr = "$" + money;
 		int moneyStrWidth = g.getFontMetrics().stringWidth(moneyStr);
 		g.drawString(moneyStr, 475 - moneyStrWidth, 15);
