@@ -18,7 +18,7 @@ public class Projectile extends GameObject {
 	
 	protected int despawnTime;
 	protected final Timer despawnTimer;
-	protected List<Bloon> hitList;
+	protected List<String> hitList;
 	
 	protected int damage;
 	protected int pierce;
@@ -33,7 +33,7 @@ public class Projectile extends GameObject {
 		currentPierce = pierce;
 		
 		despawnTimer = new Timer(scene.getGame(), 500);
-		hitList = new ArrayList<Bloon>();
+		hitList = new ArrayList<String>();
 		
 		physicsComponent = new PhysicsComponent(this);
 	}
@@ -42,13 +42,13 @@ public class Projectile extends GameObject {
 	public void update() {
 		
 		for (Bloon b : scene.getBloons().getList()) {
-			if (hitList.contains(b))
+			if (hitList.contains(b.getID()))
 				continue;
 			
 			if (bounds != null && bounds.collides(b.getBounds())) {
-				//System.out.format("%s@%d collision w/ %s@%d\n", this.getName(), this.hashCode(), b.getName(), b.hashCode());
+				//System.out.format("%s@%d collision w/ %s@%s\n", this.getName(), this.hashCode(), b.getName(), b.getID());
 				handleCollision(b);
-				hitList.add(b);
+				hitList.add(b.getID());
 			}
 			
 			if (!active)
