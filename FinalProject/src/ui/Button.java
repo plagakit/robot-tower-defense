@@ -1,7 +1,5 @@
 package ui;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Graphics2D;
 
 import components.BoxBounds;
@@ -46,16 +44,8 @@ public abstract class Button extends GameObject {
 	public void render(Graphics2D g) {
 		super.render(g);
 
-		if (Game.DEBUG) {
-			// Button outline
-			g.setColor(Color.GREEN);
-			g.setStroke(new BasicStroke(1));
-			g.drawRect(
-					(int)(pos.x + bounds.getX()), 
-					(int)(pos.y + bounds.getY()), 
-					bounds.getWidth(), 
-					bounds.getHeight());
-		}
+		if (Game.DEBUG)
+			bounds.debugRender(g);
 	}
 	
 	protected abstract void onClick();

@@ -1,6 +1,5 @@
 package towers;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -115,30 +114,11 @@ public abstract class Tower extends GameObject {
 	public void render(Graphics2D g) {
 		super.render(g);
 		
-		// Tower circle bounds & range
-		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+		if (Game.DEBUG)
+			bounds.debugRender(g);
 
-		// Bounds
-		if (Game.DEBUG) {
-			g.setColor(Color.GREEN);
-			g.fillOval(
-					(int)(pos.x - bounds.getRadius()), 
-					(int)(pos.y - bounds.getRadius()), 
-					bounds.getDiameter(), 
-					bounds.getDiameter());
-		}
-		
-		// Range
-		if (selected) {
-			g.setColor(validPos ? Color.GRAY : Color.RED);
-			g.fillOval(
-					(int)(pos.x - range.getRadius()), 
-					(int)(pos.y - range.getRadius()), 
-					range.getDiameter(), 
-					range.getDiameter());
-		}
-		
-		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+		if (selected)
+			range.render(g, validPos ? Color.GRAY : Color.RED);
 	}
 	
 	public BuyInfo getInfo() { return info; }

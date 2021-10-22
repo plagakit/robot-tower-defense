@@ -1,5 +1,9 @@
 package components;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import gameobjects.GameObject;
 import general.Vector2;
 import graphics.Sprite;
@@ -24,6 +28,14 @@ public class BoxBounds extends Component {
 		this.y = -sprite.getHeight()/2;
 		this.width = sprite.getWidth();
 		this.height = sprite.getHeight();
+	}
+	
+	public void debugRender(Graphics2D g) {
+		// Button outline
+		g.setColor(Color.GREEN);
+		g.setStroke(new BasicStroke(1));
+		Vector2 pos = parent.getPos();
+		g.drawRect((int)(pos.x + x), (int)(pos.y + y), width, height);
 	}
 	
 	public boolean contains(Vector2 point) {
