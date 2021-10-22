@@ -45,7 +45,7 @@ public class GameScene extends Scene {
 		case MEDIUM:
 			maxLives = 50;
 			maxRounds = 75;
-			startingMoney = 400;
+			startingMoney = 4000;
 			break;
 		case HARD:
 			maxLives = 1;
@@ -68,6 +68,11 @@ public class GameScene extends Scene {
 		track = new Track(game, "testTrack.png", "testMask.png");
 	}
 	
+	@Override
+	public void onStop() {
+
+	}
+	
 	Timer bspawntimer = new Timer(game, 750);
 	
 	@Override
@@ -76,7 +81,7 @@ public class GameScene extends Scene {
 		
 		bspawntimer.update();
 		if (bspawntimer.isDone()) {
-			Bloon b = new Bloon(this,new Vector2(-50, 200), BloonType.GREEN);
+			Bloon b = new Bloon(this,new Vector2(-50, 200), BloonType.CERAMIC);
 			bloons.add(b);
 			bspawntimer.restart();
 		}
@@ -99,10 +104,9 @@ public class GameScene extends Scene {
 		g.setFont(new Font("Arial", Font.BOLD, 15));
 		g.drawString(String.format("R%d/%d", currentRound, maxRounds), 5, 15);
 	}
-
-	@Override
-	public void onStop() {
-
+	
+	public void onBloonPopped() {
+		shop.addMoney(1);
 	}
 
 	public void setTowerSelection(Tower t) { 

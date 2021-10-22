@@ -89,6 +89,7 @@ public class Bloon extends GameObject {
 	
 	private void pop() {
 		spawnChildren();
+		scene.onBloonPopped();
 		// startAnimTimer
 		// playSfx();
 		despawn();
