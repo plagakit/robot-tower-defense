@@ -68,7 +68,7 @@ public class GameScene extends Scene {
 		track = new Track(game, "testTrack.png", "testMask.png");
 	}
 	
-	Timer bspawntimer = new Timer(game, 250);
+	Timer bspawntimer = new Timer(game, 750);
 	
 	@Override
 	public void update() {
@@ -76,7 +76,7 @@ public class GameScene extends Scene {
 		
 		bspawntimer.update();
 		if (bspawntimer.isDone()) {
-			Bloon b = new Bloon(this,new Vector2(-50, 200), BloonType.PINK);
+			Bloon b = new Bloon(this,new Vector2(-50, 200), BloonType.GREEN);
 			bloons.add(b);
 			bspawntimer.restart();
 		}
