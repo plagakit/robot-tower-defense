@@ -7,8 +7,8 @@ public class Pellet extends Projectile {
 
 	private final float SPEED = 5;
 	
-	public Pellet(GameScene scene, Vector2 pos, Vector2 target, String spritePath, int damage, int pierce) {
-		super(scene, "Pellet", pos, spritePath, damage, pierce);
+	public Pellet(GameScene scene, Vector2 pos, Vector2 target, String spritePath, int damage, int pierce, int despawnTime) {
+		super(scene, "Pellet", pos, spritePath, damage, pierce, despawnTime);
 		
 		
 		Vector2 direction = Vector2.direction(pos, target);

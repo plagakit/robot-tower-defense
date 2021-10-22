@@ -24,7 +24,7 @@ public class Projectile extends GameObject {
 	protected int pierce;
 	protected int currentPierce;
 	
-	public Projectile(GameScene scene, String name, Vector2 pos, String spritePath, int damage, int pierce) {
+	public Projectile(GameScene scene, String name, Vector2 pos, String spritePath, int damage, int pierce, int despawnTime) {
 		super(scene, name, pos);
 		sprite = scene.getGame().getSpriteManager().getSprite(spritePath);
 		bounds = new CircleBounds(this, Math.min(sprite.getWidth(), sprite.getHeight()));
@@ -32,7 +32,7 @@ public class Projectile extends GameObject {
 		this.pierce = pierce;
 		currentPierce = pierce;
 		
-		despawnTimer = new Timer(scene.getGame(), 500);
+		despawnTimer = new Timer(scene.getGame(), despawnTime);
 		hitList = new ArrayList<String>();
 		
 		physicsComponent = new PhysicsComponent(this);
