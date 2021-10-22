@@ -15,6 +15,15 @@ pellet.png
 redbloon.png
 bluebloon.png
 greenbloon.png
+yellowbloon.png
+pinkbloon.png
+blackbloon.png
+whitebloon.png
+zebrabloon.png
+rainbowbloon.png
+ceramicbloon.png
+ceramicblooncracked1.png
+ceramicblooncracked2.png
 #
 # Tracks:
 testTrack.png
