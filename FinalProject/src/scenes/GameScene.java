@@ -1,6 +1,5 @@
 package scenes;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
@@ -8,6 +7,7 @@ import gameobjects.Bloon;
 import gameobjects.ObjectGroup;
 import general.Difficulty;
 import general.Game;
+import general.Timer;
 import general.Vector2;
 import projectiles.Projectile;
 import towers.Tower;
@@ -63,16 +63,22 @@ public class GameScene extends Scene {
 		projectiles = new ObjectGroup<Projectile>();
 		bloons = new ObjectGroup<Bloon>();
 		
-		Bloon b = new Bloon(this, "RedBloon",new Vector2(300, 200));
-		bloons.add(b);
-		
 		shop = new Shop(this, startingMoney);
 		track = new Track(game, "testTrack.png", "testMask.png");
 	}
 	
+	Timer bspawntimer = new Timer(game, 250);
+	
 	@Override
 	public void update() {
 		shop.update();
+		
+		bspawntimer.update();
+		if (bspawntimer.isDone()) {
+			Bloon b = new Bloon(this, "RedBloon",new Vector2(-50, 200));
+			bloons.add(b);
+			bspawntimer.restart();
+		}
 		
 		towers.update();
 		projectiles.update();
@@ -84,8 +90,8 @@ public class GameScene extends Scene {
 		track.render(g);
 		
 		towers.render(g);
-		projectiles.render(g);
 		bloons.render(g);
+		projectiles.render(g);
 		
 		shop.render(g);
 		
