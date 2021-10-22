@@ -13,6 +13,8 @@ pellet.png
 #
 # Bloons:
 redbloon.png
+bluebloon.png
+greenbloon.png
 #
 # Tracks:
 testTrack.png
