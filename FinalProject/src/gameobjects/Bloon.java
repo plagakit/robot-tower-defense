@@ -14,13 +14,19 @@ public class Bloon extends GameObject {
 	private CircleBounds bounds;
 	private PhysicsComponent physicsComponent;
 	
-	private final float SPEED = 0.25f;
+	private final BloonType type;
 	
-	public Bloon(GameScene scene, String name, Vector2 pos) {
-		super(scene, name, pos);
-		sprite = scene.getGame().getSpriteManager().getSprite("redbloon.png");
-		bounds = new CircleBounds(this, 16);
+	private final float SPEED;
+	
+	public Bloon(GameScene scene, Vector2 pos, BloonType type) {
+		super(scene, "Bloon", pos);
+		this.type = type;
+		
+		name = type.name;
+		sprite = scene.getGame().getSpriteManager().getSprite(type.spritePath);
+		bounds = new CircleBounds(this, sprite.getWidth());
 		physicsComponent = new PhysicsComponent(this);
+		this.SPEED = type.speed;
 		
 		vel.x = SPEED;
 	}

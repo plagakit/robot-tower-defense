@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import gameobjects.Bloon;
+import gameobjects.BloonType;
 import gameobjects.ObjectGroup;
 import general.Difficulty;
 import general.Game;
@@ -75,7 +76,7 @@ public class GameScene extends Scene {
 		
 		bspawntimer.update();
 		if (bspawntimer.isDone()) {
-			Bloon b = new Bloon(this, "RedBloon",new Vector2(-50, 200));
+			Bloon b = new Bloon(this,new Vector2(-50, 200), BloonType.PINK);
 			bloons.add(b);
 			bspawntimer.restart();
 		}
