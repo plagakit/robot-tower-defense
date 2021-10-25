@@ -12,6 +12,7 @@ robot.png
 pellet.png
 #
 # Bloons:
+pop.png
 redbloon.png
 bluebloon.png
 greenbloon.png
