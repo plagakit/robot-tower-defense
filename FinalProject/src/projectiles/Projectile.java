@@ -42,7 +42,7 @@ public class Projectile extends GameObject {
 	public void update() {
 		
 		for (Bloon b : scene.getBloons().getList()) {
-			if (hitList.contains(b.getID()))
+			if (hitList.contains(b.getID()) || b.isInvulnerable())
 				continue;
 			
 			if (bounds != null && bounds.collides(b.getBounds())) {

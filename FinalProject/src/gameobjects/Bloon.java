@@ -6,6 +6,7 @@ import java.util.UUID;
 import components.CircleBounds;
 import components.PhysicsComponent;
 import general.Game;
+import general.Timer;
 import general.Vector2;
 import graphics.Sprite;
 import projectiles.Projectile;
@@ -16,6 +17,9 @@ public class Bloon extends GameObject {
 	private boolean invulnerable;
 	private CircleBounds bounds;
 	private PhysicsComponent physicsComponent;
+	
+	private Sprite popSprite;
+	private Timer popAnimTimer;
 	
 	private int age;
 	private final BloonType type;
@@ -39,6 +43,7 @@ public class Bloon extends GameObject {
 		speed = type.speed;
 		
 		sprite = scene.getGame().getSpriteManager().getSprite(type.spritePath);
+		popSprite = scene.getGame().getSpriteManager().getSprite("pop.png");
 		bounds = new CircleBounds(this, (int)(sprite.getWidth() * 0.5));
 		physicsComponent = new PhysicsComponent(this);
 		
@@ -61,6 +66,12 @@ public class Bloon extends GameObject {
 	public void update() {	
 		age++;
 		
+		if (invulnerable) {
+			if (popAnimTimer.isDone())
+				despawn();
+			else popAnimTimer.update();
+		}
+		
 		physicsComponent.update();
 	}
 	
@@ -72,9 +83,6 @@ public class Bloon extends GameObject {
 	}
 	
 	public void handleCollision(Projectile p) {
-		if (invulnerable)
-			return;
-		
 		currentHealth -= p.getDamage();
 		
 		if (type == BloonType.CERAMIC) {
@@ -96,11 +104,13 @@ public class Bloon extends GameObject {
 	}
 	
 	private void pop() {
+		sprite = popSprite;
+		popAnimTimer = new Timer(scene.getGame(), 100);
+		invulnerable = true;
+		vel = Vector2.zero();
+		// playSfx();
 		spawnChildren();
 		scene.onBloonPopped();
-		// startAnimTimer
-		// playSfx();
-		despawn();
 	}
 
 	public void despawn() {
@@ -109,6 +119,8 @@ public class Bloon extends GameObject {
 	}
 	
 	public CircleBounds getBounds() { return bounds; }
+	
+	public boolean isInvulnerable() { return invulnerable; }
 	
 	public int getAge() { return age; }
 	
