@@ -81,7 +81,7 @@ public class GameScene extends Scene {
 		
 		bspawntimer.update();
 		if (bspawntimer.isDone()) {
-			Bloon b = new Bloon(this,new Vector2(-50, 200), BloonType.CERAMIC);
+			Bloon b = new Bloon(this, new Vector2(-50, 200), BloonType.RAINBOW);
 			bloons.add(b);
 			bspawntimer.restart();
 		}

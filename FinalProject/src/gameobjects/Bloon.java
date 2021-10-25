@@ -13,9 +13,11 @@ import scenes.GameScene;
 
 public class Bloon extends GameObject {
 
+	private boolean invulnerable;
 	private CircleBounds bounds;
 	private PhysicsComponent physicsComponent;
 	
+	private int age;
 	private final BloonType type;
 	private final String id;
 	
@@ -26,10 +28,10 @@ public class Bloon extends GameObject {
 	private int currentHealth;
 	private final float speed;
 	
-	public Bloon(GameScene scene, Vector2 pos, BloonType type, String id) {
+	public Bloon(GameScene scene, Vector2 pos, BloonType type, String... id) {
 		super(scene, "Bloon", pos);
 		this.type = type;
-		this.id = id;
+		this.id = id.length == 0 ? UUID.randomUUID().toString() : id[0];
 		
 		name = type.name;
 		health = type.health;
@@ -45,16 +47,19 @@ public class Bloon extends GameObject {
 			damagedSprite2 = scene.getGame().getSpriteManager().getSprite("ceramicblooncracked2.png");
 		}
 		
+		age = 0;
 		vel.x = speed;
 	}
 	
-	public Bloon(GameScene scene, Vector2 pos, BloonType type) {
-		this(scene, pos, type, UUID.randomUUID().toString());
+	public Bloon(Bloon parent, BloonType type) {
+		this(parent.getGameScene(), parent.getPos(), type, parent.id);
+		this.age = parent.age;
 	}
 
 	
 	@Override
 	public void update() {	
+		age++;
 		
 		physicsComponent.update();
 	}
@@ -67,6 +72,9 @@ public class Bloon extends GameObject {
 	}
 	
 	public void handleCollision(Projectile p) {
+		if (invulnerable)
+			return;
+		
 		currentHealth -= p.getDamage();
 		
 		if (type == BloonType.CERAMIC) {
@@ -82,7 +90,7 @@ public class Bloon extends GameObject {
 	
 	private void spawnChildren() {
 		for (BloonType childType : type.children) {
-			Bloon newBloon = new Bloon(scene, pos, childType, id);
+			Bloon newBloon = new Bloon(this, childType);
 			scene.getBloons().add(newBloon);
 		}
 	}
@@ -101,6 +109,8 @@ public class Bloon extends GameObject {
 	}
 	
 	public CircleBounds getBounds() { return bounds; }
+	
+	public int getAge() { return age; }
 	
 	public String getID() { return id; }
 	
