@@ -21,7 +21,6 @@ public class Bloon extends GameObject {
 	private Sprite popSprite;
 	private Timer popAnimTimer;
 	
-	private int age;
 	private final BloonType type;
 	private final String id;
 	
@@ -31,6 +30,7 @@ public class Bloon extends GameObject {
 	private final int health;
 	private int currentHealth;
 	private final float speed;
+	private int distanceTravelled;
 	
 	public Bloon(GameScene scene, Vector2 pos, BloonType type, String... id) {
 		super(scene, "Bloon", pos);
@@ -52,19 +52,18 @@ public class Bloon extends GameObject {
 			damagedSprite2 = scene.getGame().getSpriteManager().getSprite("ceramicblooncracked2.png");
 		}
 		
-		age = 0;
+		distanceTravelled = 0;
 		vel.x = speed;
 	}
 	
 	public Bloon(Bloon parent, BloonType type) {
 		this(parent.getGameScene(), parent.getPos(), type, parent.id);
-		this.age = parent.age;
+		this.distanceTravelled = parent.distanceTravelled + 1;
 	}
 
 	
 	@Override
 	public void update() {	
-		age++;
 		
 		if (invulnerable) {
 			if (popAnimTimer.isDone())
@@ -72,6 +71,8 @@ public class Bloon extends GameObject {
 			else popAnimTimer.update();
 		}
 		
+		// TODO Change distance travelled
+		distanceTravelled += speed;
 		physicsComponent.update();
 	}
 	
@@ -122,7 +123,7 @@ public class Bloon extends GameObject {
 	
 	public boolean isInvulnerable() { return invulnerable; }
 	
-	public int getAge() { return age; }
+	public int getDistanceTravelled() { return distanceTravelled; }
 	
 	public String getID() { return id; }
 	

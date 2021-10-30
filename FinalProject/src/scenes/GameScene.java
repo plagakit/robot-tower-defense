@@ -89,7 +89,7 @@ public class GameScene extends Scene {
 		towers.update();
 		projectiles.update();
 		
-		bloons.getList().sort((b1, b2) -> Integer.compare(b2.getAge(), b1.getAge()));
+		bloons.getList().sort((b1, b2) -> Integer.compare(b2.getDistanceTravelled(), b1.getDistanceTravelled()));
 		bloons.update();
 	}
 	
