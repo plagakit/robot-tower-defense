@@ -65,7 +65,7 @@ public class GameScene extends Scene {
 		bloons = new ObjectGroup<Bloon>();
 		
 		shop = new Shop(this, startingMoney);
-		track = new Track(game, "testTrack.png", "testMask.png");
+		track = new Track(game, "testTrack.png", "testMask.png", "testData.txt");
 	}
 	
 	@Override
@@ -73,7 +73,7 @@ public class GameScene extends Scene {
 
 	}
 	
-	Timer bspawntimer = new Timer(game, 750);
+	Timer bspawntimer = new Timer(game, 50);
 	
 	@Override
 	public void update() {
@@ -81,15 +81,15 @@ public class GameScene extends Scene {
 		
 		bspawntimer.update();
 		if (bspawntimer.isDone()) {
-			Bloon b = new Bloon(this, new Vector2(-50, 200), BloonType.RAINBOW);
+			Bloon b = new Bloon(this, track.getPoints()[0], BloonType.CERAMIC);
 			bloons.add(b);
 			bspawntimer.restart();
 		}
+		bloons.getList().sort((b1, b2) -> Float.compare(b2.getDistanceTravelled(), b1.getDistanceTravelled()));
 		
 		towers.update();
 		projectiles.update();
 		
-		bloons.getList().sort((b1, b2) -> Integer.compare(b2.getDistanceTravelled(), b1.getDistanceTravelled()));
 		bloons.update();
 	}
 	
@@ -109,6 +109,10 @@ public class GameScene extends Scene {
 	
 	public void onBloonPopped() {
 		shop.addMoney(1);
+	}
+	
+	public void onLeak() {
+		
 	}
 
 	public void setTowerSelection(Tower t) { 

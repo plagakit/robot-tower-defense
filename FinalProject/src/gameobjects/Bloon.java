@@ -1,5 +1,6 @@
 package gameobjects;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.UUID;
 
@@ -13,24 +14,26 @@ import projectiles.Projectile;
 import scenes.GameScene;
 
 public class Bloon extends GameObject {
-
-	private boolean invulnerable;
-	private CircleBounds bounds;
-	private PhysicsComponent physicsComponent;
-	
-	private Sprite popSprite;
-	private Timer popAnimTimer;
 	
 	private final BloonType type;
 	private final String id;
 	
-	private Sprite damagedSprite1;
-	private Sprite damagedSprite2;
-	
 	private final int health;
 	private int currentHealth;
 	private final float speed;
-	private int distanceTravelled;
+	private float distanceTravelled;
+	
+	private Sprite popSprite;
+	private Timer popAnimTimer;
+	private Sprite damagedSprite1;
+	private Sprite damagedSprite2;
+	
+	private boolean invulnerable;
+	private CircleBounds bounds;
+	private PhysicsComponent physicsComponent;
+	
+	private Vector2[] trackPoints;
+	private int goalPointIndex;
 	
 	public Bloon(GameScene scene, Vector2 pos, BloonType type, String... id) {
 		super(scene, "Bloon", pos);
@@ -52,18 +55,32 @@ public class Bloon extends GameObject {
 			damagedSprite2 = scene.getGame().getSpriteManager().getSprite("ceramicblooncracked2.png");
 		}
 		
+		trackPoints = scene.getTrack().getPoints();
+		goalPointIndex = 0;
 		distanceTravelled = 0;
-		vel.x = speed;
 	}
 	
 	public Bloon(Bloon parent, BloonType type) {
 		this(parent.getGameScene(), parent.getPos(), type, parent.id);
-		this.distanceTravelled = parent.distanceTravelled + 1;
+		this.goalPointIndex = parent.goalPointIndex;
+		this.distanceTravelled = parent.distanceTravelled;
+		
+		vel = Vector2.multiply(Vector2.direction(pos, trackPoints[goalPointIndex]), speed);
 	}
 
 	
 	@Override
 	public void update() {	
+		
+		if (Vector2.distance(pos, trackPoints[goalPointIndex]) <= 3) {
+			goalPointIndex++;
+			if (goalPointIndex == trackPoints.length) {
+				scene.onLeak();
+				despawn();
+			} else {
+				vel = Vector2.multiply(Vector2.direction(pos, trackPoints[goalPointIndex]), speed);
+			}
+		}
 		
 		if (invulnerable) {
 			if (popAnimTimer.isDone())
@@ -71,7 +88,6 @@ public class Bloon extends GameObject {
 			else popAnimTimer.update();
 		}
 		
-		// TODO Change distance travelled
 		distanceTravelled += speed;
 		physicsComponent.update();
 	}
@@ -82,7 +98,7 @@ public class Bloon extends GameObject {
 		if (Game.DEBUG)
 			bounds.debugRender(g);
 	}
-	
+
 	public void handleCollision(Projectile p) {
 		currentHealth -= p.getDamage();
 		
@@ -123,7 +139,7 @@ public class Bloon extends GameObject {
 	
 	public boolean isInvulnerable() { return invulnerable; }
 	
-	public int getDistanceTravelled() { return distanceTravelled; }
+	public float getDistanceTravelled() { return distanceTravelled; }
 	
 	public String getID() { return id; }
 	

@@ -14,6 +14,10 @@ public class Vector2 {
 	
 	public static Vector2 zero() { return new Vector2(0, 0); }
 	
+	public static Vector2 add(Vector2 v1, Vector2 v2) {
+		return new Vector2(v1.x + v2.x, v1.y + v2.y);
+	}
+	
 	public static float distance(Vector2 start, Vector2 end) {
 		float x = end.x - start.x;
 		float y = end.y - start.y;

@@ -2,6 +2,8 @@ package tracks;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.List;
+import java.util.Scanner;
 
 import general.Game;
 import general.Vector2;
@@ -14,17 +16,16 @@ public class Track {
 	private int width;
 	private int height;
 	
-	private String backgroundPath, maskPath;
 	private Sprite background, mask;
 	private boolean[][] maskValues;
+	private Vector2[] points;
 	
-	public Track(Game game, String backgroundPath, String maskPath) {
+	public Track(Game game, String backgroundPath, String maskPath, String dataPath) {
 		this.game = game;
-		this.backgroundPath = backgroundPath;
-		this.maskPath = maskPath;
 		
 		background = game.getSpriteManager().getSprite(backgroundPath);
 		mask = game.getSpriteManager().getSprite(maskPath);
+		
 		width = background.getWidth();
 		height = background.getHeight();
 		
@@ -32,6 +33,7 @@ public class Track {
 			System.out.format("Warning mask %s does not match size of bg %s\n", mask.getName(), background.getName());
 	
 		initMaskValues();
+		initTrackPoints(dataPath);
 	}
 	
 	private void initMaskValues() {
@@ -45,6 +47,22 @@ public class Track {
 				else maskValues[x][y] = false;
 			}
 		}
+	}
+	
+	private void initTrackPoints(String dataPath) {
+		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
+		
+		int numPoints = sc.nextInt();
+		points = new Vector2[numPoints];
+		
+		for (int i = 0; i < numPoints; i++) {
+			int x = sc.nextInt();
+			int y = sc.nextInt();
+			points[i] = new Vector2(x, y);
+		}
+		
+		//for (Vector2 p : points)
+			//System.out.println(p.toString());
 	}
 	
 	public boolean validateTowerPosition(Tower tower) {
@@ -81,4 +99,5 @@ public class Track {
 		*/
 	}
 	
+	public Vector2[] getPoints() { return points; }
 }

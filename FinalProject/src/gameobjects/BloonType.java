@@ -6,9 +6,9 @@ public enum BloonType {
 	GREEN("GreenBloon", 0.5f, "greenbloon.png", 1, BLUE),
 	YELLOW("YellowBloon", 0.8f, "yellowbloon.png", 1, GREEN),
 	PINK("PinkBloon", 1.2f, "pinkbloon.png", 1, YELLOW),
-	BLACK("BlackBloon", 0.6f, "blackbloon.png", 1, PINK),
-	WHITE("WhiteBloon", 0.6f, "whitebloon.png", 1, PINK),
-	ZEBRA("ZebraBloon", 0.7f, "zebrabloon.png", 1, BLACK, WHITE),
+	BLACK("BlackBloon", 0.65f, "blackbloon.png", 1, PINK),
+	WHITE("WhiteBloon", 0.60f, "whitebloon.png", 1, PINK),
+	ZEBRA("ZebraBloon", 0.7f, "zebrabloon.png", 1, WHITE, BLACK),
 	RAINBOW("RainbowBloon", 1f, "rainbowbloon.png", 1, ZEBRA, ZEBRA),
 	CERAMIC("CeramicBloon", 0.5f, "ceramicbloon.png", 5, RAINBOW, RAINBOW);
 	
