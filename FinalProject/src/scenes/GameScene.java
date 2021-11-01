@@ -73,7 +73,7 @@ public class GameScene extends Scene {
 
 	}
 	
-	Timer bspawntimer = new Timer(game, 50);
+	Timer bspawntimer = new Timer(game, 500);
 	
 	@Override
 	public void update() {
