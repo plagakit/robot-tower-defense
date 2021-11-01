@@ -73,7 +73,7 @@ public class GameScene extends Scene {
 
 	}
 	
-	Timer bspawntimer = new Timer(game, 500);
+	Timer bspawntimer = new Timer(game, 5000);
 	
 	@Override
 	public void update() {
@@ -104,15 +104,15 @@ public class GameScene extends Scene {
 		shop.render(g);
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
-		g.drawString(String.format("R%d/%d", currentRound, maxRounds), 5, 15);
+		g.drawString(String.format("Round: %d/%d  Lives: %d", currentRound, maxRounds, currentLives), 5, 15);
 	}
 	
 	public void onBloonPopped() {
 		shop.addMoney(1);
 	}
 	
-	public void onLeak() {
-		
+	public void onLeak(int RBE) {
+		currentLives -= RBE;
 	}
 
 	public void setTowerSelection(Tower t) { 
