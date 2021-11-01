@@ -18,6 +18,7 @@ public class Bloon extends GameObject {
 	private final BloonType type;
 	private final String id;
 	
+	private final int RBE;
 	private final int health;
 	private int currentHealth;
 	private final float speed;
@@ -43,6 +44,7 @@ public class Bloon extends GameObject {
 		name = type.name;
 		health = type.health;
 		currentHealth = health;
+		RBE = type.RBE;
 		speed = type.speed;
 		
 		sprite = scene.getGame().getSpriteManager().getSprite(type.spritePath);
@@ -75,7 +77,7 @@ public class Bloon extends GameObject {
 		if (Vector2.distance(pos, trackPoints[goalPointIndex]) <= 3) {
 			goalPointIndex++;
 			if (goalPointIndex == trackPoints.length) {
-				scene.onLeak();
+				scene.onLeak(RBE);
 				despawn();
 			} else {
 				vel = Vector2.multiply(Vector2.direction(pos, trackPoints[goalPointIndex]), speed);
