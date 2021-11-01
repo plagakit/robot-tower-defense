@@ -26,7 +26,4 @@ ceramicbloon.png
 ceramicblooncracked1.png
 ceramicblooncracked2.png
 #
-# Tracks:
-testTrack.png
-testMask.png
 #

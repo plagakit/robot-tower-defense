@@ -2,7 +2,7 @@ package tracks;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.List;
+import java.io.Serializable;
 import java.util.Scanner;
 
 import general.Game;
@@ -10,8 +10,10 @@ import general.Vector2;
 import graphics.Sprite;
 import towers.Tower;
 
-public class Track {
+public class Track implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Game game;
 	private int width;
 	private int height;
