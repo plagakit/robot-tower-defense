@@ -2,7 +2,7 @@ package tracks;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.io.Serializable;
+import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
 import general.Game;
@@ -10,32 +10,38 @@ import general.Vector2;
 import graphics.Sprite;
 import towers.Tower;
 
-public class Track implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Track {
 	
-	private Game game;
 	private int width;
 	private int height;
 	
-	private Sprite background, mask;
+	public Sprite bgS, mS;
+	private BufferedImage background;
+	private BufferedImage mask;
 	private boolean[][] maskValues;
 	private Vector2[] points;
 	
 	public Track(Game game, String backgroundPath, String maskPath, String dataPath) {
-		this.game = game;
 		
-		background = game.getSpriteManager().getSprite(backgroundPath);
-		mask = game.getSpriteManager().getSprite(maskPath);
+		bgS = game.getSpriteManager().getSprite(backgroundPath);
+		mS = game.getSpriteManager().getSprite(maskPath);
 		
-		width = background.getWidth();
-		height = background.getHeight();
+		width = bgS.getWidth();
+		height = mS.getHeight();
 		
-		if (width != mask.getWidth() || height != mask.getHeight())
-			System.out.format("Warning mask %s does not match size of bg %s\n", mask.getName(), background.getName());
+		//if (width != mask.getWidth() || height != mask.getHeight())
+		//	System.out.format("Warning mask %s does not match size of bg %s\n", mS.getName(), bgS.getName());
 	
 		initMaskValues();
 		initTrackPoints(dataPath);
+	}
+	
+	public Track(Game game, TrackData data) {
+		background = data.getBackground();
+		mask = data.getMask();
+		points = data.getPoints();
+		
+		initMaskValues();
 	}
 	
 	private void initMaskValues() {
@@ -43,7 +49,7 @@ public class Track implements Serializable {
 		
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				int pixel = mask.getImage().getRGB(x, y);
+				int pixel = mS.getImage().getRGB(x, y);
 				if (pixel == Color.GREEN.getRGB())
 					maskValues[x][y] = true;
 				else maskValues[x][y] = false;
@@ -92,7 +98,7 @@ public class Track implements Serializable {
 	}
 	
 	public void render(Graphics2D g) {
-		g.drawImage(background.getImage(), 0, 0, width, height, null);
+		g.drawImage(bgS.getImage(), 0, 0, width, height, null);
 		
 		/* Draw mask
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
@@ -100,6 +106,6 @@ public class Track implements Serializable {
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
 		*/
 	}
-	
+
 	public Vector2[] getPoints() { return points; }
 }
