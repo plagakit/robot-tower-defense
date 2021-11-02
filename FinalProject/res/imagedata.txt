@@ -1,3 +1,4 @@
+# Made by Thomas P.
 # File where all image names are listed
 # Hashtags are comments (ignored)
 #
