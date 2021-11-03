@@ -9,12 +9,10 @@ import gameobjects.ObjectGroup;
 import general.Difficulty;
 import general.Game;
 import general.Timer;
-import general.Vector2;
 import projectiles.Projectile;
 import towers.Tower;
 import tracks.Track;
-import tracks.TrackData;
-import tracks.TrackSerializer;
+import tracks.TrackLoader;
 import ui.Shop;
 
 public class GameScene extends Scene {
@@ -27,6 +25,7 @@ public class GameScene extends Scene {
 	private int startingMoney;
 
 	private Shop shop;
+	private TrackLoader trackLoader;
 	private Track track;
 	
 	private ObjectGroup<Tower> towers;
@@ -67,7 +66,8 @@ public class GameScene extends Scene {
 		bloons = new ObjectGroup<Bloon>();
 		
 		shop = new Shop(this, startingMoney);
-		track = new Track(game, "testTrack.png", "testMask.png", "testData.txt");
+		trackLoader = new TrackLoader();
+		track = new Track(game, trackLoader.get("testTrack.track"));
 	}
 	
 	@Override

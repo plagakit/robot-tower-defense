@@ -71,9 +71,9 @@ public class TrackData implements Serializable {
 			
 			int pointLength = in.readInt();
 			points = new Vector2[pointLength];
-			for (Vector2 point : points)
-				point = new Vector2(in.readFloat(), in.readFloat());
-			
+			for (int i = 0; i < pointLength; i++)
+				points[i] = new Vector2(in.readFloat(), in.readFloat());
+				
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}

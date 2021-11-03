@@ -173,30 +173,6 @@ public class TrackSerializer implements ActionListener {
 			}
 			
 		}
-		
-		/*BufferedImage background = ImageIO.read(ClassLoader.getSystemClassLoader().getResourceAsStream("testTrack.png"));
-		BufferedImage mask = ImageIO.read(ClassLoader.getSystemClassLoader().getResourceAsStream("testMask.png"));
-		Vector2[] points;
-
-		
-
-		TrackData data = new TrackData(background, mask, points);
-
-		File f = new File("testTrack.track");
-		FileOutputStream fileOut = new FileOutputStream(f);
-		ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
-		objOut.writeObject(data);
-		objOut.close();
-
-		FileInputStream fileIn = new FileInputStream(f);
-		ObjectInputStream objIn = new ObjectInputStream(fileIn);
-		TrackData readData = (TrackData) objIn.readObject();
-		System.out.println(readData);
-		System.out.println(readData.getBackground());
-		System.out.println(readData.getMask());
-		System.out.println(readData.getPoints());
-		objIn.close();
-		*/
 	}
 	
 	private void readTrackPoints(File file) {

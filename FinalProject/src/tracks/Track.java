@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import general.Game;
 import general.Vector2;
-import graphics.Sprite;
 import towers.Tower;
 
 public class Track {
@@ -15,13 +14,13 @@ public class Track {
 	private int width;
 	private int height;
 	
-	public Sprite bgS, mS;
+	//public Sprite bgS, mS;
 	private BufferedImage background;
 	private BufferedImage mask;
 	private boolean[][] maskValues;
 	private Vector2[] points;
 	
-	public Track(Game game, String backgroundPath, String maskPath, String dataPath) {
+	/*public Track(Game game, String backgroundPath, String maskPath, String dataPath) {
 		
 		bgS = game.getSpriteManager().getSprite(backgroundPath);
 		mS = game.getSpriteManager().getSprite(maskPath);
@@ -34,12 +33,15 @@ public class Track {
 	
 		initMaskValues();
 		initTrackPoints(dataPath);
-	}
+	} */
 	
 	public Track(Game game, TrackData data) {
 		background = data.getBackground();
 		mask = data.getMask();
 		points = data.getPoints();
+		
+		width = background.getWidth();
+		height = background.getHeight();
 		
 		initMaskValues();
 	}
@@ -49,7 +51,7 @@ public class Track {
 		
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				int pixel = mS.getImage().getRGB(x, y);
+				int pixel = mask.getRGB(x, y);
 				if (pixel == Color.GREEN.getRGB())
 					maskValues[x][y] = true;
 				else maskValues[x][y] = false;
@@ -57,7 +59,7 @@ public class Track {
 		}
 	}
 	
-	private void initTrackPoints(String dataPath) {
+	/*private void initTrackPoints(String dataPath) {
 		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
 		
 		int numPoints = sc.nextInt();
@@ -71,7 +73,7 @@ public class Track {
 		
 		//for (Vector2 p : points)
 			//System.out.println(p.toString());
-	}
+	}*/
 	
 	public boolean validateTowerPosition(Tower tower) {
 		Vector2 pos = tower.getPos();
@@ -98,7 +100,7 @@ public class Track {
 	}
 	
 	public void render(Graphics2D g) {
-		g.drawImage(bgS.getImage(), 0, 0, width, height, null);
+		g.drawImage(background, 0, 0, width, height, null);
 		
 		/* Draw mask
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));

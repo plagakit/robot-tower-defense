@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import general.Vector2;
+
 public class TrackLoader {
 	
 	private HashMap<String, TrackData> trackList;
@@ -16,7 +18,7 @@ public class TrackLoader {
 	}
 	
 	private void loadTracks() {
-		String dataPath = "imagedata.txt";
+		String dataPath = "trackdata.txt";
 		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
 		
 		while (sc.hasNextLine()) {
@@ -30,10 +32,12 @@ public class TrackLoader {
 			try {
 				ObjectInputStream objIn = new ObjectInputStream(ClassLoader.getSystemResourceAsStream(path));
 				TrackData readData = (TrackData)objIn.readObject();
-				System.out.println(readData);
+				/*System.out.println(readData);
 				System.out.println(readData.getBackground());
 				System.out.println(readData.getMask());
-				System.out.println(readData.getPoints());
+				for (Vector2 point : readData.getPoints())
+					System.out.print("TRACK POINT " + point.x + " " + point.y);
+				*/
 				objIn.close();
 				
 				trackList.put(path, readData);
