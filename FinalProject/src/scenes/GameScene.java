@@ -75,7 +75,7 @@ public class GameScene extends Scene {
 
 	}
 	
-	Timer bspawntimer = new Timer(game, 5000);
+	Timer bspawntimer = new Timer(game, 500);
 	
 	@Override
 	public void update() {
@@ -83,7 +83,7 @@ public class GameScene extends Scene {
 		
 		bspawntimer.update();
 		if (bspawntimer.isDone()) {
-			Bloon b = new Bloon(this, track.getPoints()[0], BloonType.CERAMIC);
+			Bloon b = new Bloon(this, track.getPoints()[0], BloonType.ZEBRA);
 			bloons.add(b);
 			bspawntimer.restart();
 		}
