@@ -30,6 +30,7 @@ public class TrackSerializer implements ActionListener {
 
 	public static void main(String[] args) {
 		TrackSerializer ts = new TrackSerializer();
+		System.out.println("Closed " + ts);
 	}
 	
 	JLabel errorDialog, bgText, maskText, pointsText;

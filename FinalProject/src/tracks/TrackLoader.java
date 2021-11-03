@@ -5,8 +5,6 @@ import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import general.Vector2;
-
 public class TrackLoader {
 	
 	private HashMap<String, TrackData> trackList;

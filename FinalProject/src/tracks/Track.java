@@ -3,7 +3,6 @@ package tracks;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
 
 import general.Game;
 import general.Vector2;
@@ -14,7 +13,6 @@ public class Track {
 	private int width;
 	private int height;
 	
-	//public Sprite bgS, mS;
 	private BufferedImage background;
 	private BufferedImage mask;
 	private boolean[][] maskValues;
@@ -58,22 +56,6 @@ public class Track {
 			}
 		}
 	}
-	
-	/*private void initTrackPoints(String dataPath) {
-		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
-		
-		int numPoints = sc.nextInt();
-		points = new Vector2[numPoints];
-		
-		for (int i = 0; i < numPoints; i++) {
-			int x = sc.nextInt();
-			int y = sc.nextInt();
-			points[i] = new Vector2(x, y);
-		}
-		
-		//for (Vector2 p : points)
-			//System.out.println(p.toString());
-	}*/
 	
 	public boolean validateTowerPosition(Tower tower) {
 		Vector2 pos = tower.getPos();
