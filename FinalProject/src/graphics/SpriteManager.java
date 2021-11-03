@@ -17,18 +17,20 @@ public class SpriteManager {
 	}
 	
 	private void loadSprites() {
-		String dataPath = "imagedata.txt";
+		final String folder = "images/";
+		final String dataPath = "images/imagedata.txt";
 		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
 		
 		while (sc.hasNextLine()) {
 			String path = sc.nextLine();
+			String absolutePath = folder + path;
 			
 			if (path.toCharArray()[0] == '#')
 				continue;
 			
 			System.out.println("Loading " + path);
 			BufferedImage image = null;
-			try { image = ImageIO.read(ClassLoader.getSystemClassLoader().getResourceAsStream(path)); } catch (IOException e) {e.printStackTrace(); }
+			try { image = ImageIO.read(ClassLoader.getSystemClassLoader().getResourceAsStream(absolutePath)); } catch (IOException e) {e.printStackTrace(); }
 			
 			Sprite s = new Sprite(path, image);
 			spriteList.put(path, s);
