@@ -41,6 +41,9 @@ public class Track {
 		width = background.getWidth();
 		height = background.getHeight();
 		
+		if (width != mask.getWidth() || height != mask.getHeight())
+			System.out.format("Warning: track mask does not match size of track background\n");
+		
 		initMaskValues();
 	}
 	
