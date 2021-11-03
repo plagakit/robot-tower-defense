@@ -26,7 +26,3 @@ rainbowbloon.png
 ceramicbloon.png
 ceramicblooncracked1.png
 ceramicblooncracked2.png
-#
-testTrack.png
-testMask.png
-#
