@@ -18,7 +18,7 @@ public class SpriteManager {
 	
 	private void loadSprites() {
 		final String folder = "images/";
-		final String dataPath = "images/imagedata.txt";
+		final String dataPath = folder + "imagedata.txt";
 		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
 		
 		while (sc.hasNextLine()) {
