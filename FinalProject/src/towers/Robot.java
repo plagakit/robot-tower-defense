@@ -24,7 +24,7 @@ public class Robot extends Tower {
 	protected void fire(Bloon target) {
 		rotation = Vector2.lookAtAngle(pos, target.getPos()) + 90;
 		
-		Pellet p = new Pellet(scene, pos, target.getPos(), "pellet.png", damage, pierce, 250);
+		Pellet p = new Pellet(scene, pos, target.getPos(), "pellet.png", damage, pierce, Pellet.DEFAULT_DESPAWN_TIME);
 		scene.getProjectiles().add(p);
 	}
 	

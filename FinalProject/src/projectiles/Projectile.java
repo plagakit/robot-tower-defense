@@ -16,6 +16,7 @@ public class Projectile extends GameObject {
 	protected PhysicsComponent physicsComponent;
 	protected CircleBounds bounds;
 	
+	public final static int DEFAULT_DESPAWN_TIME = 250;
 	protected int despawnTime;
 	protected final Timer despawnTimer;
 	protected List<String> hitList;
