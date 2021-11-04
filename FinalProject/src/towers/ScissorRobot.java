@@ -9,8 +9,8 @@ import scenes.GameScene;
 public class ScissorRobot extends Tower {
 
 	public ScissorRobot(GameScene scene, Vector2 pos) {
-		super(scene, "ScissorRobot", pos, 1, 5, 750, 
-				new BuyInfo("Scissor Robot", "High pierce, but needs careful positioning.", 350));
+		super(scene, "ScissorRobot", pos, 1, 5, 850, 
+				new BuyInfo("Scissor Robot", "Pierces many bloons at once,\nbut needs careful positioning.", 350));
 		sprite = scene.getGame().getSpriteManager().getSprite("scissorrobot.png");
 	}
 
