@@ -9,7 +9,7 @@ import scenes.GameScene;
 public class Robot extends Tower {
 	
 	public Robot(GameScene scene, Vector2 pos) {
-		super(scene, "Robot", pos, 1, 2, 100,
+		super(scene, "Robot", pos, 1, 2, 600,
 				new BuyInfo("TEST", "This is a test description. Wow!", 100));
 		
 		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
