@@ -16,8 +16,6 @@ public class BloonSender {
 		sending = false;
 	}
 	
-	
-	
 	public void update() { 
 		if (sending) {
 			bspawntimer.update();
