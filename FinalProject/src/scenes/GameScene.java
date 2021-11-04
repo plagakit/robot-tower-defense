@@ -25,6 +25,8 @@ public class GameScene extends Scene {
 	private int startingMoney;
 
 	private Shop shop;
+	private float costModifier;
+	
 	private TrackLoader trackLoader;
 	private Track track;
 	
@@ -42,16 +44,19 @@ public class GameScene extends Scene {
 			maxLives = 100;
 			maxRounds = 50;
 			startingMoney = 500;
+			costModifier = 0.75f;
 			break;
 		case MEDIUM:
 			maxLives = 50;
 			maxRounds = 75;
 			startingMoney = 4000;
+			costModifier = 1;
 			break;
 		case HARD:
 			maxLives = 1;
 			maxRounds = 100;
 			startingMoney = 300;
+			costModifier = 1.5f;
 			break;
 		}
 	}
@@ -65,7 +70,7 @@ public class GameScene extends Scene {
 		projectiles = new ObjectGroup<Projectile>();
 		bloons = new ObjectGroup<Bloon>();
 		
-		shop = new Shop(this, startingMoney);
+		shop = new Shop(this, startingMoney, costModifier);
 		trackLoader = new TrackLoader();
 		track = new Track(game, trackLoader.get("testTrack.track"));
 	}
@@ -81,9 +86,11 @@ public class GameScene extends Scene {
 	public void update() {
 		shop.update();
 		
+		
+		
 		bspawntimer.update();
 		if (bspawntimer.isDone()) {
-			Bloon b = new Bloon(this, track.getPoints()[0], BloonType.ZEBRA);
+			Bloon b = new Bloon(this, track.getPoints()[0], BloonType.GREEN);
 			bloons.add(b);
 			bspawntimer.restart();
 		}
