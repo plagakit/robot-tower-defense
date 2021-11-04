@@ -2,6 +2,9 @@
 # Wave data listed here
 # Groups of bloons grouped with ,
 # Type:Number:Spacing
-#
-RED:10:5,RED:10:10
-RED:20:5,BLUE:5:10,RED:20:5
+# Type - Red, Blue, Green, etc...
+# Number -  the amount of bloons
+# Spacing - how far the bloons are spaced in ms (50 = bloons spawned every 50 ms)
+100
+RED:10:50,RED:10:50
+RED:20:50,BLUE:5:50,RED:20:50
