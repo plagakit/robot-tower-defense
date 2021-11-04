@@ -4,11 +4,10 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import gameobjects.Bloon;
-import gameobjects.BloonType;
+import gameobjects.BloonSender;
 import gameobjects.ObjectGroup;
 import general.Difficulty;
 import general.Game;
-import general.Timer;
 import projectiles.Projectile;
 import towers.Tower;
 import tracks.Track;
@@ -29,6 +28,8 @@ public class GameScene extends Scene {
 	
 	private TrackLoader trackLoader;
 	private Track track;
+	
+	private BloonSender bloonSender;
 	
 	private ObjectGroup<Tower> towers;
 	private ObjectGroup<Projectile> projectiles;
@@ -71,8 +72,11 @@ public class GameScene extends Scene {
 		bloons = new ObjectGroup<Bloon>();
 		
 		shop = new Shop(this, startingMoney, costModifier);
+		
 		trackLoader = new TrackLoader();
 		track = new Track(game, trackLoader.get("testTrack.track"));
+		bloonSender = new BloonSender(this);
+
 	}
 	
 	@Override
@@ -80,20 +84,13 @@ public class GameScene extends Scene {
 
 	}
 	
-	Timer bspawntimer = new Timer(game, 500);
+	
 	
 	@Override
 	public void update() {
 		shop.update();
 		
-		
-		
-		bspawntimer.update();
-		if (bspawntimer.isDone()) {
-			Bloon b = new Bloon(this, track.getPoints()[0], BloonType.GREEN);
-			bloons.add(b);
-			bspawntimer.restart();
-		}
+		bloonSender.update();
 		bloons.getList().sort((b1, b2) -> Float.compare(b2.getDistanceTravelled(), b1.getDistanceTravelled()));
 		
 		towers.update();
@@ -105,7 +102,6 @@ public class GameScene extends Scene {
 	@Override
 	public void render(Graphics2D g) {
 		track.render(g);
-		
 		
 		bloons.render(g);
 		projectiles.render(g);
