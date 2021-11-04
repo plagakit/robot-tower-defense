@@ -54,7 +54,7 @@ public class Game {
 		display.getCanvas().addMouseListener(inputManager);
 		display.getCanvas().addMouseMotionListener(inputManager);
 		
-		gameScene = new GameScene(this, Difficulty.MEDIUM);
+		gameScene = new GameScene(this, Difficulty.HARD);
 		setCurrentScene(gameScene);
 	}
 	
