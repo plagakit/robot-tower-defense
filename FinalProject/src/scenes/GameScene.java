@@ -99,9 +99,10 @@ public class GameScene extends Scene {
 	public void render(Graphics2D g) {
 		track.render(g);
 		
-		towers.render(g);
+		
 		bloons.render(g);
 		projectiles.render(g);
+		towers.render(g);
 		
 		shop.render(g);
 		
