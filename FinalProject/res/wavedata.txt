@@ -1,0 +1,7 @@
+# Made by Thomas P.
+# Wave data listed here
+# Groups of bloons grouped with ,
+# Type:Number:Spacing
+#
+RED:10:5,RED:10:10
+RED:20:5,BLUE:5:10,RED:20:5
