@@ -15,7 +15,7 @@ import towers.Tower;
 public class Shop {
 	
 	private long money;
-	
+	private float costModifier;
 	
 	private TowerButton[] towerButtons;
 	private BuyInfo tbInfo;
@@ -24,8 +24,9 @@ public class Shop {
 	
 	private FastForwardButton ffButton;
 	
-	public Shop(GameScene scene, long startingMoney) {
+	public Shop(GameScene scene, long startingMoney, float costModifier) {
 		this.money = startingMoney;
+		this.costModifier = costModifier;
 		
 		towerButtons = new TowerButton[] {
 			new TowerButton(scene, this, new Vector2(515, 24), new Robot(scene, null), "roboticon.png"),
@@ -68,7 +69,7 @@ public class Shop {
 			g.setFont(new Font("Arial", Font.BOLD, 15));
 			g.drawString(tbInfo.getTitle(), 485, 105);
 			
-			String costStr = "$" + tbInfo.getBaseCost();
+			String costStr = "$" + (int)(tbInfo.getBaseCost() * costModifier);
 			int costStrWidth = g.getFontMetrics().stringWidth(costStr);
 			g.drawString(costStr, 635 - costStrWidth, 105);
 			
@@ -95,6 +96,8 @@ public class Shop {
 	public void setTowerSelection(Tower tower) { currentSelectedTower = tower; }
 	
 	public long getMoney() { return money; }
+	
+	public float getCostModifier() { return costModifier; }
 	
 	public void addMoney(long add) { money += add; }
 	

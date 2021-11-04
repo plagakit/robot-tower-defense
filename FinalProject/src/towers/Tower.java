@@ -58,7 +58,8 @@ public abstract class Tower extends GameObject {
 			if (!im.isLmbHeld()) {
 				if (validPos && scene.getShop().getMoney() >= info.getBaseCost()) {
 					placed = true;
-					scene.getShop().subtractMoney(info.getBaseCost());
+					scene.getShop().subtractMoney(
+							(int)(info.getBaseCost() * scene.getShop().getCostModifier()));
 				}
 				else scene.getTowers().remove(this);
 				
