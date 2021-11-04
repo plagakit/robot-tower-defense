@@ -55,7 +55,7 @@ public class Shop {
 		g.setStroke(new BasicStroke(2));
 		g.setColor(Color.BLACK);
 		g.drawLine(480, 0, 480, 360);
-		g.drawLine(480, 130, 640, 130);
+		g.drawLine(480, 140, 640, 140);
 		
 		// Buttons
 		for (Button b : towerButtons)
@@ -73,7 +73,10 @@ public class Shop {
 			g.drawString(costStr, 635 - costStrWidth, 105);
 			
 			g.setFont(new Font("Arial", Font.PLAIN, 10));
-			g.drawString(tbInfo.getDescription(), 490, 120);
+			String[] description = tbInfo.getDescription().split("\n");
+			g.drawString(description[0], 490, 120);
+			if (description.length > 1)
+				g.drawString(description[1], 490, 120 + g.getFontMetrics().getHeight());
  		}
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
