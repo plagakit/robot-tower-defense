@@ -11,6 +11,9 @@ smileicon.png
 roboticon.png
 robot.png
 pellet.png
+scissoricon.png
+scissorrobot.png
+scissor.png
 #
 # Bloons:
 pop.png
