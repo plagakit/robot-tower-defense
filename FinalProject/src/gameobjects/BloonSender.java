@@ -69,10 +69,15 @@ public class BloonSender {
 		
 		sending = true;
 		currentWave = waves[round - 1];
-		bloonSpawnTimer = new Timer(scene.getGame(), currentWave.getSpacingTime());
 		
-		if (currentWave == null)
+		if (currentWave == null) {
 			sending = false;
+			return;
+		}
+		
+		bloonSpawnTimer = new Timer(scene.getGame(), currentWave.getSpacingTime());
 	}
+	
+	public boolean isSending() { return sending; }
 	
 }

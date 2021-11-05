@@ -36,6 +36,8 @@ public class GameScene extends Scene {
 	private ObjectGroup<Bloon> bloons;
 	private Tower currentTowerSelection;
 	
+	private boolean inRound;
+	
 	public GameScene(Game game, Difficulty difficulty) {
 		super(game);
 		this.difficulty = difficulty;
@@ -86,6 +88,10 @@ public class GameScene extends Scene {
 	
 	@Override
 	public void update() {
+		
+		if (inRound && !bloonSender.isSending() && bloons.getList().size() == 0)
+			finishRound();
+		
 		shop.update();
 		
 		bloonSender.update();
@@ -112,8 +118,14 @@ public class GameScene extends Scene {
 	}
 	
 	public void startNextRound() { 
+		inRound = true;
 		currentRound++;
 		bloonSender.sendRound(currentRound);
+	}
+	
+	public void finishRound() {
+		inRound = false;
+		shop.addMoney(currentRound + 99);
 	}
 	
 	public void onBloonPopped() {
@@ -140,5 +152,7 @@ public class GameScene extends Scene {
 	public ObjectGroup<Projectile> getProjectiles() { return projectiles; }
 	
 	public ObjectGroup<Bloon> getBloons() { return bloons; }
+	
+	public boolean inRound() { return inRound; }
 	
 }

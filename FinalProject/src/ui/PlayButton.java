@@ -20,6 +20,16 @@ public class PlayButton extends Button {
 		
 		on = true;
 	}
+	
+	@Override
+	public void update() { 
+		super.update();
+		
+		if (!on && !scene.inRound()) {
+			on = true;
+			sprite = onSprite;
+		}
+	}
 
 	@Override
 	protected void onClick() {
