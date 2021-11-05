@@ -76,7 +76,6 @@ public class GameScene extends Scene {
 		trackLoader = new TrackLoader();
 		track = new Track(game, trackLoader.get("testTrack.track"));
 		bloonSender = new BloonSender(this);
-		bloonSender.sendRound(2);
 	}
 	
 	@Override
@@ -110,6 +109,11 @@ public class GameScene extends Scene {
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
 		g.drawString(String.format("Round: %d/%d  Lives: %d", currentRound, maxRounds, currentLives), 5, 15);
+	}
+	
+	public void startNextRound() { 
+		currentRound++;
+		bloonSender.sendRound(currentRound);
 	}
 	
 	public void onBloonPopped() {
