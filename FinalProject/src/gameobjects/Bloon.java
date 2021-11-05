@@ -1,6 +1,5 @@
 package gameobjects;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.UUID;
 
