@@ -76,14 +76,13 @@ public class GameScene extends Scene {
 		trackLoader = new TrackLoader();
 		track = new Track(game, trackLoader.get("testTrack.track"));
 		bloonSender = new BloonSender(this);
-
+		bloonSender.sendRound(2);
 	}
 	
 	@Override
 	public void onStop() {
 
 	}
-	
 	
 	
 	@Override
