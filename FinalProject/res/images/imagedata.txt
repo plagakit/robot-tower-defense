@@ -3,6 +3,8 @@
 # Hashtags are comments (ignored)
 #
 # General:
+playon.png
+playoff.png
 fastforwardoff.png
 fastforwardon.png
 # Towers & Projectiles:
