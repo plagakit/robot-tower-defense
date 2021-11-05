@@ -1,6 +1,7 @@
 package gameobjects;
 
 public enum BloonType {
+	EMPTY("EmptyBloon", 0, null, 0, 0),
 	RED("RedBloon", 0.3f, "redbloon.png", 1, 1),
 	BLUE("BlueBloon", 0.4f, "bluebloon.png", 1, 2, RED),
 	GREEN("GreenBloon", 0.5f, "greenbloon.png", 1, 3, BLUE),
