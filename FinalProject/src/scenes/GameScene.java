@@ -47,7 +47,7 @@ public class GameScene extends Scene {
 			maxLives = 100;
 			maxRounds = 50;
 			startingMoney = 500;
-			costModifier = 0.75f;
+			costModifier = 0.75f; 
 			break;
 		case MEDIUM:
 			maxLives = 50;
@@ -58,7 +58,7 @@ public class GameScene extends Scene {
 		case HARD:
 			maxLives = 1;
 			maxRounds = 100;
-			startingMoney = 300;
+			startingMoney = 4000;
 			costModifier = 1.5f;
 			break;
 		}
