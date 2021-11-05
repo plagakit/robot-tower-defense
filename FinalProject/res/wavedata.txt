@@ -6,7 +6,7 @@
 # Number -  the amount of bloons
 # Spacing - how far the bloons are spaced in ms (50 = bloons spawned every 50 ms)
 100
-RED:10:750,RED:10:500
+RED:10:750,EMPTY:1:1000,RED:10:500
 RED:20:750,BLUE:5:750,RED:20:750
 RED:20:500,BLUE:20:750,BLUE:20:500
-BLUE:20:400,BLUE:20:200,GREEN:5:750
+BLUE:20:400,BLUE:20:200,EMPTY:1:2000,GREEN:5:750
