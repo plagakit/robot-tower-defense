@@ -22,6 +22,7 @@ public class Shop {
 	
 	private Tower currentSelectedTower;
 	
+	private PlayButton playButton; 
 	private FastForwardButton ffButton;
 	
 	public Shop(GameScene scene, long startingMoney, float costModifier) {
@@ -36,7 +37,8 @@ public class Shop {
 			new TowerButton(scene, this, new Vector2(560, 68), new Robot(scene, null), "roboticon.png"),
 			new TowerButton(scene, this, new Vector2(605, 68), new Robot(scene, null), "roboticon.png")
 		};
-		
+
+		playButton = new PlayButton(scene, new Vector2(540, 340));
 		ffButton = new FastForwardButton(scene, new Vector2(500, 340));
 	}
 	
@@ -44,6 +46,7 @@ public class Shop {
 		for (Button b : towerButtons)
 			b.update();
 		
+		playButton.update();
 		ffButton.update();
 	}
 	
@@ -61,7 +64,9 @@ public class Shop {
 		// Buttons
 		for (Button b : towerButtons)
 			b.render(g);
+		playButton.render(g);
 		ffButton.render(g);
+		
 		
 		// Text
 		g.setColor(Color.BLACK);
