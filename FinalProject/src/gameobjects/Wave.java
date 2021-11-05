@@ -41,7 +41,6 @@ public class Wave {
 	}
 	
 	public BloonType getNextBloon() {
-		System.out.format("%d count from %d group\n", sendCount, groupCount);
 		
 		if (sendCount >= currentGroup.count) {
 			
