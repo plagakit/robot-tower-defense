@@ -85,7 +85,7 @@ public abstract class Tower extends GameObject {
 			if (reloadTimer.isDone()) {
 				for (Bloon b : scene.getBloons().getList()) {
 					if (!b.isInvulnerable() && range.collides(b.getBounds())) {
-						fire(b);
+						fire(b.getPos());
 						reloadTimer.restart();
 						break;
 					}
@@ -96,7 +96,7 @@ public abstract class Tower extends GameObject {
 		}
 	}
 
-	protected abstract void fire(Bloon target);
+	protected abstract void fire(Vector2 target);
 	
 	private boolean validatePosition() {
 		for (Tower t : scene.getTowers().getList())	

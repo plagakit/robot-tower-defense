@@ -1,6 +1,5 @@
 package towers;
 
-import gameobjects.Bloon;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import projectiles.Scissor;
@@ -15,10 +14,10 @@ public class ScissorRobot extends Tower {
 	}
 
 	@Override
-	protected void fire(Bloon target) {
-		rotation = Vector2.lookAtAngle(pos, target.getPos()) + 90;
+	protected void fire(Vector2 target) {
+		rotation = Vector2.lookAtAngle(pos, target) + 90;
 		
-		Scissor p = new Scissor(scene, pos, target.getPos(), "scissor.png", damage, pierce);
+		Scissor p = new Scissor(scene, pos, target, "scissor.png", damage, pierce);
 		scene.getProjectiles().add(p);
 	}
 

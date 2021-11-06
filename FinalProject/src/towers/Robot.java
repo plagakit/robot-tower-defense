@@ -1,6 +1,5 @@
 package towers;
 
-import gameobjects.Bloon;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import projectiles.Pellet;
@@ -21,10 +20,10 @@ public class Robot extends Tower {
 	}
 
 	@Override
-	protected void fire(Bloon target) {
-		rotation = Vector2.lookAtAngle(pos, target.getPos()) + 90;
+	protected void fire(Vector2 target) {
+		rotation = Vector2.lookAtAngle(pos, target) + 90;
 		
-		Pellet p = new Pellet(scene, pos, target.getPos(), 
+		Pellet p = new Pellet(scene, pos, target, 
 				"pellet.png", damage, pierce, Pellet.DEFAULT_SPEED, Pellet.DEFAULT_DESPAWN_TIME);
 		scene.getProjectiles().add(p);
 	}
