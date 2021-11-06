@@ -16,6 +16,9 @@ pellet.png
 scissoricon.png
 scissorrobot.png
 scissor.png
+fireicon.png
+firerobot.png
+fire.png
 #
 # Bloons:
 pop.png
