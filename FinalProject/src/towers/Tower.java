@@ -30,12 +30,12 @@ public abstract class Tower extends GameObject {
 	protected int reloadTime;
 	protected final Timer reloadTimer;
 	
-	public Tower(GameScene scene, String name, Vector2 pos, int damage, int pierce, int reloadTime, BuyInfo info) {
+	public Tower(GameScene scene, String name, Vector2 pos, int range, int damage, int pierce, int reloadTime, BuyInfo info) {
 		super(scene, name, pos);
 		this.info = info;
 		
 		bounds = new CircleBounds(this, 15);
-		range = new CircleBounds(this, 80);
+		this.range = new CircleBounds(this, range);
 		this.damage = damage;
 		this.pierce = pierce;
 		this.reloadTime = reloadTime;
