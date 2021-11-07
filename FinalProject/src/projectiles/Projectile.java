@@ -72,7 +72,7 @@ public class Projectile extends GameObject {
 			despawn();
 	}
 
-	private void despawn() {
+	protected void despawn() {
 		active = false;
 		scene.getProjectiles().remove(this);
 	}

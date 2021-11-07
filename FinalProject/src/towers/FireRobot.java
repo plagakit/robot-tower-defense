@@ -2,6 +2,7 @@ package towers;
 
 import gameobjects.BuyInfo;
 import general.Vector2;
+import projectiles.Flame;
 import projectiles.Pellet;
 import scenes.GameScene;
 
@@ -23,8 +24,7 @@ public class FireRobot extends Tower {
 	protected void fire(Vector2 target) {
 		rotation = Vector2.lookAtAngle(pos, target) + 90;
 		
-		Pellet flame = new Pellet(scene, pos, target, 
-				"fire.png", damage, pierce, 0.5f, 500);
+		Flame flame = new Flame(scene, pos, target, "fire.png", damage, pierce);
 		scene.getProjectiles().add(flame);
 	}
 
