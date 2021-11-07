@@ -24,7 +24,7 @@ public class Robot extends Tower {
 		rotation = Vector2.lookAtAngle(pos, target) + 90;
 		
 		Pellet p = new Pellet(scene, pos, target, 
-				"pellet.png", damage, pierce, Pellet.DEFAULT_SPEED, Pellet.DEFAULT_DESPAWN_TIME);
+				"pellet.png", damage, pierce, Pellet.DEFAULT_DESPAWN_TIME);
 		scene.getProjectiles().add(p);
 	}
 	
