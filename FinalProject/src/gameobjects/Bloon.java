@@ -54,6 +54,9 @@ public class Bloon extends GameObject {
 		if (type == BloonType.CERAMIC) {
 			damagedSprite1 = scene.getGame().getSpriteManager().getSprite("ceramicblooncracked1.png");
 			damagedSprite2 = scene.getGame().getSpriteManager().getSprite("ceramicblooncracked2.png");
+		} else if (type == BloonType.MOAB) {
+			damagedSprite1 = scene.getGame().getSpriteManager().getSprite("moabbloondamaged1.png");
+			damagedSprite2 = scene.getGame().getSpriteManager().getSprite("moabbloondamaged2.png");
 		}
 		
 		trackPoints = scene.getTrack().getPoints();
@@ -72,6 +75,9 @@ public class Bloon extends GameObject {
 	
 	@Override
 	public void update() {	
+		
+		if (type == BloonType.MOAB)
+			rotation = Vector2.lookAtAngle(Vector2.zero(), vel);
 		
 		if (Vector2.distance(pos, trackPoints[goalPointIndex]) <= 3) {
 			goalPointIndex++;
@@ -103,10 +109,11 @@ public class Bloon extends GameObject {
 	public void handleCollision(Projectile p) {
 		currentHealth -= p.getDamage();
 		
-		if (type == BloonType.CERAMIC) {
-			if (currentHealth >= 3)
+		if (type == BloonType.CERAMIC || type == BloonType.MOAB) {
+			double percent = currentHealth / (double)health;
+			if (percent <= 0.66 && percent >= 0.33)
 				sprite = damagedSprite1;
-			else if (currentHealth < 3)
+			else if (percent < 0.33)
 				sprite = damagedSprite2;
 		}
 		
