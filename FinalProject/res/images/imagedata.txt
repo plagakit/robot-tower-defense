@@ -34,3 +34,6 @@ rainbowbloon.png
 ceramicbloon.png
 ceramicblooncracked1.png
 ceramicblooncracked2.png
+moabbloon.png
+moabbloondamaged1.png
+moabbloondamaged2.png
