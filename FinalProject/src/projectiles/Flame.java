@@ -11,7 +11,7 @@ public class Flame extends Projectile {
 	private final float DECELERATION = 0.01f; 
 	
 	public Flame(GameScene scene, Vector2 pos, Vector2 target, String spritePath, int damage, int pierce) {
-		super(scene, "Flame", pos, spritePath, damage, pierce, 5000);
+		super(scene, "Flame", pos, spritePath, ProjectileType.FIRE, damage, pierce, 5000);
 		
 		direction = Vector2.direction(pos, target);
 		rotation = Vector2.lookAtAngle(pos, target);

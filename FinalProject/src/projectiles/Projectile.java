@@ -21,14 +21,16 @@ public class Projectile extends GameObject {
 	protected final Timer despawnTimer;
 	protected List<String> hitList;
 	
+	protected ProjectileType type;
 	protected int damage;
 	protected int pierce;
 	protected int currentPierce;
 	
-	public Projectile(GameScene scene, String name, Vector2 pos, String spritePath, int damage, int pierce, int despawnTime) {
+	public Projectile(GameScene scene, String name, Vector2 pos, String spritePath, ProjectileType type, int damage, int pierce, int despawnTime) {
 		super(scene, name, pos);
 		sprite = scene.getGame().getSpriteManager().getSprite(spritePath);
 		bounds = new CircleBounds(this, Math.min(sprite.getWidth(), sprite.getHeight()));
+		this.type = type;
 		this.damage = damage;
 		this.pierce = pierce;
 		currentPierce = pierce;

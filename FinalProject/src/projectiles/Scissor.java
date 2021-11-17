@@ -13,7 +13,7 @@ public class Scissor extends Projectile {
 	float counter = 0;
 	
 	public Scissor(GameScene scene, Vector2 pos, Vector2 target, String spritePath, int damage, int pierce) {
-		super(scene, "Scissor", pos, spritePath, damage, pierce, 850);
+		super(scene, "Scissor", pos, spritePath, ProjectileType.NORMAL, damage, pierce, 850);
 	
 		// below are arbitrary numbers that were trial & errored by me
 		// multiplying speed by 60 gives a good-looking radius
