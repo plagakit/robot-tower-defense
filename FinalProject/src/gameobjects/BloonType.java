@@ -12,7 +12,7 @@ public enum BloonType {
 	ZEBRA("ZebraBloon", 0.7f, "zebrabloon.png", 1, 12, WHITE, BLACK),
 	RAINBOW("RainbowBloon", 1f, "rainbowbloon.png", 1, 24, ZEBRA, ZEBRA),
 	CERAMIC("CeramicBloon", 0.5f, "ceramicbloon.png", 5, 53, RAINBOW, RAINBOW),
-	MOAB("MoabBloon", 0.1f, "moabbloon.png", 40, 252, CERAMIC, CERAMIC, CERAMIC, CERAMIC);
+	MOAB("MoabBloon", 0.1f, "moabbloon.png", 200, 412, CERAMIC, CERAMIC, CERAMIC, CERAMIC);
 	
 	//https://www.baeldung.com/java-enum-values
 	
