@@ -79,6 +79,8 @@ public class Projectile extends GameObject {
 		scene.getProjectiles().remove(this);
 	}
 	
+	public ProjectileType getType() { return type; }
+	
 	public int getDamage() { return damage; }
 	
 }
