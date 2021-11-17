@@ -6,9 +6,18 @@
 # Number -  the amount of bloons
 # Spacing - how far the bloons are spaced in ms (50 = bloons spawned every 50 ms)
 50
-#
-MOAB:10:10000,EMPTY:1:1000,RED:10:500
+# 0-10 - red, blue, green
+RED:10:750,EMPTY:1:1000,RED:10:500
 RED:20:750,BLUE:5:750,RED:20:750
 RED:20:500,BLUE:20:750,BLUE:20:500
 BLUE:20:400,BLUE:20:200,EMPTY:1:2000,GREEN:5:750
-#
+GREEN:10:500,BLUE:20:150,GREEN:20:200,EMPTY:1:1000,RED:30:100
+
+# 11-20 - green, yellow, pink
+
+# 21-30 - pink, black, white, zebra
+
+# 31-40 - zebra, rainbow, ceramic
+
+# 41-50 - rainbow, ceramic, moab
+MOAB:1:1000
