@@ -3,6 +3,7 @@ package gameobjects;
 import java.util.Scanner;
 
 import general.Timer;
+import general.Vector2;
 import scenes.GameScene;
 
 public class BloonSender {
@@ -12,13 +13,16 @@ public class BloonSender {
 	private boolean sending;
 	private Wave[] waves;
 	private Wave currentWave;
+	
 	private Timer bloonSpawnTimer;
+	private Vector2 spawnPoint;
 	
 	public BloonSender(GameScene scene) { 
 		this.scene = scene;
 		
 		sending = false;
 		initWaves();
+		spawnPoint = scene.getTrack().getPoints()[0];
 	}
 	
 	private void initWaves() { 
@@ -28,6 +32,8 @@ public class BloonSender {
 		int counter = 0;
 		while (sc.hasNextLine()) {
 			String line = sc.nextLine();
+			
+			System.out.println(line);
 			
 			if (line.charAt(0) == '#')
 				continue;
@@ -50,7 +56,7 @@ public class BloonSender {
 			if (bloonSpawnTimer.isDone()) {
 				BloonType type = currentWave.getNextBloon();
 				if (type != BloonType.EMPTY && type != null) {
-					Bloon b = new Bloon(scene, scene.getTrack().getPoints()[0], type);
+					Bloon b = new Bloon(scene, spawnPoint, type);
 					scene.getBloons().add(b);
 				}
 				bloonSpawnTimer.restart(currentWave.getSpacingTime());
