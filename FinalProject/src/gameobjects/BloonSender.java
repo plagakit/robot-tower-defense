@@ -33,8 +33,6 @@ public class BloonSender {
 		while (sc.hasNextLine()) {
 			String line = sc.nextLine();
 			
-			System.out.println(line);
-			
 			if (line.charAt(0) == '#')
 				continue;
 			else if (waves == null)
