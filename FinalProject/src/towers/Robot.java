@@ -12,6 +12,14 @@ public class Robot extends Tower {
 				new BuyInfo("TEST", "This is a test description. Wow!", 100));
 		
 		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
+		
+		Upgrade u = new Upgrade(this, 
+				new BuyInfo("TEST", "This is a test upgrade. Wow!", 100)) {
+			@Override
+			public void apply() {
+				
+			}
+		};
 	}
 
 	@Override
