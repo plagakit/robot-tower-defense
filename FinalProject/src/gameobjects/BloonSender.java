@@ -70,7 +70,7 @@ public class BloonSender {
 	
 	public void sendRound(int round) { 
 		
-		if (round >= waves.length || round < 0)
+		if (round > waves.length || round < 0)
 			return;
 		
 		sending = true;
