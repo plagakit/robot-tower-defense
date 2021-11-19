@@ -52,13 +52,13 @@ public class GameScene extends Scene {
 		case MEDIUM:
 			maxLives = 50;
 			maxRounds = 50;
-			startingMoney = 4000;
+			startingMoney = 400;
 			costModifier = 1;
 			break;
 		case HARD:
 			maxLives = 1;
 			maxRounds = 50;
-			startingMoney = 4000;
+			startingMoney = 300;
 			costModifier = 1.5f;
 			break;
 		}
