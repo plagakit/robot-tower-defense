@@ -26,6 +26,7 @@ public abstract class Tower extends GameObject {
 	protected CircleBounds range;
 	protected int damage;
 	protected int pierce;
+	protected String projectileSprite;
 	
 	protected int reloadTime;
 	protected final Timer reloadTimer;
@@ -73,10 +74,10 @@ public abstract class Tower extends GameObject {
 				if (bounds.isInside(im.getMousePos())) {
 					if (selected) {
 						selected = false;
-						scene.setTowerSelection(null);
+						scene.getShop().setTowerSelection(null);
 					} else {
 						selected = true;
-						scene.setTowerSelection(this);
+						scene.getShop().setTowerSelection(this);
 					}
 				}
 			}
@@ -86,7 +87,7 @@ public abstract class Tower extends GameObject {
 				for (Bloon b : scene.getBloons().getList()) {
 					if (!b.isInvulnerable() && range.collides(b.getBounds())) {
 						fire(b.getPos());
-						reloadTimer.restart();
+						reloadTimer.restart(reloadTime);
 						break;
 					}
 				}

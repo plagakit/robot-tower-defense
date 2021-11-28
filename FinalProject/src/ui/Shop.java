@@ -21,7 +21,7 @@ public class Shop {
 	private TowerButton[] towerButtons;
 	private BuyInfo tbInfo;
 	
-	private Tower currentSelectedTower;
+	private Tower currentTowerSelection;
 	
 	private PlayButton playButton; 
 	private FastForwardButton ffButton;
@@ -87,8 +87,8 @@ public class Shop {
  		}
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
-		if (currentSelectedTower != null)
-			g.drawString(currentSelectedTower.getName(), 485, 150);
+		if (currentTowerSelection != null)
+			g.drawString(currentTowerSelection.getName(), 485, 150);
 		
 		
 		String moneyStr = "$" + money;
@@ -97,9 +97,13 @@ public class Shop {
 		
 	}
 	
-	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }
+	public void setTowerSelection(Tower t) { 
+		if (currentTowerSelection != null)
+			currentTowerSelection.setSelected(false);
+		currentTowerSelection = t; 
+	}
 	
-	public void setTowerSelection(Tower tower) { currentSelectedTower = tower; }
+	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }
 	
 	public long getMoney() { return money; }
 	

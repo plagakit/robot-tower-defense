@@ -34,7 +34,6 @@ public class GameScene extends Scene {
 	private ObjectGroup<Tower> towers;
 	private ObjectGroup<Projectile> projectiles;
 	private ObjectGroup<Bloon> bloons;
-	private Tower currentTowerSelection;
 	
 	private boolean inRound;
 	
@@ -134,13 +133,6 @@ public class GameScene extends Scene {
 	
 	public void onLeak(int RBE) {
 		currentLives -= RBE;
-	}
-
-	public void setTowerSelection(Tower t) { 
-		if (currentTowerSelection != null)
-			currentTowerSelection.setSelected(false);
-		currentTowerSelection = t; 
-		shop.setTowerSelection(t);
 	}
 	
 	public Shop getShop() { return shop; }
