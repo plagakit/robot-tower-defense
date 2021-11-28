@@ -44,12 +44,16 @@ public abstract class GameObject {
 	public String getName() { return name; }
 	
 	public boolean getActive() { return active; }
+	public void setActive(boolean active) { this.active = active; }
 	
 	public Vector2 getPos() { return pos; }
+	public void setPos(Vector2 pos) { this.pos = pos; }
 	
-	public Vector2 getVel( ) { return vel; }
+	public Vector2 getVel() { return vel; }
+	public void setVel(Vector2 vel) { this.vel = vel; }
 	
 	public float getRotation() { return rotation; }
+	public void setRotation(float rotation) { this.rotation = rotation; }
 	
 	public Sprite getSprite() { return sprite; }
 	
