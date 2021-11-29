@@ -11,7 +11,7 @@ import scenes.GameScene;
 
 public abstract class Button extends GameObject {
 
-	private boolean hovering;
+	protected boolean hovering;
 	protected BoxBounds bounds;
 	
 	public Button(GameScene scene, String name, Vector2 pos) {

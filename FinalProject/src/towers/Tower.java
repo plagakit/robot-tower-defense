@@ -31,6 +31,8 @@ public abstract class Tower extends GameObject {
 	protected int reloadTime;
 	protected final Timer reloadTimer;
 	
+	protected UpgradePath upgradePath;
+	
 	public Tower(GameScene scene, String name, Vector2 pos, int range, int damage, int pierce, int reloadTime, BuyInfo info) {
 		super(scene, name, pos);
 		this.info = info;
@@ -74,10 +76,10 @@ public abstract class Tower extends GameObject {
 				if (bounds.isInside(im.getMousePos())) {
 					if (selected) {
 						selected = false;
-						scene.getShop().setTowerSelection(null);
+						scene.getShop().selectTower(null);
 					} else {
 						selected = true;
-						scene.getShop().setTowerSelection(this);
+						scene.getShop().selectTower(this);
 					}
 				}
 			}
@@ -128,6 +130,8 @@ public abstract class Tower extends GameObject {
 	public CircleBounds getBounds() { return bounds; }
 	
 	public CircleBounds getRangeBounds() { return range; }
+	
+	public UpgradePath getUpgradePath() { return upgradePath; }
 	
 	public void setSelected(boolean selected) { this.selected = selected; }
 

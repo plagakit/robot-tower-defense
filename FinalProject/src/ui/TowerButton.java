@@ -39,7 +39,7 @@ public class TowerButton extends Button {
 		try {
 			Tower tower = towerConstructor.newInstance(scene, pos);
 			scene.getTowers().add(tower);
-			scene.getShop().setTowerSelection(null);
+			scene.getShop().selectTower(null);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) { e.printStackTrace(); }
 	
 	}

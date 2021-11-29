@@ -15,4 +15,6 @@ public abstract class Upgrade {
 
 	public abstract void apply();
 	
+	public BuyInfo getBuyInfo() { return buyInfo; }
+	
 }

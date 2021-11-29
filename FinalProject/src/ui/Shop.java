@@ -3,6 +3,7 @@ package ui;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
 import gameobjects.BuyInfo;
@@ -21,7 +22,8 @@ public class Shop {
 	private TowerButton[] towerButtons;
 	private BuyInfo tbInfo;
 	
-	private Tower currentTowerSelection;
+	private Tower selectedTower;
+	private UpgradePanel upgradePanel;
 	
 	private PlayButton playButton; 
 	private FastForwardButton ffButton;
@@ -39,6 +41,8 @@ public class Shop {
 			new TowerButton(scene, this, new Vector2(605, 68), new Robot(scene, null), "roboticon.png")
 		};
 
+		upgradePanel = new UpgradePanel(scene, this);
+		
 		playButton = new PlayButton(scene, new Vector2(540, 340));
 		ffButton = new FastForwardButton(scene, new Vector2(500, 340));
 	}
@@ -46,13 +50,13 @@ public class Shop {
 	public void update() {
 		for (Button b : towerButtons)
 			b.update();
-		
+		upgradePanel.update();
 		playButton.update();
 		ffButton.update();
 	}
 	
 	public void render(Graphics2D g) {
-		
+		// TODO remove magic numbers
 		// Bg & outline
 		g.setColor(new Color(207, 168, 114));
 		g.fillRect(480, 0, 160, 360);
@@ -60,11 +64,12 @@ public class Shop {
 		g.setStroke(new BasicStroke(2));
 		g.setColor(Color.BLACK);
 		g.drawLine(480, 0, 480, 360);
-		g.drawLine(480, 135, 640, 135);
+		g.drawLine(480, 140, 640, 140);
 		
 		// Buttons
 		for (Button b : towerButtons)
 			b.render(g);
+		upgradePanel.render(g);
 		playButton.render(g);
 		ffButton.render(g);
 		
@@ -80,15 +85,12 @@ public class Shop {
 			g.drawString(costStr, 635 - costStrWidth, 105);
 			
 			g.setFont(new Font("Arial", Font.PLAIN, 10));
-			String[] description = tbInfo.getDescription().split("\n");
-			g.drawString(description[0], 490, 120);
-			if (description.length > 1)
-				g.drawString(description[1], 490, 130);
+			drawWrappedString(g, tbInfo.getDescription(), 490, 120, 150);
  		}
 		
 		g.setFont(new Font("Arial", Font.BOLD, 15));
-		if (currentTowerSelection != null)
-			g.drawString(currentTowerSelection.getName(), 485, 150);
+		if (selectedTower != null)
+			g.drawString(selectedTower.getName(), 485, 155);
 		
 		
 		String moneyStr = "$" + money;
@@ -97,10 +99,11 @@ public class Shop {
 		
 	}
 	
-	public void setTowerSelection(Tower t) { 
-		if (currentTowerSelection != null)
-			currentTowerSelection.setSelected(false);
-		currentTowerSelection = t; 
+	public void selectTower(Tower t) { 
+		if (selectedTower != null)
+			selectedTower.setSelected(false);
+		selectedTower = t;
+		upgradePanel.setCurrentTowerSelection(t);
 	}
 	
 	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }
@@ -112,5 +115,23 @@ public class Shop {
 	public void addMoney(long add) { money += add; }
 	
 	public void subtractMoney(long subtract) { money -= subtract; }
+	
+	public void drawWrappedString(Graphics2D g, String s, int x, int y, int maxWidth) {
+		FontMetrics fm = g.getFontMetrics();
+		int height = fm.getHeight();
+		int currentX = x;
+		int currentY = y;
+		
+		for (String word : s.split(" ")) {
+			word += " ";
+			int width = fm.stringWidth(word);
+			if (currentX + width > x + maxWidth) {
+				currentY += height;
+				currentX = x;
+			}
+			g.drawString(word, currentX, currentY);
+			currentX += width;
+		}
+	}
 	
 }
