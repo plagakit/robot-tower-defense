@@ -9,12 +9,12 @@ import general.Vector2;
 import graphics.Renderer;
 import scenes.GameScene;
 import towers.Tower;
-
+import towers.UpgradePath;
 
 public class UpgradePanel {
 	
 	private Shop shop;
-	private Tower selectedTower;
+	private UpgradePath path;
 
 	private Button upgradeButtonLeft, upgradeButtonRight;
 	
@@ -49,16 +49,24 @@ public class UpgradePanel {
 	}
 	
 	private void upgradeLeft() {
-		System.out.println("upgraded left");
+		BuyInfo info = path.getNextLeftUpgrade().getBuyInfo();
+		int cost = (int)(info.getBaseCost() * shop.getCostModifier());
+		
+		if (shop.getMoney() >= cost) {
+			shop.subtractMoney(cost);
+			path.advanceLeft();
+		}
 	}
 	
-	private void upgradeRight() { 
-		System.out.println("upgraded right");
+	private void upgradeRight() {
+		
 	}
-
+	
 	public void update() {
-		upgradeButtonLeft.update();
-		upgradeButtonRight.update();
+		if (path != null) {
+			upgradeButtonLeft.update();
+			upgradeButtonRight.update();
+		}
 	}
 
 	public void render(Renderer r) {
@@ -70,11 +78,10 @@ public class UpgradePanel {
 		r.drawRect(485, 240, 150, 75);
 		
 		
-		if (selectedTower != null) {
-			int leftState = selectedTower.getUpgradePath().getNextLeftState();
-			
+		if (path != null) {
+			int leftState = path.getNextLeftState();
 			if (leftState == 0) {
-				BuyInfo info = selectedTower.getUpgradePath().getNextLeftUpgrade().getBuyInfo();
+				BuyInfo info = path.getNextLeftUpgrade().getBuyInfo();
 				boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
 				
 				r.setFont(new Font("Arial", Font.BOLD, 13));
@@ -102,9 +109,9 @@ public class UpgradePanel {
 			}
 			
 			
-			int rightState = selectedTower.getUpgradePath().getNextRightState();
+			int rightState = path.getNextRightState();
 			if (rightState == 0) {
-				BuyInfo info = selectedTower.getUpgradePath().getNextRightUpgrade().getBuyInfo();
+				BuyInfo info = path.getNextRightUpgrade().getBuyInfo();
 				boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
 				
 				r.setColor(Color.BLACK);
@@ -135,8 +142,8 @@ public class UpgradePanel {
 		
 	}
 	
-	public void setCurrentTowerSelection(Tower t) {
-		selectedTower = t;
+	public void selectCurrentTowerUPath(UpgradePath up) {
+		path = up;
 	}
 
 }

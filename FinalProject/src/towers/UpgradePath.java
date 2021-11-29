@@ -53,4 +53,12 @@ public class UpgradePath {
 		return right[rightIndex + 1];
 	}
 	
+	public void advanceLeft() {
+		leftIndex++;
+	}
+	
+	public void advanceRight() {
+		
+	}
+	
 }
