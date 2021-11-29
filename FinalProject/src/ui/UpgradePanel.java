@@ -10,11 +10,12 @@ import graphics.Renderer;
 import scenes.GameScene;
 import towers.Tower;
 
-public class UpgradePanel {
 
+public class UpgradePanel {
+	
 	private Shop shop;
 	private Tower selectedTower;
-	
+
 	private Button upgradeButtonLeft, upgradeButtonRight;
 	
 	public UpgradePanel(GameScene scene, Shop shop) {
@@ -57,6 +58,7 @@ public class UpgradePanel {
 
 	public void update() {
 		upgradeButtonLeft.update();
+		upgradeButtonRight.update();
 	}
 
 	public void render(Renderer r) {
@@ -67,13 +69,16 @@ public class UpgradePanel {
 		r.drawRect(485, 160, 150, 75);
 		r.drawRect(485, 240, 150, 75);
 		
-		r.setFont(new Font("Arial", Font.BOLD, 13));
+		
 		if (selectedTower != null) {
 			int leftState = selectedTower.getUpgradePath().getNextLeftState();
 			
 			if (leftState == 0) {
 				BuyInfo info = selectedTower.getUpgradePath().getNextLeftUpgrade().getBuyInfo();
 				boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
+				
+				r.setFont(new Font("Arial", Font.BOLD, 13));
+				r.setColor(Color.BLACK);
 				r.drawString(info.getTitle(), 490, 175);
 				
 				String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
@@ -93,6 +98,36 @@ public class UpgradePanel {
 				r.setColor(Color.RED);
 				r.setTransparency(0.3f);
 				r.fillRect(485, 160, 150, 75);
+				r.setTransparency(1f);
+			}
+			
+			
+			int rightState = selectedTower.getUpgradePath().getNextRightState();
+			if (rightState == 0) {
+				BuyInfo info = selectedTower.getUpgradePath().getNextRightUpgrade().getBuyInfo();
+				boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
+				
+				r.setColor(Color.BLACK);
+				r.setFont(new Font("Arial", Font.BOLD, 13));
+				r.drawString(info.getTitle(), 490, 255);
+				
+				String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
+				int costStrWidth = r.getFontMetrics().stringWidth(costStr);
+				r.drawString(costStr, 630 - costStrWidth, 255);
+				
+				r.setFont(new Font("Arial", Font.PLAIN, 10));
+				r.drawWrappedString(info.getDescription(), 490, 270, 100);
+			
+				if (upgradeButtonRight.hovering) {
+					r.setColor(canBuy ? Color.GREEN : Color.RED);
+					r.setTransparency(0.3f);
+					r.fillRect(485, 240, 150, 75);
+					r.setTransparency(1f);
+				}
+			} else if (rightState == 1) {
+				r.setColor(Color.RED);
+				r.setTransparency(0.3f);
+				r.fillRect(485, 240, 150, 75);
 				r.setTransparency(1f);
 			}
 			
