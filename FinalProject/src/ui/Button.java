@@ -1,12 +1,11 @@
 package ui;
 
-import java.awt.Graphics2D;
-
 import components.BoxBounds;
 import gameobjects.GameObject;
 import general.Game;
 import general.InputManager;
 import general.Vector2;
+import graphics.Renderer;
 import scenes.GameScene;
 
 public abstract class Button extends GameObject {
@@ -41,11 +40,11 @@ public abstract class Button extends GameObject {
 	}
 	
 	@Override
-	public void render(Graphics2D g) {
-		super.render(g);
+	public void render(Renderer r) {
+		super.render(r);
 
 		if (Game.DEBUG)
-			bounds.debugRender(g);
+			bounds.debugRender(r);
 	}
 	
 	protected abstract void onClick();

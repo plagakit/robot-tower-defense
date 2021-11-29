@@ -1,8 +1,7 @@
 package scenes;
 
-import java.awt.Graphics2D;
-
 import general.Game;
+import graphics.Renderer;
 
 public abstract class Scene {
 
@@ -14,7 +13,7 @@ public abstract class Scene {
 	
 	public abstract void update();
 	
-	public abstract void render(Graphics2D g);
+	public abstract void render(Renderer r);
 	
 	public abstract void onStart();
 	

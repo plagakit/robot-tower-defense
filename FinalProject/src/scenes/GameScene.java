@@ -1,13 +1,13 @@
 package scenes;
 
 import java.awt.Font;
-import java.awt.Graphics2D;
 
 import gameobjects.Bloon;
 import gameobjects.BloonSender;
 import gameobjects.ObjectGroup;
 import general.Difficulty;
 import general.Game;
+import graphics.Renderer;
 import projectiles.Projectile;
 import towers.Tower;
 import tracks.Track;
@@ -103,17 +103,17 @@ public class GameScene extends Scene {
 	}
 	
 	@Override
-	public void render(Graphics2D g) {
-		track.render(g);
+	public void render(Renderer r) {
+		track.render(r);
 		
-		bloons.render(g);
-		projectiles.render(g);
-		towers.render(g);
+		bloons.render(r);
+		projectiles.render(r);
+		towers.render(r);
 		
-		shop.render(g);
+		shop.render(r);
 		
-		g.setFont(new Font("Arial", Font.BOLD, 15));
-		g.drawString(String.format("Round: %d/%d  Lives: %d", currentRound, maxRounds, currentLives), 5, 15);
+		r.setFont(new Font("Arial", Font.BOLD, 15));
+		r.drawString(String.format("Round: %d/%d  Lives: %d", currentRound, maxRounds, currentLives), 5, 15);
 	}
 	
 	public void startNextRound() { 

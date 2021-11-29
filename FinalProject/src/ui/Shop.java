@@ -1,13 +1,11 @@
 package ui;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
 
 import gameobjects.BuyInfo;
 import general.Vector2;
+import graphics.Renderer;
 import scenes.GameScene;
 import towers.FireRobot;
 import towers.Robot;
@@ -55,47 +53,47 @@ public class Shop {
 		ffButton.update();
 	}
 	
-	public void render(Graphics2D g) {
+	public void render(Renderer r) {
 		// TODO remove magic numbers
 		// Bg & outline
-		g.setColor(new Color(207, 168, 114));
-		g.fillRect(480, 0, 160, 360);
+		r.setColor(new Color(207, 168, 114));
+		r.fillRect(480, 0, 160, 360);
 		
-		g.setStroke(new BasicStroke(2));
-		g.setColor(Color.BLACK);
-		g.drawLine(480, 0, 480, 360);
-		g.drawLine(480, 140, 640, 140);
+		r.setStroke(2);
+		r.setColor(Color.BLACK);
+		r.drawLine(480, 0, 480, 360);
+		r.drawLine(480, 140, 640, 140);
 		
 		// Buttons
 		for (Button b : towerButtons)
-			b.render(g);
-		upgradePanel.render(g);
-		playButton.render(g);
-		ffButton.render(g);
+			b.render(r);
+		upgradePanel.render(r);
+		playButton.render(r);
+		ffButton.render(r);
 		
 		
 		// Text
-		g.setColor(Color.BLACK);
+		r.setColor(Color.BLACK);
 		if (tbInfo != null) {
-			g.setFont(new Font("Arial", Font.BOLD, 15));
-			g.drawString(tbInfo.getTitle(), 485, 105);
+			r.setFont(new Font("Arial", Font.BOLD, 15));
+			r.drawString(tbInfo.getTitle(), 485, 105);
 			
 			String costStr = "$" + (int)(tbInfo.getBaseCost() * costModifier);
-			int costStrWidth = g.getFontMetrics().stringWidth(costStr);
-			g.drawString(costStr, 635 - costStrWidth, 105);
+			int costStrWidth = r.getFontMetrics().stringWidth(costStr);
+			r.drawString(costStr, 635 - costStrWidth, 105);
 			
-			g.setFont(new Font("Arial", Font.PLAIN, 10));
-			drawWrappedString(g, tbInfo.getDescription(), 490, 120, 150);
+			r.setFont(new Font("Arial", Font.PLAIN, 10));
+			r.drawWrappedString(tbInfo.getDescription(), 490, 120, 150);
  		}
 		
-		g.setFont(new Font("Arial", Font.BOLD, 15));
+		r.setFont(new Font("Arial", Font.BOLD, 15));
 		if (selectedTower != null)
-			g.drawString(selectedTower.getName(), 485, 155);
+			r.drawString(selectedTower.getName(), 485, 155);
 		
 		
 		String moneyStr = "$" + money;
-		int moneyStrWidth = g.getFontMetrics().stringWidth(moneyStr);
-		g.drawString(moneyStr, 475 - moneyStrWidth, 15);
+		int moneyStrWidth = r.getFontMetrics().stringWidth(moneyStr);
+		r.drawString(moneyStr, 475 - moneyStrWidth, 15);
 		
 	}
 	
@@ -115,23 +113,5 @@ public class Shop {
 	public void addMoney(long add) { money += add; }
 	
 	public void subtractMoney(long subtract) { money -= subtract; }
-	
-	public void drawWrappedString(Graphics2D g, String s, int x, int y, int maxWidth) {
-		FontMetrics fm = g.getFontMetrics();
-		int height = fm.getHeight();
-		int currentX = x;
-		int currentY = y;
-		
-		for (String word : s.split(" ")) {
-			word += " ";
-			int width = fm.stringWidth(word);
-			if (currentX + width > x + maxWidth) {
-				currentY += height;
-				currentX = x;
-			}
-			g.drawString(word, currentX, currentY);
-			currentX += width;
-		}
-	}
 	
 }

@@ -1,6 +1,5 @@
 package gameobjects;
 
-import java.awt.Graphics2D;
 import java.util.UUID;
 
 import components.CircleBounds;
@@ -8,6 +7,7 @@ import components.PhysicsComponent;
 import general.Game;
 import general.Timer;
 import general.Vector2;
+import graphics.Renderer;
 import graphics.Sprite;
 import projectiles.Projectile;
 import scenes.GameScene;
@@ -100,10 +100,10 @@ public class Bloon extends GameObject {
 	}
 	
 	@Override
-	public void render(Graphics2D g) {
-		super.render(g);
+	public void render(Renderer r) {
+		super.render(r);
 		if (Game.DEBUG)
-			bounds.debugRender(g);
+			bounds.debugRender(r);
 	}
 
 	public void handleCollision(Projectile p) {

@@ -1,9 +1,8 @@
 package gameobjects;
 
-import java.awt.Graphics2D;
-
 import components.RenderComponent;
 import general.Vector2;
+import graphics.Renderer;
 import graphics.Sprite;
 import scenes.GameScene;
 
@@ -35,8 +34,8 @@ public abstract class GameObject {
 	
 	public abstract void update();
 	
-	public void render(Graphics2D g) {
-		renderComponent.render(g, sprite);
+	public void render(Renderer r) {
+		renderComponent.render(r, sprite);
 	}
 	
 	public GameScene getGameScene() { return scene; }

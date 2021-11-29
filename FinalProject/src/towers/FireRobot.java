@@ -3,7 +3,6 @@ package towers;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import projectiles.Flame;
-import projectiles.Pellet;
 import scenes.GameScene;
 
 public class FireRobot extends Tower {

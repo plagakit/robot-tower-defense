@@ -1,11 +1,11 @@
 package tracks;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import general.Game;
 import general.Vector2;
+import graphics.Renderer;
 import towers.Tower;
 
 public class Track {
@@ -84,8 +84,8 @@ public class Track {
 		return true;
 	}
 	
-	public void render(Graphics2D g) {
-		g.drawImage(background, 0, 0, width, height, null);
+	public void render(Renderer r) {
+		r.drawImage(background, 0, 0, width, height);
 		
 		/* Draw mask
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));

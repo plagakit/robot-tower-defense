@@ -1,12 +1,11 @@
 package components;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 import gameobjects.GameObject;
 import general.Game;
 import general.Vector2;
+import graphics.Renderer;
 import graphics.Sprite;
 
 // https://gameprogrammingpatterns.com/component.html
@@ -18,7 +17,7 @@ public class RenderComponent extends Component {
 		super(parent);
 	}
 
-	public void render(Graphics2D g, Sprite sprite) {
+	public void render(Renderer r, Sprite sprite) {
 		if (!parent.getActive() || sprite == null)
 			return;
 		
@@ -33,21 +32,21 @@ public class RenderComponent extends Component {
 		float midy = y + (height / 2.0f);
 		
 		if (parent.getRotation() != 0) 
-			g.rotate(Math.toRadians(parent.getRotation()), midx, midy);
+			r.rotate(Math.toRadians(parent.getRotation()), midx, midy);
 		
-		g.drawImage(sprite.getImage(), x, y, width, height, null);
+		r.drawImage(sprite.getImage(), x, y, width, height);
 		
 		if (parent.getRotation() != 0) 
-			g.rotate(Math.toRadians(-parent.getRotation()), midx, midy);
+			r.rotate(Math.toRadians(-parent.getRotation()), midx, midy);
 		
 		if (Game.DEBUG) {
 			// Position
-			g.setColor(Color.PINK);
-			g.setStroke(new BasicStroke(5));
-			g.drawLine((int)(pos.x), (int)(pos.y), (int)(pos.x), (int)(pos.y)); 
+			r.setColor(Color.PINK);
+			r.setStroke(5);
+			r.drawLine((int)(pos.x), (int)(pos.y), (int)(pos.x), (int)(pos.y)); 
 			
-			g.setStroke(new BasicStroke(1));
-			g.setColor(Color.RED);
+			r.setStroke(1);
+			r.setColor(Color.RED);
 		}
 	}
 }

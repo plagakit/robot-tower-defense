@@ -1,14 +1,12 @@
 package ui;
 
-import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
 
 import components.BoxBounds;
 import gameobjects.BuyInfo;
 import general.Vector2;
+import graphics.Renderer;
 import scenes.GameScene;
 import towers.Tower;
 
@@ -46,35 +44,35 @@ public class UpgradePanel {
 		upgradeButton1.update();
 	}
 
-	public void render(Graphics2D g) {
+	public void render(Renderer r) {
 		
 		// TODO remove magic numbers
-		g.setStroke(new BasicStroke(1));
-		g.setColor(Color.BLACK);
-		g.drawRect(485, 160, 150, 75);
-		g.drawRect(485, 240, 150, 75);
+		r.setStroke(1);
+		r.setColor(Color.BLACK);
+		r.drawRect(485, 160, 150, 75);
+		r.drawRect(485, 240, 150, 75);
 		
-		g.setFont(new Font("Arial", Font.BOLD, 13));
+		r.setFont(new Font("Arial", Font.BOLD, 13));
 		if (selectedTower != null) {
 			int leftState = selectedTower.getUpgradePath().getNextLeftState();
 			
 			if (leftState == 0) {
 				BuyInfo info = selectedTower.getUpgradePath().getNextLeftUpgrade().getBuyInfo();
 				boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
-				g.drawString(info.getTitle(), 490, 175);
+				r.drawString(info.getTitle(), 490, 175);
 				
 				String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
-				int costStrWidth = g.getFontMetrics().stringWidth(costStr);
-				g.drawString(costStr, 630 - costStrWidth, 175);
+				int costStrWidth = r.getFontMetrics().stringWidth(costStr);
+				r.drawString(costStr, 630 - costStrWidth, 175);
 				
-				g.setFont(new Font("Arial", Font.PLAIN, 10));
-				shop.drawWrappedString(g, info.getDescription(), 490, 190, 100);
+				r.setFont(new Font("Arial", Font.PLAIN, 10));
+				r.drawWrappedString(info.getDescription(), 490, 190, 100);
 			
 				if (upgradeButton1.hovering) {
-					g.setColor(canBuy ? Color.GREEN : Color.RED);
-					g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-					g.fillRect(485, 160, 150, 75);
-					g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+					r.setColor(canBuy ? Color.GREEN : Color.RED);
+					r.setTransparency(0.3f);
+					r.fillRect(485, 160, 150, 75);
+					r.setTransparency(1f);
 				}
 			}
 			

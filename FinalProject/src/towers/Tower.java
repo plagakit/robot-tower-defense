@@ -1,7 +1,6 @@
 package towers;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 import components.CircleBounds;
 import gameobjects.Bloon;
@@ -11,6 +10,7 @@ import general.Game;
 import general.InputManager;
 import general.Timer;
 import general.Vector2;
+import graphics.Renderer;
 import scenes.GameScene;
 
 public abstract class Tower extends GameObject {
@@ -115,14 +115,14 @@ public abstract class Tower extends GameObject {
 	}
 	
 	@Override
-	public void render(Graphics2D g) {
-		super.render(g);
+	public void render(Renderer r) {
+		super.render(r);
 		
 		if (Game.DEBUG)
-			bounds.debugRender(g);
+			bounds.debugRender(r);
 
 		if (selected)
-			range.render(g, validPos ? Color.GRAY : Color.RED);
+			range.render(r, validPos ? Color.GRAY : Color.RED);
 	}
 	
 	public BuyInfo getInfo() { return info; }

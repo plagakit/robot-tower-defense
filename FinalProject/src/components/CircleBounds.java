@@ -1,11 +1,10 @@
 package components;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 import gameobjects.GameObject;
 import general.Vector2;
+import graphics.Renderer;
 
 public class CircleBounds extends Component {
 
@@ -16,20 +15,20 @@ public class CircleBounds extends Component {
 		this.radius = radius;
 	}
 	
-	public void debugRender(Graphics2D g) {
-		render(g, Color.GREEN);
+	public void debugRender(Renderer r) {
+		render(r, Color.GREEN);
 	}
 	
-	public void render(Graphics2D g, Color c) {
-		g.setColor(c);
-		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+	public void render(Renderer r, Color c) {
+		r.setColor(c);
+		r.setTransparency(0.3f);
 		Vector2 pos = parent.getPos();
-		g.fillOval(
+		r.fillOval(
 				(int)(pos.x - radius), 
 				(int)(pos.y - radius), 
 				radius * 2, 
 				radius * 2);
-		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1));
+		r.setTransparency(1f);
 	}
 
 	public int getRadius() { return radius; }

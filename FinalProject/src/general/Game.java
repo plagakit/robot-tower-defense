@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
 import graphics.Display;
+import graphics.Renderer;
 import graphics.SpriteManager;
 import scenes.GameScene;
 import scenes.Scene;
@@ -23,8 +24,8 @@ public class Game {
 	private float timeScale = 1;
 	
 	private Display display;
-	private Graphics2D g;
 	private BufferStrategy bs;
+	private Renderer r;
 	
 	private InputManager inputManager;
 	private SpriteManager spriteManager;
@@ -115,16 +116,16 @@ public class Game {
 			display.getCanvas().createBufferStrategy(2);
 			return;
 		}
-		g = (Graphics2D)bs.getDrawGraphics();
+		r = new Renderer((Graphics2D)bs.getDrawGraphics());
 		
-		g.scale(scale, scale);
-		g.clearRect(0, 0, width, height);
+		r.scale(scale, scale);
+		r.clearRect(0, 0, width, height);
 		
 		if (currentScene != null)
-			currentScene.render(g);
+			currentScene.render(r);
 
 		bs.show();
-		g.dispose();
+		r.dispose();
 	}
 
 	private void setCurrentScene(Scene scene) {

@@ -1,8 +1,9 @@
 package gameobjects;
 
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+
+import graphics.Renderer;
 
 //https://docs.oracle.com/javase/tutorial/java/generics/types.html
 
@@ -36,9 +37,9 @@ public class ObjectGroup<T extends GameObject> {
 		}
 	}
 	
-	public void render(Graphics2D g) {
+	public void render(Renderer r) {
 		for (T object : objects)
-			object.render(g);
+			object.render(r);
 	}
 	
 	public List<T> getList() {
