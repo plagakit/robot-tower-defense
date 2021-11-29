@@ -15,33 +15,48 @@ public class UpgradePanel {
 	private Shop shop;
 	private Tower selectedTower;
 	
-	private Button upgradeButton1;
+	private Button upgradeButtonLeft, upgradeButtonRight;
 	
 	public UpgradePanel(GameScene scene, Shop shop) {
 		this.shop = shop;
 		
-		upgradeButton1 = new Button(scene, "UpgradeButton1", new Vector2(485, 160)) {
+		upgradeButtonLeft = new Button(scene, "UpgradeButton1", new Vector2(485, 160)) {
 			Button init() {
 				bounds = new BoxBounds(this, 0, 0, 150, 75);
 				return this;
 			}
 			@Override
 			protected void onClick() {
-				upgrade();
+				upgradeLeft();
+			}
+			protected void onMouseEnter() {}
+			protected void onMouseExit() {}
+		}.init();
+		
+		upgradeButtonRight = new Button(scene, "UpgradeButton2", new Vector2(485, 240)) {
+			Button init() {
+				bounds = new BoxBounds(this, 0, 0, 150, 75);
+				return this;
 			}
 			@Override
+			protected void onClick() {
+				upgradeRight();
+			}
 			protected void onMouseEnter() {}
-			@Override
 			protected void onMouseExit() {}
 		}.init();
 	}
 	
-	private void upgrade() {
-		System.out.println("upgraded");
+	private void upgradeLeft() {
+		System.out.println("upgraded left");
+	}
+	
+	private void upgradeRight() { 
+		System.out.println("upgraded right");
 	}
 
 	public void update() {
-		upgradeButton1.update();
+		upgradeButtonLeft.update();
 	}
 
 	public void render(Renderer r) {
@@ -68,12 +83,17 @@ public class UpgradePanel {
 				r.setFont(new Font("Arial", Font.PLAIN, 10));
 				r.drawWrappedString(info.getDescription(), 490, 190, 100);
 			
-				if (upgradeButton1.hovering) {
+				if (upgradeButtonLeft.hovering) {
 					r.setColor(canBuy ? Color.GREEN : Color.RED);
 					r.setTransparency(0.3f);
 					r.fillRect(485, 160, 150, 75);
 					r.setTransparency(1f);
 				}
+			} else if (leftState == 1) {
+				r.setColor(Color.RED);
+				r.setTransparency(0.3f);
+				r.fillRect(485, 160, 150, 75);
+				r.setTransparency(1f);
 			}
 			
 		}
