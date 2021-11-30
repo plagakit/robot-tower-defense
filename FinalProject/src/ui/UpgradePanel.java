@@ -21,7 +21,7 @@ public class UpgradePanel {
 	public UpgradePanel(GameScene scene, Shop shop) {
 		this.shop = shop;
 		
-		upgradeButtonLeft = new Button(scene, "UpgradeButton1", new Vector2(485, 160)) {
+		/*upgradeButtonLeft = new Button(scene, "UpgradeButton1", new Vector2(485, 160)) {
 			Button init() {
 				bounds = new BoxBounds(this, 0, 0, 150, 75);
 				return this;
@@ -45,31 +45,9 @@ public class UpgradePanel {
 			}
 			protected void onMouseEnter() {}
 			protected void onMouseExit() {}
-		}.init();
+		}.init(); */
 	}
-	
-	private void upgradeLeft() {
-		
-		
-		BuyInfo info = path.getNextLeftUpgrade().getBuyInfo();
-		int cost = (int)(info.getBaseCost() * shop.getCostModifier());
-		
-		if (shop.getMoney() >= cost) {
-			shop.subtractMoney(cost);
-			path.advanceLeft();
-		}
-	}
-	
-	private void upgradeRight() {
-		BuyInfo info = path.getNextRightUpgrade().getBuyInfo();
-		int cost = (int)(info.getBaseCost() * shop.getCostModifier());
-		
-		if (shop.getMoney() >= cost) {
-			shop.subtractMoney(cost);
-			path.advanceRight();
-		}
-	}
-	
+
 	public void update() {
 		if (path != null) {
 			upgradeButtonLeft.update();
@@ -78,7 +56,7 @@ public class UpgradePanel {
 	}
 
 	public void render(Renderer r) {
-		
+	/*	
 		// TODO remove magic numbers
 		r.setStroke(1);
 		r.setColor(Color.BLACK);
@@ -146,7 +124,7 @@ public class UpgradePanel {
 			}
 			
 		}
-		
+	*/	
 	}
 	
 	public void selectTower(Tower t) {

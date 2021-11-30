@@ -2,65 +2,50 @@ package towers;
 
 public class UpgradePath {
 	
-	/* Upgrade path representation for array of size 2: 
-	 *       End
-	 *    1-2   2-1
-	 *   /   \ /   \
-	 * 0-2   1-1   2-0
-	 *   \   / \   /
-	 *    0-1   1-0
-	 *      \   /
-	 *       0-0
-	 *      Start
-	 * Different paths: 7
-	 * Unique upgrades: 4         
+	/* Upgrades with 2 branches, 2 upgrades each
+	 * O---O
+	 * | X    <-- no connected here because locked
+	 * O---O
 	 */
-	
-	private Upgrade[] left, right;
-	private int leftIndex;
-	private int rightIndex;
-	
-	public UpgradePath(Upgrade[] left, Upgrade[] right) {
-		this.left = left;
-		this.right = right;
-		
-		leftIndex = -1;
-		rightIndex = -1;
-	}
 
-	// 0 - ready, 1 - locked, 2 - max
-	public int getNextLeftState() {
-		int next = leftIndex + 1;
-		if (next >= left.length) return 2;
-		else if (rightIndex >= right.length / 2) return 1;
-		else return 0;
+	public enum State {
+		OPEN,
+		LOCKED,
+		MAX
 	}
 	
-	public int getNextRightState() {
-		int next = rightIndex + 1;
-		if (next >= right.length) return 2;
-		else if (leftIndex >= left.length / 2) return 1;
-		else return 0;
+	private Upgrade[][] upgrades;
+	private int[] progressions;
+	
+	public UpgradePath(Upgrade[][] upgrades) {
+		this.upgrades = upgrades;
 	}
 	
-	public Upgrade getNextLeftUpgrade() {
-		if (leftIndex + 1 >= left.length) return null;
-		return left[leftIndex + 1];
+	public State getNextState(int branchIndex) {
+		
+		int next = progressions[branchIndex];
+		
+		// if the next upgrade is at max
+		if (next >= upgrades[branchIndex].length) 
+			return State.MAX;
+		
+		// if any other upgrades are greater than half their brach --> second half of this branch becomes locked
+		if (next >= upgrades[branchIndex].length / 2)
+			for (int i = 0; i < upgrades.length; i++)
+				if (progressions[i] >= upgrades[i].length / 2)
+					return State.LOCKED;
+		
+		return State.OPEN;
 	}
 	
-	public Upgrade getNextRightUpgrade() {
-		if (rightIndex + 1 >= right.length) return null;
-		return right[rightIndex + 1];
+	public Upgrade getNextUpgrade(int branchIndex) {
+		return upgrades[branchIndex][progressions[branchIndex]];
 	}
 	
-	public void advanceLeft() {
-		leftIndex++;
-		left[leftIndex].apply();
-	}
-	
-	public void advanceRight() {
-		rightIndex++;
-		right[rightIndex].apply();
+	public void advanceToNextUpgrade(int branchIndex) {
+		System.out.format("Applied upgrade #%d on branch #%d\n" , progressions[branchIndex], branchIndex);
+		upgrades[branchIndex][progressions[branchIndex]].apply();
+		progressions[branchIndex]++;
 	}
 	
 }

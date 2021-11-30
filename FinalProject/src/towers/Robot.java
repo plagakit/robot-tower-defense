@@ -13,7 +13,9 @@ public class Robot extends Tower {
 		
 		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
 		
-		upgradePath = new UpgradePath(new Upgrade[] { 
+		upgradePath = new UpgradePath(new Upgrade[][] {
+			{ // Start of array
+				// Upgrade 1
 				new Upgrade(this, 
 						new BuyInfo("Faster Motors", "Makes the robot shoot faster!", 300)) {
 					@Override
@@ -21,6 +23,7 @@ public class Robot extends Tower {
 						tower.reloadTime = 300;
 					}
 				},
+				// Upgrade2
 				new Upgrade(this, 
 						new BuyInfo("TEST", "This is a test upgrade. Wow!", 100)) {
 					@Override
@@ -28,25 +31,29 @@ public class Robot extends Tower {
 						tower.damage = 2;
 						tower.reloadTime = 10;
 					}
-				}}, 
-			new Upgrade[] { 
-					new Upgrade(this, 
-							new BuyInfo("TEST", "This is a test upgrade. Wow!", 100)) {
-						@Override
-						public void apply() {
-							tower.damage = 2;
-							tower.reloadTime = 10;
-						}
-					},
-					new Upgrade(this, 
-							new BuyInfo("TEST", "This is a test upgrade. Wow!", 100)) {
-						@Override
-						public void apply() {
-							tower.damage = 2;
-							tower.reloadTime = 10;
-						}
+				}
+			}, // End of array
+			{ // Start of array
+				// Upgrade 1
+				new Upgrade(this, 
+						new BuyInfo("TEST", "This is a test upgrade. Wow!", 100)) {
+					@Override
+					public void apply() {
+						tower.damage = 2;
+						tower.reloadTime = 10;
 					}
-			});
+				},
+				// Upgrade 2
+				new Upgrade(this, 
+						new BuyInfo("TEST", "This is a test upgrade. Wow!", 100)) {
+					@Override
+					public void apply() {
+						tower.damage = 2;
+						tower.reloadTime = 10;
+					}
+				}
+			} // End of array
+		});
 	}
 
 	@Override
