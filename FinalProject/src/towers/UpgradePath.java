@@ -55,10 +55,12 @@ public class UpgradePath {
 	
 	public void advanceLeft() {
 		leftIndex++;
+		left[leftIndex].apply();
 	}
 	
 	public void advanceRight() {
-		
+		rightIndex++;
+		right[rightIndex].apply();
 	}
 	
 }

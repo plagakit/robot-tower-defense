@@ -101,7 +101,7 @@ public class Shop {
 		if (selectedTower != null)
 			selectedTower.setSelected(false);
 		selectedTower = t;
-		upgradePanel.selectCurrentTowerUPath(t.getUpgradePath());
+		upgradePanel.selectTower(t);
 	}
 	
 	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }

@@ -49,6 +49,8 @@ public class UpgradePanel {
 	}
 	
 	private void upgradeLeft() {
+		
+		
 		BuyInfo info = path.getNextLeftUpgrade().getBuyInfo();
 		int cost = (int)(info.getBaseCost() * shop.getCostModifier());
 		
@@ -59,7 +61,13 @@ public class UpgradePanel {
 	}
 	
 	private void upgradeRight() {
+		BuyInfo info = path.getNextRightUpgrade().getBuyInfo();
+		int cost = (int)(info.getBaseCost() * shop.getCostModifier());
 		
+		if (shop.getMoney() >= cost) {
+			shop.subtractMoney(cost);
+			path.advanceRight();
+		}
 	}
 	
 	public void update() {
@@ -76,7 +84,6 @@ public class UpgradePanel {
 		r.setColor(Color.BLACK);
 		r.drawRect(485, 160, 150, 75);
 		r.drawRect(485, 240, 150, 75);
-		
 		
 		if (path != null) {
 			int leftState = path.getNextLeftState();
@@ -142,8 +149,9 @@ public class UpgradePanel {
 		
 	}
 	
-	public void selectCurrentTowerUPath(UpgradePath up) {
-		path = up;
+	public void selectTower(Tower t) {
+		if (t == null) path = null;
+		else path = t.getUpgradePath();
 	}
 
 }
