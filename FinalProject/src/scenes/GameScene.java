@@ -16,6 +16,9 @@ import ui.Shop;
 
 public class GameScene extends Scene {
 
+	private boolean paused;
+	private PauseMenu pauseMenu;
+	
 	private Difficulty difficulty;
 	private int maxRounds;
 	private int currentRound;
@@ -65,6 +68,8 @@ public class GameScene extends Scene {
 	
 	@Override
 	public void onStart() {
+		pauseMenu = new PauseMenu(this);
+		
 		currentLives = maxLives;
 		currentRound = 0;
 
@@ -87,6 +92,12 @@ public class GameScene extends Scene {
 	
 	@Override
 	public void update() {
+		
+		if (paused) {
+			pauseMenu.update();
+			return;
+		}
+		
 		
 		if (inRound && !bloonSender.isSending() && bloons.getList().size() == 0)
 			finishRound();
@@ -114,6 +125,9 @@ public class GameScene extends Scene {
 		
 		r.setFont(new Font("Arial", Font.BOLD, 15));
 		r.drawString(String.format("Round: %d/%d  Lives: %d", currentRound, maxRounds, currentLives), 5, 15);
+	
+		if (paused)
+			pauseMenu.render(r);
 	}
 	
 	public void startNextRound() { 
@@ -133,6 +147,14 @@ public class GameScene extends Scene {
 	
 	public void onLeak(int RBE) {
 		currentLives -= RBE;
+	}
+	
+	public void pause() {
+		paused = true;
+	}
+	
+	public void unpause() {
+		paused = false;
 	}
 	
 	public Shop getShop() { return shop; }
