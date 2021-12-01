@@ -108,7 +108,7 @@ class Subpanel {
 			
 			String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
 			int costStrWidth = r.getFontMetrics().stringWidth(costStr);
-			r.drawString(costStr, pos.x + 145 + costStrWidth, pos.y + 15);
+			r.drawString(costStr, pos.x + 145 - costStrWidth, pos.y + 15);
 			
 			r.setFont(new Font("Arial", Font.PLAIN, 10));
 			r.drawWrappedString(info.getDescription(), pos.x + 5, pos.y + 30, 100);
@@ -128,7 +128,12 @@ class Subpanel {
 			
 			r.setColor(Color.BLACK);
 			r.setFont(new Font("Arial", Font.BOLD, 13));
-			r.drawString("Path Locked", pos.x, pos.y);
+			r.drawString("Path Locked", pos.x + 35, pos.y + 40);
+		}
+		else {
+			r.setColor(Color.BLACK);
+			r.setFont(new Font("Arial", Font.BOLD, 13));
+			r.drawString("Maxed out!", pos.x + 40, pos.y + 40);
 		}
 	}
 
