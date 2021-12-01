@@ -26,7 +26,7 @@ public class Robot extends Tower {
 				},
 				// Upgrade2
 				new Upgrade(this, 
-						new BuyInfo("Rapid Fire", "Makes the robot shoot even faster!", 100)) {
+						new BuyInfo("Rapid Fire", "Makes the robot shoot even faster!", 500)) {
 					@Override
 					public void apply() {
 						tower.reloadTime /= 2;
@@ -44,11 +44,11 @@ public class Robot extends Tower {
 				},
 				// Upgrade 2
 				new Upgrade(this, 
-						new BuyInfo("Nuclear Energy", "New power source makes the robot shoot a destructive energy beam.", 100)) {
+						new BuyInfo("Nuclear Energy", "New power source makes the robot shoot a destructive energy beam.", 500)) {
 					@Override
 					public void apply() {
 						tower.damage = 2;
-						tower.pierce = 3;
+						tower.pierce = 2;
 						tower.projectileSprite = "pelletupgrade1.png";
 					}
 				}
