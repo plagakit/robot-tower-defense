@@ -25,6 +25,7 @@ public class Shop {
 	
 	private PlayButton playButton; 
 	private FastForwardButton ffButton;
+	private SettingsButton settingsButton;
 	
 	public Shop(GameScene scene, long startingMoney, float costModifier) {
 		this.money = startingMoney;
@@ -43,6 +44,7 @@ public class Shop {
 		
 		playButton = new PlayButton(scene, new Vector2(540, 340));
 		ffButton = new FastForwardButton(scene, new Vector2(500, 340));
+		settingsButton = new SettingsButton(scene, new Vector2(580, 340));
 	}
 	
 	public void update() {
@@ -51,6 +53,7 @@ public class Shop {
 		upgradePanel.update();
 		playButton.update();
 		ffButton.update();
+		settingsButton.update();
 	}
 	
 	public void render(Renderer r) {
@@ -70,6 +73,7 @@ public class Shop {
 		upgradePanel.render(r);
 		playButton.render(r);
 		ffButton.render(r);
+		settingsButton.render(r);
 		
 		
 		// Text
