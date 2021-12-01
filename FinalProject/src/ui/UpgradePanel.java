@@ -11,6 +11,7 @@ import graphics.Renderer;
 import scenes.GameScene;
 import towers.Tower;
 import towers.UpgradePath;
+import towers.UpgradePath.State;
 
 public class UpgradePanel {
 	
@@ -62,6 +63,9 @@ class Subpanel {
 	private final int WIDTH = 150;
 	private final int HEIGHT = 75;
 	
+	private BuyInfo info;
+	private boolean canBuy;
+	
 	public Subpanel(GameScene scene, Shop shop, UpgradePanel parentPanel, int branchNum, Vector2 pos) {
 		this.shop = shop;
 		this.branchNum = branchNum;
@@ -82,12 +86,24 @@ class Subpanel {
 	}
 	
 	private void upgrade() {
-		boolean success = path.advanceToNextUpgrade(branchNum);
-		if (Game.DEBUG)
-			System.out.format("Upgrade in branch %d successful: %b\n", branchNum, success);
+		
+		UpgradePath.State state = path.getNextState(branchNum);
+		if (state == UpgradePath.State.OPEN && canBuy) {
+			boolean success = path.advanceToNextUpgrade(branchNum);
+			shop.subtractMoney((int)(info.getBaseCost() * shop.getCostModifier()));
+			
+			if (Game.DEBUG)
+				System.out.format("Upgrade in branch %d successful: %b\n", branchNum, success);
+		}
 	}
 	
 	public void update() {
+		canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
+		
+		UpgradePath.State state = path.getNextState(branchNum);
+		if (state == UpgradePath.State.OPEN)
+			info = path.getNextUpgrade(branchNum).getBuyInfo();
+		
 		button.update();
 	}
 	
@@ -98,10 +114,7 @@ class Subpanel {
 		r.drawRect(pos.x, pos.y, WIDTH, HEIGHT);
 		
 		UpgradePath.State state = path.getNextState(branchNum);
-		if (state == UpgradePath.State.OPEN) {
-			BuyInfo info = path.getNextUpgrade(branchNum).getBuyInfo();
-			boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
-			
+		if (state == UpgradePath.State.OPEN) {	
 			r.setFont(new Font("Arial", Font.BOLD, 13));
 			r.setColor(Color.BLACK);
 			r.drawString(info.getTitle(), pos.x + 5, pos.y + 15);
@@ -139,5 +152,8 @@ class Subpanel {
 
 	public void selectPath(UpgradePath path) {
 		this.path = path;
+		
+		if (path != null)
+			info = path.getNextUpgrade(branchNum).getBuyInfo();
 	}
 }
