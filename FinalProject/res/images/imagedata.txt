@@ -13,6 +13,7 @@ smileicon.png
 roboticon.png
 robot.png
 pellet.png
+pelletupgrade1.png
 scissoricon.png
 scissorrobot.png
 scissor.png
