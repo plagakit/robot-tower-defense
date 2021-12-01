@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import components.BoxBounds;
 import gameobjects.BuyInfo;
+import general.Game;
 import general.Vector2;
 import graphics.Renderer;
 import scenes.GameScene;
@@ -13,123 +14,125 @@ import towers.UpgradePath;
 
 public class UpgradePanel {
 	
-	private Shop shop;
-	private UpgradePath path;
 
-	private Button upgradeButtonLeft, upgradeButtonRight;
+	private UpgradePath path;
+	private Subpanel panel1, panel2;
 	
 	public UpgradePanel(GameScene scene, Shop shop) {
-		this.shop = shop;
-		
-		/*upgradeButtonLeft = new Button(scene, "UpgradeButton1", new Vector2(485, 160)) {
-			Button init() {
-				bounds = new BoxBounds(this, 0, 0, 150, 75);
-				return this;
-			}
-			@Override
-			protected void onClick() {
-				upgradeLeft();
-			}
-			protected void onMouseEnter() {}
-			protected void onMouseExit() {}
-		}.init();
-		
-		upgradeButtonRight = new Button(scene, "UpgradeButton2", new Vector2(485, 240)) {
-			Button init() {
-				bounds = new BoxBounds(this, 0, 0, 150, 75);
-				return this;
-			}
-			@Override
-			protected void onClick() {
-				upgradeRight();
-			}
-			protected void onMouseEnter() {}
-			protected void onMouseExit() {}
-		}.init(); */
+		panel1 = new Subpanel(scene, shop, this, 0, new Vector2(485, 160));
+		panel2 = new Subpanel(scene, shop, this, 1, new Vector2(485, 240));
 	}
-
+	
 	public void update() {
 		if (path != null) {
-			upgradeButtonLeft.update();
-			upgradeButtonRight.update();
+			panel1.update();
+			panel2.update();
 		}
 	}
 
 	public void render(Renderer r) {
-	/*	
-		// TODO remove magic numbers
-		r.setStroke(1);
-		r.setColor(Color.BLACK);
-		r.drawRect(485, 160, 150, 75);
-		r.drawRect(485, 240, 150, 75);
-		
 		if (path != null) {
-			int leftState = path.getNextLeftState();
-			if (leftState == 0) {
-				BuyInfo info = path.getNextLeftUpgrade().getBuyInfo();
-				boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
-				
-				r.setFont(new Font("Arial", Font.BOLD, 13));
-				r.setColor(Color.BLACK);
-				r.drawString(info.getTitle(), 490, 175);
-				
-				String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
-				int costStrWidth = r.getFontMetrics().stringWidth(costStr);
-				r.drawString(costStr, 630 - costStrWidth, 175);
-				
-				r.setFont(new Font("Arial", Font.PLAIN, 10));
-				r.drawWrappedString(info.getDescription(), 490, 190, 100);
-			
-				if (upgradeButtonLeft.hovering) {
-					r.setColor(canBuy ? Color.GREEN : Color.RED);
-					r.setTransparency(0.3f);
-					r.fillRect(485, 160, 150, 75);
-					r.setTransparency(1f);
-				}
-			} else if (leftState == 1) {
-				r.setColor(Color.RED);
-				r.setTransparency(0.3f);
-				r.fillRect(485, 160, 150, 75);
-				r.setTransparency(1f);
-			}
-			
-			
-			int rightState = path.getNextRightState();
-			if (rightState == 0) {
-				BuyInfo info = path.getNextRightUpgrade().getBuyInfo();
-				boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
-				
-				r.setColor(Color.BLACK);
-				r.setFont(new Font("Arial", Font.BOLD, 13));
-				r.drawString(info.getTitle(), 490, 255);
-				
-				String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
-				int costStrWidth = r.getFontMetrics().stringWidth(costStr);
-				r.drawString(costStr, 630 - costStrWidth, 255);
-				
-				r.setFont(new Font("Arial", Font.PLAIN, 10));
-				r.drawWrappedString(info.getDescription(), 490, 270, 100);
-			
-				if (upgradeButtonRight.hovering) {
-					r.setColor(canBuy ? Color.GREEN : Color.RED);
-					r.setTransparency(0.3f);
-					r.fillRect(485, 240, 150, 75);
-					r.setTransparency(1f);
-				}
-			} else if (rightState == 1) {
-				r.setColor(Color.RED);
-				r.setTransparency(0.3f);
-				r.fillRect(485, 240, 150, 75);
-				r.setTransparency(1f);
-			}
-			
+			panel1.render(r);
+			panel2.render(r);
 		}
-	*/	
 	}
 	
 	public void selectTower(Tower t) {
-		if (t == null) path = null;
-		else path = t.getUpgradePath();
+		if (t == null) 
+			path = null;
+		else 
+			path = t.getUpgradePath();
+		
+		panel1.selectPath(path);
+		panel2.selectPath(path);
 	}
 
+}
+
+
+class Subpanel {
+	
+	private Shop shop;
+	
+	private UpgradePath path;
+	private int branchNum;
+	
+	private Button button;
+	private Vector2 pos;
+	private final int WIDTH = 150;
+	private final int HEIGHT = 75;
+	
+	public Subpanel(GameScene scene, Shop shop, UpgradePanel parentPanel, int branchNum, Vector2 pos) {
+		this.shop = shop;
+		this.branchNum = branchNum;
+		this.pos = pos;
+		
+		button = new Button(scene, "UpgradeButton" + branchNum, pos) {
+			Button init() {
+				bounds = new BoxBounds(this, 0, 0, WIDTH, HEIGHT);
+				return this;
+			}
+			@Override
+			protected void onClick() {
+				upgrade();
+			}
+			protected void onMouseEnter() {}
+			protected void onMouseExit() {}
+		}.init();
+	}
+	
+	private void upgrade() {
+		boolean success = path.advanceToNextUpgrade(branchNum);
+		if (Game.DEBUG)
+			System.out.format("Upgrade in branch %d successful: %b\n", branchNum, success);
+	}
+	
+	public void update() {
+		button.update();
+	}
+	
+	public void render(Renderer r) {
+		
+		r.setStroke(1);
+		r.setColor(Color.BLACK);
+		r.drawRect((int)pos.x, (int)pos.y, WIDTH, HEIGHT);
+		
+		UpgradePath.State state = path.getNextState(branchNum);
+		if (state == UpgradePath.State.OPEN) {
+			BuyInfo info = path.getNextUpgrade(branchNum).getBuyInfo();
+			boolean canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
+			
+			r.setFont(new Font("Arial", Font.BOLD, 13));
+			r.setColor(Color.BLACK);
+			r.drawString(info.getTitle(), (int)(pos.x + 5), (int)(pos.y + 15));
+			
+			String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
+			int costStrWidth = r.getFontMetrics().stringWidth(costStr);
+			r.drawString(costStr, (int)(pos.x + 145 + costStrWidth), (int)(pos.y + 15));
+			
+			r.setFont(new Font("Arial", Font.PLAIN, 10));
+			r.drawWrappedString(info.getDescription(), (int)(pos.x + 5), (int)(pos.y + 30), 100);
+		
+			if (button.hovering) {
+				r.setColor(canBuy ? Color.GREEN : Color.RED);
+				r.setTransparency(0.3f);
+				r.fillRect((int)(pos.x), (int)(pos.y), WIDTH, HEIGHT);
+				r.setTransparency(1f);
+			}
+		} 
+		else if (state == UpgradePath.State.LOCKED) {
+			r.setColor(Color.RED);
+			r.setTransparency(0.3f);
+			r.fillRect((int)(pos.x), (int)(pos.y), WIDTH, HEIGHT);
+			r.setTransparency(1f);
+			
+			r.setColor(Color.BLACK);
+			r.setFont(new Font("Arial", Font.BOLD, 13));
+			r.drawString("Path Locked", (int)pos.x, (int)pos.y);
+		}
+	}
+
+	public void selectPath(UpgradePath path) {
+		this.path = path;
+	}
 }

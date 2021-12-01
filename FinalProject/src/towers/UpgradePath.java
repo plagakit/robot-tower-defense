@@ -19,6 +19,7 @@ public class UpgradePath {
 	
 	public UpgradePath(Upgrade[][] upgrades) {
 		this.upgrades = upgrades;
+		progressions = new int[upgrades.length];
 	}
 	
 	public State getNextState(int branchIndex) {
@@ -32,7 +33,7 @@ public class UpgradePath {
 		// if any other upgrades are greater than half their brach --> second half of this branch becomes locked
 		if (next >= upgrades[branchIndex].length / 2)
 			for (int i = 0; i < upgrades.length; i++)
-				if (progressions[i] >= upgrades[i].length / 2)
+				if (i != branchIndex && progressions[i] >= upgrades[i].length / 2)
 					return State.LOCKED;
 		
 		return State.OPEN;
@@ -42,10 +43,18 @@ public class UpgradePath {
 		return upgrades[branchIndex][progressions[branchIndex]];
 	}
 	
-	public void advanceToNextUpgrade(int branchIndex) {
-		System.out.format("Applied upgrade #%d on branch #%d\n" , progressions[branchIndex], branchIndex);
-		upgrades[branchIndex][progressions[branchIndex]].apply();
-		progressions[branchIndex]++;
+	public boolean advanceToNextUpgrade(int branchIndex) {
+		System.out.format("Trying to apply upgrade #%d on branch #%d\n" , progressions[branchIndex], branchIndex);
+		
+		State state = getNextState(branchIndex);
+		
+		if (state == State.OPEN) {
+			upgrades[branchIndex][progressions[branchIndex]].apply();
+			progressions[branchIndex]++;
+			return true;
+		}
+		
+		return false;
 	}
 	
 }
