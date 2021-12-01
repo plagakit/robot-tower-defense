@@ -43,6 +43,7 @@ public abstract class Tower extends GameObject {
 		this.pierce = pierce;
 		this.reloadTime = reloadTime;
 		reloadTimer = new Timer(scene.getGame(), reloadTime);
+		this.projectileSprite = projectileSprite;
 		
 		placed = false;
 		selected = true;
