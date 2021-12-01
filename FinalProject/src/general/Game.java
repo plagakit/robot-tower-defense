@@ -128,7 +128,7 @@ public class Game {
 		r.dispose();
 	}
 
-	private void setCurrentScene(Scene scene) {
+	public void setCurrentScene(Scene scene) {
 		if (currentScene != null)
 			currentScene.onStop();
 		currentScene = scene;
