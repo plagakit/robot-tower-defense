@@ -4,7 +4,7 @@ public class UpgradePath {
 	
 	/* Upgrades with 2 branches, 2 upgrades each
 	 * O---O
-	 * | X    <-- no connected here because locked
+	 * | X    <-- no connection here because locked
 	 * O---O
 	 */
 
@@ -33,7 +33,7 @@ public class UpgradePath {
 		// if any other upgrades are greater than half their brach --> second half of this branch becomes locked
 		if (next >= upgrades[branchIndex].length / 2)
 			for (int i = 0; i < upgrades.length; i++)
-				if (i != branchIndex && progressions[i] >= upgrades[i].length / 2)
+				if (i != branchIndex && progressions[i] > upgrades[i].length / 2)
 					return State.LOCKED;
 		
 		return State.OPEN;
