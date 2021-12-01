@@ -33,7 +33,7 @@ public abstract class Tower extends GameObject {
 	
 	protected UpgradePath upgradePath;
 	
-	public Tower(GameScene scene, String name, Vector2 pos, int range, int damage, int pierce, int reloadTime, BuyInfo info) {
+	public Tower(GameScene scene, String name, Vector2 pos, int range, String projectileSprite, int damage, int pierce, int reloadTime, BuyInfo info) {
 		super(scene, name, pos);
 		this.info = info;
 		

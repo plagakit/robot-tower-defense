@@ -9,7 +9,7 @@ import scenes.GameScene;
 public class Robot extends Tower {
 	
 	public Robot(GameScene scene, Vector2 pos) {
-		super(scene, "Robot", pos, 80, 1, 1, 650,
+		super(scene, "Robot", pos, 80, "pellet.png", 1, 1, 650,
 				new BuyInfo("TEST", "This is a test description. Wow!", 100));
 		
 		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
@@ -21,7 +21,7 @@ public class Robot extends Tower {
 						new BuyInfo("Faster Motors", "Makes the robot shoot faster!", 300)) {
 					@Override
 					public void apply() {
-						tower.reloadTime = 300;
+						tower.reloadTime -= 350;
 					}
 				},
 				// Upgrade2
@@ -45,11 +45,12 @@ public class Robot extends Tower {
 				},
 				// Upgrade 2
 				new Upgrade(this, 
-						new BuyInfo("TEST", "This is a test upgrade. Wow!", 100)) {
+						new BuyInfo("Nuclear Energy", "New power source makes the robot shoot a destructive energy beam.", 100)) {
 					@Override
 					public void apply() {
 						tower.damage = 2;
-						tower.reloadTime = 10;
+						tower.pierce = 3;
+						tower.projectileSprite = "pelletupgrade1.png";
 					}
 				}
 			} // End of array
@@ -66,7 +67,7 @@ public class Robot extends Tower {
 		rotation = Vector2.lookAtAngle(pos, target) + 90;
 
 		Pellet p = new Pellet(scene, pos, target, 
-				"pellet.png", damage, pierce, Pellet.DEFAULT_DESPAWN_TIME);
+				projectileSprite, damage, pierce, Pellet.DEFAULT_DESPAWN_TIME);
 		scene.getProjectiles().add(p);
 	}
 	
