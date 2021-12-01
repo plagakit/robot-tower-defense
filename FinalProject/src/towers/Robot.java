@@ -1,5 +1,6 @@
 package towers;
 
+import components.CircleBounds;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import projectiles.Pellet;
@@ -36,11 +37,10 @@ public class Robot extends Tower {
 			{ // Start of array
 				// Upgrade 1
 				new Upgrade(this, 
-						new BuyInfo("TEST", "This is a test upgrade. Wow!", 100)) {
+						new BuyInfo("Precise Sensors", "Increases the range of the robot!", 300)) {
 					@Override
 					public void apply() {
-						tower.damage = 2;
-						tower.reloadTime = 10;
+						tower.range = new CircleBounds(tower, 120);
 					}
 				},
 				// Upgrade 2
