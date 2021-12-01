@@ -95,7 +95,7 @@ class Subpanel {
 		
 		r.setStroke(1);
 		r.setColor(Color.BLACK);
-		r.drawRect((int)pos.x, (int)pos.y, WIDTH, HEIGHT);
+		r.drawRect(pos.x, pos.y, WIDTH, HEIGHT);
 		
 		UpgradePath.State state = path.getNextState(branchNum);
 		if (state == UpgradePath.State.OPEN) {
@@ -104,31 +104,31 @@ class Subpanel {
 			
 			r.setFont(new Font("Arial", Font.BOLD, 13));
 			r.setColor(Color.BLACK);
-			r.drawString(info.getTitle(), (int)(pos.x + 5), (int)(pos.y + 15));
+			r.drawString(info.getTitle(), pos.x + 5, pos.y + 15);
 			
 			String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
 			int costStrWidth = r.getFontMetrics().stringWidth(costStr);
-			r.drawString(costStr, (int)(pos.x + 145 + costStrWidth), (int)(pos.y + 15));
+			r.drawString(costStr, pos.x + 145 + costStrWidth, pos.y + 15);
 			
 			r.setFont(new Font("Arial", Font.PLAIN, 10));
-			r.drawWrappedString(info.getDescription(), (int)(pos.x + 5), (int)(pos.y + 30), 100);
+			r.drawWrappedString(info.getDescription(), pos.x + 5, pos.y + 30, 100);
 		
 			if (button.hovering) {
 				r.setColor(canBuy ? Color.GREEN : Color.RED);
 				r.setTransparency(0.3f);
-				r.fillRect((int)(pos.x), (int)(pos.y), WIDTH, HEIGHT);
+				r.fillRect(pos.x, pos.y, WIDTH, HEIGHT);
 				r.setTransparency(1f);
 			}
 		} 
 		else if (state == UpgradePath.State.LOCKED) {
 			r.setColor(Color.RED);
 			r.setTransparency(0.3f);
-			r.fillRect((int)(pos.x), (int)(pos.y), WIDTH, HEIGHT);
+			r.fillRect(pos.x, pos.y, WIDTH, HEIGHT);
 			r.setTransparency(1f);
 			
 			r.setColor(Color.BLACK);
 			r.setFont(new Font("Arial", Font.BOLD, 13));
-			r.drawString("Path Locked", (int)pos.x, (int)pos.y);
+			r.drawString("Path Locked", pos.x, pos.y);
 		}
 	}
 

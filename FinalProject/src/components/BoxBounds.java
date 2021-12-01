@@ -34,7 +34,7 @@ public class BoxBounds extends Component {
 		r.setColor(Color.GREEN);
 		r.setStroke(1);
 		Vector2 pos = parent.getPos();
-		r.drawRect((int)(pos.x + x), (int)(pos.y + y), width, height);
+		r.drawRect(pos.x + x, pos.y + y, width, height);
 	}
 	
 	public boolean contains(Vector2 point) {

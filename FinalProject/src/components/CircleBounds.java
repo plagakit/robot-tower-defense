@@ -23,11 +23,7 @@ public class CircleBounds extends Component {
 		r.setColor(c);
 		r.setTransparency(0.3f);
 		Vector2 pos = parent.getPos();
-		r.fillOval(
-				(int)(pos.x - radius), 
-				(int)(pos.y - radius), 
-				radius * 2, 
-				radius * 2);
+		r.fillOval(pos.x - radius, pos.y - radius, radius * 2, radius * 2);
 		r.setTransparency(1f);
 	}
 

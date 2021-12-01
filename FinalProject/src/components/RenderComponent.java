@@ -23,8 +23,8 @@ public class RenderComponent extends Component {
 		
 		Vector2 pos = parent.getPos();
 		
-		int x = (int)(pos.x - sprite.getWidth()/2.0);
-		int y = (int)(pos.y - sprite.getHeight()/2.0);
+		float x = pos.x - sprite.getWidth() / 2.0f;
+		float y = pos.y - sprite.getHeight() / 2.0f;
 		int width = sprite.getWidth();
 		int height = sprite.getHeight();
 		
@@ -43,7 +43,7 @@ public class RenderComponent extends Component {
 			// Position
 			r.setColor(Color.PINK);
 			r.setStroke(5);
-			r.drawLine((int)(pos.x), (int)(pos.y), (int)(pos.x), (int)(pos.y)); 
+			r.drawLine(pos.x, pos.y, pos.x, pos.y); 
 			
 			r.setStroke(1);
 			r.setColor(Color.RED);

@@ -20,8 +20,8 @@ public class Renderer {
 		g.scale(x, y);
 	}
 
-	public void clearRect(int x, int y, int width, int height) {
-		g.clearRect(x, y, width, height);
+	public void clearRect(float x, float y, float width, float height) {
+		g.clearRect((int)x, (int)y, (int)width, (int)height);
 	}
 
 	public void dispose() {
@@ -32,12 +32,12 @@ public class Renderer {
 		g.setFont(font);	
 	}
 
-	public void drawString(String s, int x, int y) {
+	public void drawString(String s, float x, float y) {
 		g.drawString(s, x, y);
 	}
 
-	public void drawImage(BufferedImage image, int x, int y, int width, int height) {
-		g.drawImage(image, x, y, width, height, null);
+	public void drawImage(BufferedImage image, float x, float y, float width, float height) {
+		g.drawImage(image, (int)x, (int)y, (int)width, (int)height, null);
 	}
 
 	public void rotate(double radians, float x, float y) {
@@ -52,34 +52,34 @@ public class Renderer {
 		g.setStroke(new BasicStroke(thickness));
 	}
 
-	public void drawLine(int x1, int y1, int x2, int y2) {
-		g.drawLine(x1, y1, x2, y2);
+	public void drawLine(float x1, float y1, float x2, float y2) {
+		g.drawLine((int)x1, (int)y1, (int)x2, (int)y2);
 	}
 
-	public void fillRect(int x, int y, int width, int height) {
-		g.fillRect(x, y, width, height);
+	public void fillRect(float x, float y, float width, float height) {
+		g.fillRect((int)x, (int)y, (int)width, (int)height);
 	}
 
-	public void drawRect(int x, int y, int width, int height) {
-		g.drawRect(x, y, width, height);
+	public void drawRect(float x, float y, float width, float height) {
+		g.drawRect((int)x, (int)y, (int)width, (int)height);
 	}
 
 	public FontMetrics getFontMetrics() {
 		return g.getFontMetrics();
 	}
 
-	public void drawWrappedString(String s, int x, int y, int maxWidth) {
+	public void drawWrappedString(String s, float x, float y, int maxWidth) {
 		FontMetrics fm = getFontMetrics();
 		int height = fm.getHeight();
-		int currentX = x;
-		int currentY = y;
+		int currentX = (int)x;
+		int currentY = (int)y;
 		
 		for (String word : s.split(" ")) {
 			word += " ";
 			int width = fm.stringWidth(word);
 			if (currentX + width > x + maxWidth) {
 				currentY += height;
-				currentX = x;
+				currentX = (int)x;
 			}
 			drawString(word, currentX, currentY);
 			currentX += width;
@@ -90,8 +90,8 @@ public class Renderer {
 		g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 	}
 
-	public void fillOval(int x, int y, int width, int height) {
-		g.fillOval(x, y, width, height);
+	public void fillOval(float x, float y, float width, float height) {
+		g.fillOval((int)x, (int)y, (int)width, (int)height);
 	}
 	
 }
