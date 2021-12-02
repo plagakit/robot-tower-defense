@@ -29,6 +29,7 @@ public class Game {
 	
 	private InputManager inputManager;
 	private SpriteManager spriteManager;
+	private Settings settings;
 	
 	private Scene currentScene;
 	private GameScene gameScene;
@@ -47,6 +48,7 @@ public class Game {
 		
 		inputManager = new InputManager(this);
 		spriteManager = new SpriteManager();
+		settings = new Settings();
 		
 		display = new Display(width, height, scale, title);
 		display.getJFrame().addKeyListener(inputManager);
@@ -150,6 +152,8 @@ public class Game {
 	public InputManager getInputManager() { return inputManager; }
 	
 	public SpriteManager getSpriteManager() { return spriteManager; }
+	
+	public Settings getSettings() { return settings; }
 
 	public Display getDisplay() { return display; }
 }

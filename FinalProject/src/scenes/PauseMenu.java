@@ -6,12 +6,14 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 
+import general.Settings;
 import graphics.Renderer;
 
 public class PauseMenu {
 
 	GameScene scene;
 	
+	// First pass allows pause menu to render black screen on game scene then show JOptionPane
 	boolean firstPass;
 	
 	public PauseMenu(GameScene scene) {
@@ -24,13 +26,17 @@ public class PauseMenu {
 		if (firstPass)
 			return;
 		
+		Settings settings = scene.getGame().getSettings();
+		
 		JCheckBox autostartCheckbox = new JCheckBox(" Auto-start rounds");
+		autostartCheckbox.setSelected(settings.getAutostart());
 		
 		JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
 		volumeSlider.setMajorTickSpacing(50);
 		volumeSlider.setMinorTickSpacing(5);
 		volumeSlider.setPaintLabels(true);
 		volumeSlider.setPaintTicks(true);
+		volumeSlider.setValue(settings.getVolume());
 		
 		Object[] menu = { autostartCheckbox, "\nVolume:", volumeSlider };	
 		Object[] options = {"Back", "Restart", "Exit to Main Menu"};
@@ -40,12 +46,12 @@ public class PauseMenu {
 			    "Settings",
 			    JOptionPane.YES_NO_OPTION,
 			    JOptionPane.PLAIN_MESSAGE,
-			    null,     //do not use a custom Icon
-			    options,  //the titles of buttons
-			    options[0]); //default button title
+			    null,
+			    options,
+			    options[0]);
 		
-		boolean autostart = autostartCheckbox.isSelected();
-		int volume = volumeSlider.getValue();
+		settings.setAutostart(autostartCheckbox.isSelected());
+		settings.setVolume(volumeSlider.getValue());
 		
 		if (choice == 0) { // Unpause
 			scene.unpause();
@@ -54,7 +60,7 @@ public class PauseMenu {
 			scene.onStart();
 		}
 		else if (choice == 2) { // Return to main menu
-			scene.onStop();
+			System.exit(0);
 		}
 	}
 
