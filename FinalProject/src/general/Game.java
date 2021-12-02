@@ -150,4 +150,6 @@ public class Game {
 	public InputManager getInputManager() { return inputManager; }
 	
 	public SpriteManager getSpriteManager() { return spriteManager; }
+
+	public Display getDisplay() { return display; }
 }
