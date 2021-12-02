@@ -140,6 +140,9 @@ public class GameScene extends Scene {
 	public void finishRound() {
 		inRound = false;
 		shop.addMoney(currentRound + 99);
+		
+		if (game.getSettings().getAutostart())
+			startNextRound();
 	}
 	
 	public void onBloonPopped() {
