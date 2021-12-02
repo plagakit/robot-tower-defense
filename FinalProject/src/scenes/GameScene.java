@@ -69,6 +69,7 @@ public class GameScene extends Scene {
 	@Override
 	public void onStart() {
 		pauseMenu = new PauseMenu(this);
+		paused = false;
 		
 		currentLives = maxLives;
 		currentRound = 0;
