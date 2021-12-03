@@ -19,6 +19,8 @@ pelletupgrade1.png
 scissoricon.png
 scissorrobot.png
 scissor.png
+scissorupgrade1.png
+scissorupgrade2.png
 fireicon.png
 firerobot.png
 fire.png
