@@ -153,7 +153,10 @@ class Subpanel {
 	public void selectPath(UpgradePath path) {
 		this.path = path;
 		
-		if (path != null)
-			info = path.getNextUpgrade(branchNum).getBuyInfo();
+		if (path != null) {
+			UpgradePath.State state = path.getNextState(branchNum);
+			if (state == UpgradePath.State.OPEN)
+				info = path.getNextUpgrade(branchNum).getBuyInfo();
+		}
 	}
 }
