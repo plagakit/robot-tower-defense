@@ -153,13 +153,7 @@ public class GameScene extends Scene {
 		currentLives -= RBE;
 	}
 	
-	public void pause() {
-		paused = true;
-	}
-	
-	public void unpause() {
-		paused = false;
-	}
+	public void setPaused(boolean paused) { this.paused = paused; }
 	
 	public Shop getShop() { return shop; }
 	
