@@ -77,7 +77,7 @@ public class PauseMenu {
 		switch (choice) {
 		
 		case 0:
-			scene.unpause();
+			scene.setPaused(false);
 			showedDialog = false;
 			break;
 		case 1:

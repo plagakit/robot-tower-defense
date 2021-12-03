@@ -15,7 +15,7 @@ public class SettingsButton extends Button {
 
 	@Override
 	protected void onClick() {
-		scene.pause();
+		scene.setPaused(true);
 	}
 
 	@Override
