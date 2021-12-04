@@ -24,6 +24,8 @@ scissorupgrade2.png
 fireicon.png
 firerobot.png
 fire.png
+fireupgrade1.png
+fireupgrade2.png
 #
 # Bloons:
 pop.png
