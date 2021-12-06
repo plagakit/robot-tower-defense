@@ -6,6 +6,7 @@ import java.util.List;
 import graphics.Renderer;
 
 //https://docs.oracle.com/javase/tutorial/java/generics/types.html
+// composition over inheritance
 
 public class ObjectGroup<T extends GameObject> {
 

@@ -8,6 +8,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+// composition over inheritance
+
 public class Renderer {
 
 	Graphics2D g;
