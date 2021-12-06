@@ -26,6 +26,9 @@ firerobot.png
 fire.png
 fireupgrade1.png
 fireupgrade2.png
+iceicon.png
+icerobot.png
+ice.png
 #
 # Bloons:
 pop.png
