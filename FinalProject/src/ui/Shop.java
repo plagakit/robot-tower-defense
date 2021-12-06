@@ -8,6 +8,7 @@ import general.Vector2;
 import graphics.Renderer;
 import scenes.GameScene;
 import towers.FireRobot;
+import towers.IceRobot;
 import towers.Robot;
 import towers.ScissorRobot;
 import towers.Tower;
@@ -35,7 +36,7 @@ public class Shop {
 			new TowerButton(scene, this, new Vector2(515, 24), new Robot(scene, null), "roboticon.png"),
 			new TowerButton(scene, this, new Vector2(560, 24), new ScissorRobot(scene, null), "scissoricon.png"),
 			new TowerButton(scene, this, new Vector2(605, 24), new FireRobot(scene, null), "fireicon.png"),
-			new TowerButton(scene, this, new Vector2(515, 68), new Robot(scene, null), "roboticon.png"),
+			new TowerButton(scene, this, new Vector2(515, 68), new IceRobot(scene, null), "roboticon.png"),
 			new TowerButton(scene, this, new Vector2(560, 68), new Robot(scene, null), "roboticon.png"),
 			new TowerButton(scene, this, new Vector2(605, 68), new Robot(scene, null), "roboticon.png")
 		};
