@@ -86,17 +86,18 @@ public abstract class Tower extends GameObject {
 			}
 			
 			reloadTimer.update();
-			if (reloadTimer.isDone()) {
-				for (Bloon b : scene.getBloons().getList()) {
-					if (!b.isInvulnerable() && range.collides(b.getBounds())) {
-						fire(b.getPos());
-						reloadTimer.restart(reloadTime);
-						break;
-					}
-				}
+			if (reloadTimer.isDone())
+				target();
+		}
+	}
+	
+	protected void target() {
+		for (Bloon b : scene.getBloons().getList()) {
+			if (!b.isInvulnerable() && range.collides(b.getBounds())) {
+				fire(b.getPos());
+				reloadTimer.restart(reloadTime);
+				break;
 			}
-			
-			
 		}
 	}
 

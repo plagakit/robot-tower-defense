@@ -2,6 +2,7 @@ package towers;
 
 import java.util.ArrayList;
 
+import components.CircleBounds;
 import gameobjects.Bloon;
 import gameobjects.BuyInfo;
 import general.Vector2;
@@ -12,17 +13,17 @@ public class IceRobot extends Tower {
 
 	public IceRobot(GameScene scene, Vector2 pos) {
 		super(scene, "Ice Robot", pos, 120, "ice.png", 4, 2, 2000,
-				new BuyInfo("Ice Robot", "Targets the strongest bloons and snipes them with deadly icicles.", 600));
+				new BuyInfo("Ice Robot", "Targets only the strongest bloons and snipes them with icicles.", 600));
 		sprite = scene.getGame().getSpriteManager().getSprite("icerobot.png");
 		
 		upgradePath = new UpgradePath(new Upgrade[][] {
 			{ // Branch 1
 				// Upgrade 1
 				new Upgrade(this, 
-						new BuyInfo("Sharper Blades", "Sharper blades damage and pierce more bloons!", 400)) {
+						new BuyInfo("Crystal Vision", "Better vision allows the robot to shoot farther, harder, and deadlier.", 700)) {
 					@Override
 					public void apply() {
-						tower.pierce += 3;
+						tower.range = new CircleBounds(tower, 160);
 						tower.damage += 2;
 					}
 				},
@@ -63,7 +64,19 @@ public class IceRobot extends Tower {
 	
 	@Override
 	protected void target() {
+		
+		// TODO dont do this
+		
 		ArrayList<Bloon> bloons = scene.getBloons().getList();
+		bloons.sort((b1, b2) -> Float.compare(b2.getRank(), b1.getRank()));
+		
+		for (Bloon b : bloons) {
+			if (!b.isInvulnerable() && range.collides(b.getBounds())) {
+				fire(b.getPos());
+				reloadTimer.restart(reloadTime);
+				break;
+			}
+		}
 	}
 
 	@Override

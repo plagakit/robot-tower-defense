@@ -15,6 +15,7 @@ import scenes.GameScene;
 public class Bloon extends GameObject {
 	
 	private final BloonType type;
+	private final int rank;
 	private final String id;
 	
 	private final int RBE;
@@ -38,6 +39,7 @@ public class Bloon extends GameObject {
 	public Bloon(GameScene scene, Vector2 pos, BloonType type, String... id) {
 		super(scene, "Bloon", pos);
 		this.type = type;
+		this.rank = type.rank;
 		this.id = id.length == 0 ? UUID.randomUUID().toString() : id[0];
 		
 		name = type.name;
@@ -148,6 +150,8 @@ public class Bloon extends GameObject {
 	public boolean isInvulnerable() { return invulnerable; }
 	
 	public float getDistanceTravelled() { return distanceTravelled; }
+	
+	public int getRank() { return rank; }
 	
 	public String getID() { return id; }
 	
