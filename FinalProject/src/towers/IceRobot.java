@@ -8,9 +8,9 @@ import scenes.GameScene;
 public class IceRobot extends Tower {
 
 	public IceRobot(GameScene scene, Vector2 pos) {
-		super(scene, "Ice Robot", pos, 120, "pellet.png", 4, 2, 2000,
-				new BuyInfo("Ice Robot", "Snipes bloons with deadly icicles that do lots of damage.", 600));
-		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
+		super(scene, "Ice Robot", pos, 120, "ice.png", 4, 2, 2000,
+				new BuyInfo("Ice Robot", "Targets the strongest bloons and snipes them with deadly icicles.", 600));
+		sprite = scene.getGame().getSpriteManager().getSprite("icerobot.png");
 		
 		upgradePath = new UpgradePath(new Upgrade[][] {
 			{ // Branch 1
