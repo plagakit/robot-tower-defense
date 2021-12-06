@@ -1,5 +1,8 @@
 package towers;
 
+import java.util.ArrayList;
+
+import gameobjects.Bloon;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import projectiles.Pellet;
@@ -56,6 +59,11 @@ public class IceRobot extends Tower {
 				}
 			}
 		});
+	}
+	
+	@Override
+	protected void target() {
+		ArrayList<Bloon> bloons = scene.getBloons().getList();
 	}
 
 	@Override
