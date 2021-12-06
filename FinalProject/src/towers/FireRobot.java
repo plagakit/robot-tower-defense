@@ -18,7 +18,7 @@ public class FireRobot extends Tower {
 			{ // Branch 1
 				// Upgrade 1
 				new Upgrade(this, 
-						new BuyInfo("Hotter Flames", "Hotter flames roast bloons for more damage and pierce!", 300)) {
+						new BuyInfo("Hotter Flames", "Hotter flames roast bloons for more damage and pierce!", 400)) {
 					@Override
 					public void apply() {
 						tower.damage++;
@@ -28,7 +28,7 @@ public class FireRobot extends Tower {
 				},
 				// Upgrade2
 				new Upgrade(this, 
-						new BuyInfo("New Fuel", "Experimental fuel sources make the fire burn even hotter!", 1000)) {
+						new BuyInfo("New Fuel", "Experimental fuel sources make the fire burn even hotter!", 1500)) {
 					@Override
 					public void apply() {
 						tower.damage += 3;
@@ -40,15 +40,15 @@ public class FireRobot extends Tower {
 			{ // Branch 2
 				// Upgrade 1
 				new Upgrade(this, 
-						new BuyInfo("Precise Sensors", "Increases the range of the robot!", 300)) {
+						new BuyInfo("Servomotors", "Makes the robot spit flame faster!", 600)) {
 					@Override
 					public void apply() {
-						tower.range = new CircleBounds(tower, 120);
+						tower.reloadTime /= 1.5;
 					}
 				},
 				// Upgrade 2
 				new Upgrade(this, 
-						new BuyInfo("Propellants", "Makes the robot shoot flames even faster!", 1000)) {
+						new BuyInfo("Propellants", "Makes the robot shoot flames even faster!", 2000)) {
 					@Override
 					public void apply() {
 						tower.reloadTime /= 1.5;
