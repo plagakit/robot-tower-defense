@@ -10,9 +10,9 @@ import graphics.Renderer;
 
 public class ObjectGroup<T extends GameObject> {
 
-	private List<T> objects;
-	private List<T> addQueue;
-	private List<T> removeQueue;
+	private ArrayList<T> objects;
+	private ArrayList<T> addQueue;
+	private ArrayList<T> removeQueue;
 	
 	public ObjectGroup() {
 		objects = new ArrayList<T>();
@@ -43,7 +43,7 @@ public class ObjectGroup<T extends GameObject> {
 			object.render(r);
 	}
 	
-	public List<T> getList() {
+	public ArrayList<T> getList() {
 		return objects;
 	}
 	
