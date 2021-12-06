@@ -1,6 +1,5 @@
 package towers;
 
-import components.CircleBounds;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import projectiles.Flame;
