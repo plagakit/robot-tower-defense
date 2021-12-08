@@ -11,7 +11,6 @@ import general.InputManager;
 import general.Timer;
 import general.Vector2;
 import graphics.Renderer;
-import projectiles.Pellet;
 import projectiles.Projectile;
 import projectiles.ProjectileData;
 import scenes.GameScene;

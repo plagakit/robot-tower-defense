@@ -3,7 +3,6 @@ package towers;
 import components.CircleBounds;
 import gameobjects.BuyInfo;
 import general.Vector2;
-import projectiles.Pellet;
 import projectiles.PelletBehaviour;
 import projectiles.ProjectileData;
 import scenes.GameScene;

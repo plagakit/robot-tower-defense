@@ -2,7 +2,6 @@ package towers;
 
 import gameobjects.BuyInfo;
 import general.Vector2;
-import projectiles.Flame;
 import projectiles.FlameBehaviour;
 import projectiles.ProjectileData;
 import scenes.GameScene;

@@ -3,7 +3,6 @@ package towers;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import projectiles.ProjectileData;
-import projectiles.Scissor;
 import projectiles.ScissorBehaviour;
 import scenes.GameScene;
 
