@@ -11,6 +11,9 @@ import general.InputManager;
 import general.Timer;
 import general.Vector2;
 import graphics.Renderer;
+import projectiles.Pellet;
+import projectiles.Projectile;
+import projectiles.ProjectileData;
 import scenes.GameScene;
 
 public abstract class Tower extends GameObject {
@@ -24,26 +27,27 @@ public abstract class Tower extends GameObject {
 	
 	protected CircleBounds bounds;
 	protected CircleBounds range;
-	protected int damage;
+	protected ProjectileData projectileData;
+	/*protected int damage;
 	protected int pierce;
 	protected String projectileSprite;
+	protected int[] projectileParams;*/
 	
 	protected int reloadTime;
 	protected final Timer reloadTimer;
 	
 	protected UpgradePath upgradePath;
 	
-	public Tower(GameScene scene, String name, Vector2 pos, int range, String projectileSprite, int damage, int pierce, int reloadTime, BuyInfo info) {
+	public Tower(GameScene scene, String name, Vector2 pos, int range, int reloadTime, ProjectileData projectileData, BuyInfo info) {
 		super(scene, name, pos);
 		this.info = info;
 		
 		bounds = new CircleBounds(this, 15);
 		this.range = new CircleBounds(this, range);
-		this.damage = damage;
-		this.pierce = pierce;
+		this.projectileData = projectileData;
+		
 		this.reloadTime = reloadTime;
 		reloadTimer = new Timer(scene.getGame(), reloadTime);
-		this.projectileSprite = projectileSprite;
 		
 		placed = false;
 		selected = true;
@@ -101,7 +105,12 @@ public abstract class Tower extends GameObject {
 		}
 	}
 
-	protected abstract void fire(Vector2 target);
+	protected void fire(Vector2 target) {
+		rotation = Vector2.lookAtAngle(pos, target) + 90;
+
+		Projectile p = new Projectile(scene, pos, target, projectileData);
+		scene.getProjectiles().add(p);
+	}
 	
 	private boolean validatePosition() {
 		for (Tower t : scene.getTowers().getList())	

@@ -11,7 +11,7 @@ import general.Timer;
 import general.Vector2;
 import scenes.GameScene;
 
-public abstract class Projectile extends GameObject {
+public class Projectile extends GameObject {
 
 	protected PhysicsComponent physicsComponent;
 	protected CircleBounds bounds;
@@ -24,16 +24,15 @@ public abstract class Projectile extends GameObject {
 	protected int damage;
 	protected int pierce;
 	protected int currentPierce;
-	protected int[] optionalParams;
 	
-	public Projectile(GameScene scene, String name, Vector2 pos, String spritePath, int damage, int pierce, int despawnTime, int... optionalParams) {
-		super(scene, name, pos);
-		sprite = scene.getGame().getSpriteManager().getSprite(spritePath);
+	public Projectile(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data) {
+		super(scene, "Projectile", pos);
+		
+		sprite = scene.getGame().getSpriteManager().getSprite(data.getProjectileSpritePath());
 		bounds = new CircleBounds(this, Math.min(sprite.getWidth(), sprite.getHeight()));
-		this.damage = damage;
-		this.pierce = pierce;
+		this.damage = data.getDamage();
+		this.pierce = data.getPierce();
 		currentPierce = pierce;
-		this.optionalParams = optionalParams;
 		
 		despawnTimer = new Timer(scene.getGame(), despawnTime);
 		hitList = new ArrayList<String>();
@@ -81,5 +80,10 @@ public abstract class Projectile extends GameObject {
 	}
 	
 	public int getDamage() { return damage; }
+
+	public void setDespawnTime(int despawnTime) {
+		this.despawnTime = despawnTime;
+		despawnTimer.restart(despawnTime);
+	}
 	
 }

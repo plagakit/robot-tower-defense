@@ -7,12 +7,15 @@ import gameobjects.Bloon;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import projectiles.Pellet;
+import projectiles.PelletBehaviour;
+import projectiles.ProjectileData;
 import scenes.GameScene;
 
 public class IceRobot extends Tower {
 
 	public IceRobot(GameScene scene, Vector2 pos) {
-		super(scene, "Ice Robot", pos, 120, "ice.png", 4, 2, 2000,
+		super(scene, "Ice Robot", pos, 120, 2000,
+				new ProjectileData(new PelletBehaviour(5), 4, 5, "ice.png"),
 				new BuyInfo("Ice Robot", "Targets only the strongest bloons and snipes them with icicles.", 600));
 		sprite = scene.getGame().getSpriteManager().getSprite("icerobot.png");
 		
@@ -24,7 +27,8 @@ public class IceRobot extends Tower {
 					@Override
 					public void apply() {
 						tower.range = new CircleBounds(tower, 160);
-						tower.damage += 2;
+						tower.projectileData.addDamage(2);
+						tower.projectileData.setBehaviour(new PelletBehaviour(7));
 					}
 				},
 				// Upgrade2
@@ -32,9 +36,9 @@ public class IceRobot extends Tower {
 						new BuyInfo("Shurikens", "Allows the robot to shoot razor-sharp ninja stars!", 3000)) {
 					@Override
 					public void apply() {
-						tower.pierce += 20;
-						tower.damage += 10;
-						tower.projectileSprite = "scissorupgrade1.png";
+						//tower.pierce += 20;
+						//tower.damage += 10;
+						//tower.projectileSprite = "scissorupgrade1.png";
 					}
 				}
 			},
@@ -45,7 +49,7 @@ public class IceRobot extends Tower {
 					@Override
 					public void apply() {
 						tower.reloadTime /= 2;
-						tower.pierce += 2;
+						//tower.pierce += 2;
 					}
 				},
 				// Upgrade 2
@@ -54,8 +58,8 @@ public class IceRobot extends Tower {
 					@Override
 					public void apply() {
 						tower.reloadTime /= 3;
-						tower.pierce += 5;
-						tower.projectileSprite = "scissorupgrade2.png";
+						//tower.pierce += 5;
+						//tower.projectileSprite = "scissorupgrade2.png";
 					}
 				}
 			}
@@ -77,14 +81,6 @@ public class IceRobot extends Tower {
 				break;
 			}
 		}
-	}
-
-	@Override
-	protected void fire(Vector2 target) {
-		rotation = Vector2.lookAtAngle(pos, target) + 90;
-
-		Pellet p = new Pellet(scene, pos, target, projectileSprite, damage, pierce, 3000);
-		scene.getProjectiles().add(p);
 	}
 
 }
