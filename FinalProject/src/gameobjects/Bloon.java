@@ -108,7 +108,10 @@ public class Bloon extends GameObject {
 			bounds.debugRender(r);
 	}
 
-	public void handleCollision(Projectile p) {
+	public boolean handleCollision(Projectile p) {
+		if (invulnerable || !active)
+			return false;
+		
 		currentHealth -= p.getDamage();
 		
 		if (type == BloonType.CERAMIC || type == BloonType.MOAB) {
@@ -121,6 +124,8 @@ public class Bloon extends GameObject {
 		
 		if (currentHealth <= 0)
 			pop();
+		
+		return true;
 	}
 	
 	private void spawnChildren() {
