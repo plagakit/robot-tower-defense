@@ -46,7 +46,7 @@ public class Bloon extends GameObject {
 		health = type.health;
 		currentHealth = health;
 		RBE = type.RBE;
-		speed = type.speed;
+		speed = type.speed * scene.getSpeedModifier();
 		
 		sprite = scene.getGame().getSpriteManager().getSprite(type.spritePath);
 		popSprite = scene.getGame().getSpriteManager().getSprite("pop.png");

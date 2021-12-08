@@ -25,6 +25,7 @@ public class GameScene extends Scene {
 	private int maxLives;
 	private int currentLives;
 	private int startingMoney;
+	private float speedModifier;
 
 	private Shop shop;
 	private float costModifier;
@@ -50,18 +51,21 @@ public class GameScene extends Scene {
 			maxRounds = 50;
 			startingMoney = 500;
 			costModifier = 0.75f; 
+			speedModifier = 0.8f;
 			break;
 		case MEDIUM:
 			maxLives = 50;
 			maxRounds = 50;
 			startingMoney = 400;
 			costModifier = 1;
+			speedModifier = 1;
 			break;
 		case HARD:
 			maxLives = 1;
 			maxRounds = 50;
 			startingMoney = 3000;
 			costModifier = 1.5f;
+			speedModifier = 1.2f;
 			break;
 		}
 	}
@@ -152,6 +156,8 @@ public class GameScene extends Scene {
 	public void onLeak(int RBE) {
 		currentLives -= RBE;
 	}
+	
+	public float getSpeedModifier() { return speedModifier; }
 	
 	public void setPaused(boolean paused) { this.paused = paused; }
 	
