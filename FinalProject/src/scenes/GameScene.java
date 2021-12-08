@@ -63,7 +63,7 @@ public class GameScene extends Scene {
 		case HARD:
 			maxLives = 1;
 			maxRounds = 50;
-			startingMoney = 3000;
+			startingMoney = 300;
 			costModifier = 1.5f;
 			speedModifier = 1.2f;
 			break;
@@ -77,7 +77,8 @@ public class GameScene extends Scene {
 		
 		currentLives = maxLives;
 		currentRound = 0;
-
+		inRound = false;
+		
 		towers = new ObjectGroup<Tower>();
 		projectiles = new ObjectGroup<Projectile>();
 		bloons = new ObjectGroup<Bloon>();
