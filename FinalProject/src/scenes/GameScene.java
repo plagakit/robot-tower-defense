@@ -76,7 +76,7 @@ public class GameScene extends Scene {
 		paused = false;
 		
 		currentLives = maxLives;
-		currentRound = 0;
+		currentRound = 49;
 		inRound = false;
 		
 		towers = new ObjectGroup<Tower>();

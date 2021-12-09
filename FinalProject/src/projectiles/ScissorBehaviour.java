@@ -37,6 +37,9 @@ public class ScissorBehaviour extends ProjectileBehaviour {
 		direction.x = Math.signum(direction.x);
 		direction.y = Math.signum(direction.y);
 		parent.setRotation(Vector2.lookAtAngle(pos, target));
+		
+		float angle = Vector2.lookAtAngle(pos, target);
+
 	}
 	
 	@Override
