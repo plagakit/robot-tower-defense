@@ -10,7 +10,7 @@ public class ScissorRobot extends Tower {
 
 	public ScissorRobot(GameScene scene, Vector2 pos) {
 		super(scene, "Scissor Robot", pos, 80, 1000,
-				new ProjectileData(new ScissorBehaviour(), 1, 4, "scissor.png"),
+				new ProjectileData(new ScissorBehaviour(), 1, 4, "scissor.png", 1000),
 				new BuyInfo("Scissor Robot", "Pierces many bloons at once, but needs careful positioning.", 350));
 		sprite = scene.getGame().getSpriteManager().getSprite("scissorrobot.png");
 	

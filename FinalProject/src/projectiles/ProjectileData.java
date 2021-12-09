@@ -6,12 +6,14 @@ public class ProjectileData {
 	private int damage;
 	private int pierce;
 	private String projectileSpritePath;
+	private int despawnTime;
 	
-	public ProjectileData(ProjectileBehaviour behaviour, int damage, int pierce, String projectileSpritePath) {
+	public ProjectileData(ProjectileBehaviour behaviour, int damage, int pierce, String projectileSpritePath, int despawnTime) {
 		this.behaviour = behaviour;
 		this.damage = damage;
 		this.pierce = pierce;
 		this.projectileSpritePath = projectileSpritePath;
+		this.despawnTime = despawnTime;
 	}
 	
 	public ProjectileBehaviour getBehaviour() { return behaviour; }
@@ -25,5 +27,8 @@ public class ProjectileData {
 	
 	public String getProjectileSpritePath() { return projectileSpritePath; }
 	public void setProjectileSpritePath(String newSpritePath) { projectileSpritePath = newSpritePath; }
+	
+	public int getDespawnTime() { return despawnTime; }
+	public void setDespawnTime(int despawnTime) { this.despawnTime = despawnTime; }
 	
 }

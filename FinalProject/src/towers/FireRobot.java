@@ -10,7 +10,7 @@ public class FireRobot extends Tower {
 
 	public FireRobot(GameScene scene, Vector2 pos) {
 		super(scene, "Flamethrower", pos, 50, 350,
-				new ProjectileData(new FlameBehaviour(), 1, 2, "fire.png"),
+				new ProjectileData(new FlameBehaviour(), 1, 2, "fire.png", 1000),
 				new BuyInfo("Flamethrower", "Incinerates bloons with flames within a small radius.", 500));
 		
 		sprite = scene.getGame().getSpriteManager().getSprite("firerobot.png");

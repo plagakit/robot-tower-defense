@@ -16,8 +16,7 @@ public class Projectile extends GameObject {
 	protected PhysicsComponent physicsComponent;
 	protected CircleBounds bounds;
 	
-	public final static int DEFAULT_DESPAWN_TIME = 250;
-	protected int despawnTime = DEFAULT_DESPAWN_TIME;
+	protected int despawnTime;
 	protected final Timer despawnTimer;
 	protected List<String> hitList;
 	
@@ -32,17 +31,17 @@ public class Projectile extends GameObject {
 		sprite = scene.getGame().getSpriteManager().getSprite(data.getProjectileSpritePath());
 		bounds = new CircleBounds(this, Math.min(sprite.getWidth(), sprite.getHeight()));
 		
-		behaviour = data.getBehaviour();
+		behaviour = data.getBehaviour().connect(this);
 		damage = data.getDamage();
 		pierce = data.getPierce();
 		currentPierce = pierce;
 		
-		despawnTimer = new Timer(scene.getGame(), despawnTime);
+		despawnTimer = new Timer(scene.getGame(), data.getDespawnTime());
 		hitList = new ArrayList<String>();
 		
 		physicsComponent = new PhysicsComponent(this);
 		
-		behaviour.start(this, target);
+		behaviour.start(target);
 	}
 
 	@Override
@@ -67,7 +66,7 @@ public class Projectile extends GameObject {
 		if (despawnTimer.isDone())
 			despawn();
 		
-		behaviour.move(this);
+		behaviour.move();
 		physicsComponent.update();
 	}
 	
