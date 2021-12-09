@@ -27,7 +27,9 @@ public class Shop {
 	private PlayButton playButton; 
 	private FastForwardButton ffButton;
 	private SettingsButton settingsButton;
-	
+
+	private final Color BG_COLOUR = new Color(207, 168, 114);
+		
 	public Shop(GameScene scene, long startingMoney, float costModifier) {
 		this.money = startingMoney;
 		this.costModifier = costModifier;
@@ -60,7 +62,7 @@ public class Shop {
 	public void render(Renderer r) {
 		// TODO remove magic numbers
 		// Bg & outline
-		r.setColor(new Color(207, 168, 114));
+		r.setColor(BG_COLOUR);
 		r.fillRect(480, 0, 160, 360);
 		
 		r.setStroke(2);
