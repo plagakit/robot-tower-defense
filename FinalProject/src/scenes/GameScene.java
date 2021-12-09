@@ -60,7 +60,7 @@ public class GameScene extends Scene {
 		case HARD:
 			maxLives = 1;
 			maxRounds = 50;
-			startingMoney = 3000;
+			startingMoney = 30000;
 			costModifier = 1.5f;
 			break;
 		}
