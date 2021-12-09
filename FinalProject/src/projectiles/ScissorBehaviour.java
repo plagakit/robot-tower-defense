@@ -1,9 +1,8 @@
 package projectiles;
 
 import general.Vector2;
-import scenes.GameScene;
 
-public class Scissor extends Projectile {
+public class ScissorBehaviour extends ProjectileBehaviour {
 
 	private final float SPEED = 0.05f;
 	private final float RADIUS;
@@ -12,35 +11,40 @@ public class Scissor extends Projectile {
 	private Vector2 direction;
 	float counter = 0;
 	
-	public Scissor(GameScene scene, Vector2 pos, Vector2 target, String spritePath, int damage, int pierce) {
-		super(scene, "Scissor", pos, spritePath, damage, pierce, 850);
-	
-		// below are arbitrary numbers that were trial & errored by me
+	public ScissorBehaviour() {
+		// arbitrary numbers that were trial & errored by me
 		// multiplying speed by 60 gives a good-looking radius
 		RADIUS = 60 * SPEED;
-		
-		// dividing 42.5 by speed gives time it takes for scissor to make 1 full circle
-		// ie. with speed of 0.05 (normal speed), 850 ms is about the time it takes for 1 full circle
-		despawnTime = (int)(42.5 / SPEED);
-		
-		direction = Vector2.direction(pos, target);
-		direction.x = Math.signum(direction.x);
-		direction.y = Math.signum(direction.y);
-		rotation = Vector2.lookAtAngle(pos, target);
 	}
 	
 	@Override
-	public void update() {
-		super.update();
+	public void start(Projectile parent, Vector2 target) {
+
+		// dividing 42.5 by speed gives time it takes for scissor to make 1 full circle
+		// ie. with speed of 0.05 (normal speed), 850 ms is about the time it takes for 1 full circle
+		parent.setDespawnTime((int)(42.5 / SPEED));
 		
-		rotation += ROT_SPEED * scene.getGame().getTimeScale();
+		Vector2 pos = parent.getPos();
+		direction = Vector2.direction(pos, target);
+		direction.x = Math.signum(direction.x);
+		direction.y = Math.signum(direction.y);
+		parent.setRotation(Vector2.lookAtAngle(pos, target));
+	}
+	
+	@Override
+	public void move(Projectile parent) {
 		
-		counter += SPEED * scene.getGame().getTimeScale();
+		float timeScale = parent.getGameScene().getGame().getTimeScale();
+		
+		float rot = parent.getRotation();
+		parent.setRotation(rot + (ROT_SPEED * timeScale));
+		
+		counter += SPEED * timeScale;
 		float sin = (float)Math.sin(counter);
 		float cos = (float)Math.cos(counter);
 		
-		vel.x = direction.x * sin * RADIUS;
-		vel.y = direction.y * cos * RADIUS;
+		Vector2 vel = new Vector2(direction.x * sin * RADIUS, direction.y * cos * RADIUS);
+		parent.setVel(vel);
 	}
 	
 }
