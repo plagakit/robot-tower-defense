@@ -32,6 +32,15 @@ public class Vector2 {
 		return new Vector2(unnormalized.x / magnitude, unnormalized.y / magnitude);
 	}
 	
+	/**
+	 * Returns the degree angle of a vector if it were to "look at" a position. It uses 
+	 * the atan2 method, which calculates the angle of the look at vector in all 
+	 * 4 quadrants.
+	 * 
+	 * @param self The position, which is rotated to "look at" the target.
+	 * @param target The target being looked at.
+	 * @return The look at angle in degrees.
+	 */
 	public static float lookAtAngle(Vector2 self, Vector2 target) {
 		//https://en.wikipedia.org/wiki/Atan2
 		Vector2 lookAt = new Vector2(target.x - self.x, target.y - self.y);
