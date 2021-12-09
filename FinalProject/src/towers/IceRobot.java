@@ -14,7 +14,7 @@ public class IceRobot extends Tower {
 
 	public IceRobot(GameScene scene, Vector2 pos) {
 		super(scene, "Ice Robot", pos, 120, 2000,
-				new ProjectileData(new PelletBehaviour(5), 4, 5, "ice.png"),
+				new ProjectileData(new PelletBehaviour(6), 4, 5, "ice.png"),
 				new BuyInfo("Ice Robot", "Targets only the strongest bloons and snipes them with icicles.", 600));
 		sprite = scene.getGame().getSpriteManager().getSprite("icerobot.png");
 		
@@ -26,39 +26,36 @@ public class IceRobot extends Tower {
 					@Override
 					public void apply() {
 						tower.range = new CircleBounds(tower, 160);
-						tower.projectileData.addDamage(2);
-						tower.projectileData.setBehaviour(new PelletBehaviour(7));
+						tower.projectileData.addDamage(5);
+						tower.projectileData.setBehaviour(new PelletBehaviour(8));
 					}
 				},
 				// Upgrade2
 				new Upgrade(this, 
-						new BuyInfo("Shurikens", "Allows the robot to shoot razor-sharp ninja stars!", 3000)) {
+						new BuyInfo("Glacial Cannon", "Allows the robot to shoot powerful glacial icicles", 5000)) {
 					@Override
 					public void apply() {
-						//tower.pierce += 20;
-						//tower.damage += 10;
-						//tower.projectileSprite = "scissorupgrade1.png";
+						tower.range = new CircleBounds(tower, 180);
+						tower.projectileData.addDamage(50);
+						tower.projectileData.setProjectileSpritePath("iceupgrade1.png");
 					}
 				}
 			},
 			{ // Branch 2
 				// Upgrade 1
 				new Upgrade(this, 
-						new BuyInfo("Double Shot", "Allows two scissors to be thrown at once!", 750)) {
+						new BuyInfo("Bloon Freeze", "Bloons hit by ice are momentarily frozen before thawing out!", 750)) {
 					@Override
 					public void apply() {
-						tower.reloadTime /= 2;
-						//tower.pierce += 2;
+						
 					}
 				},
 				// Upgrade 2
 				new Upgrade(this, 
-						new BuyInfo("Chakrams", "Allows the robot to shoot many deadly chakrams that slice bloons with ease!", 3000)) {
+						new BuyInfo("Permafrost", "Bloons are permanently slowed after thawing out, and MOABs can be frozen too!", 5000)) {
 					@Override
 					public void apply() {
-						tower.reloadTime /= 3;
-						//tower.pierce += 5;
-						//tower.projectileSprite = "scissorupgrade2.png";
+						tower.projectileData.setProjectileSpritePath("iceupgrade2.png");
 					}
 				}
 			}
