@@ -54,8 +54,7 @@ public class Projectile extends GameObject {
 			if (bounds != null && bounds.collides(b.getBounds())) {
 				//System.out.format("%s@%d collision w/ %s@%s\n", this.getName(), this.hashCode(), b.getName(), b.getID());
 				handleCollision(b);
-				//TODO figure out whether to use hitlist or not
-				//hitList.add(b.getID());
+				hitList.add(b.getID());
 			}
 			
 			if (!active)
