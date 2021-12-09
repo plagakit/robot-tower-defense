@@ -36,11 +36,11 @@ public class Bloon extends GameObject {
 	private Vector2[] trackPoints;
 	private int goalPointIndex;
 	
-	public Bloon(GameScene scene, Vector2 pos, BloonType type, String... id) {
+	public Bloon(GameScene scene, Vector2 pos, BloonType type) {
 		super(scene, "Bloon", pos);
 		this.type = type;
 		this.rank = type.rank;
-		this.id = id.length == 0 ? UUID.randomUUID().toString() : id[0];
+		this.id = UUID.randomUUID().toString();
 		
 		name = type.name;
 		health = type.health;
@@ -67,7 +67,7 @@ public class Bloon extends GameObject {
 	}
 	
 	public Bloon(Bloon parent, BloonType type) {
-		this(parent.getGameScene(), parent.getPos(), type, parent.id);
+		this(parent.getGameScene(), parent.getPos(), type);
 		this.goalPointIndex = parent.goalPointIndex;
 		this.distanceTravelled = parent.distanceTravelled;
 		
