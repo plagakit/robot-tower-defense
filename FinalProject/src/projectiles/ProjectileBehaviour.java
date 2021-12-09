@@ -4,8 +4,12 @@ import general.Vector2;
 
 public abstract class ProjectileBehaviour {
 
-	public abstract void start(Projectile parent, Vector2 target);
+	protected Projectile parent;
 	
-	public abstract void move(Projectile parent);
+	public abstract ProjectileBehaviour connect(Projectile parent);
+	
+	public abstract void start(Vector2 target);
+	
+	public abstract void move();
 	
 }

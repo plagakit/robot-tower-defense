@@ -18,7 +18,15 @@ public class ScissorBehaviour extends ProjectileBehaviour {
 	}
 	
 	@Override
-	public void start(Projectile parent, Vector2 target) {
+	public ProjectileBehaviour connect(Projectile parent) {
+		ScissorBehaviour copy = new ScissorBehaviour();
+		copy.parent = parent;
+		return copy;
+	}
+	
+	
+	@Override
+	public void start(Vector2 target) {
 
 		// dividing 42.5 by speed gives time it takes for scissor to make 1 full circle
 		// ie. with speed of 0.05 (normal speed), 850 ms is about the time it takes for 1 full circle
@@ -32,7 +40,7 @@ public class ScissorBehaviour extends ProjectileBehaviour {
 	}
 	
 	@Override
-	public void move(Projectile parent) {
+	public void move() {
 		
 		float timeScale = parent.getGameScene().getGame().getTimeScale();
 		
