@@ -44,7 +44,7 @@ public class IceRobot extends Tower {
 			{ // Branch 2
 				// Upgrade 1
 				new Upgrade(this, 
-						new BuyInfo("Bloon Freeze", "Bloons hit by ice are momentarily frozen before thawing out!", 750)) {
+						new BuyInfo("Bloon Freeze", "Bloons hit by ice are momentarily slowed by ice before thawing out!", 750)) {
 					@Override
 					public void apply() {
 						
@@ -52,7 +52,7 @@ public class IceRobot extends Tower {
 				},
 				// Upgrade 2
 				new Upgrade(this, 
-						new BuyInfo("Permafrost", "Bloons are permanently slowed after thawing out, and MOABs can be frozen too!", 5000)) {
+						new BuyInfo("Permafrost", "MOABs can be slowed too, and non-MOAB bloons are permanently slowed!", 5000)) {
 					@Override
 					public void apply() {
 						tower.projectileData.setProjectileSpritePath("iceupgrade2.png");
