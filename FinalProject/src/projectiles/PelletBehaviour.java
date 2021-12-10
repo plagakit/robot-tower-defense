@@ -1,6 +1,7 @@
 package projectiles;
 
 import general.Vector2;
+import graphics.Renderer;
 
 public class PelletBehaviour extends ProjectileBehaviour {
 
@@ -27,5 +28,8 @@ public class PelletBehaviour extends ProjectileBehaviour {
 
 	@Override
 	public void move() {}
+	
+	@Override
+	public void render(Renderer r) {}
 
 }

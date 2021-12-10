@@ -1,6 +1,7 @@
 package projectiles;
 
 import general.Vector2;
+import graphics.Renderer;
 
 public class ScissorBehaviour extends ProjectileBehaviour {
 
@@ -57,5 +58,8 @@ public class ScissorBehaviour extends ProjectileBehaviour {
 		Vector2 vel = new Vector2(direction.x * sin * RADIUS, direction.y * cos * RADIUS);
 		parent.setVel(vel);
 	}
+	
+	@Override
+	public void render(Renderer r) {}
 	
 }

@@ -1,6 +1,7 @@
 package projectiles;
 
 import general.Vector2;
+import graphics.Renderer;
 
 public class FlameBehaviour extends ProjectileBehaviour {
 
@@ -35,6 +36,10 @@ public class FlameBehaviour extends ProjectileBehaviour {
 		
 		if (speed <= 0)
 			parent.despawn();
+		
 	}
+	
+	@Override
+	public void render(Renderer r) {}
 	
 }
