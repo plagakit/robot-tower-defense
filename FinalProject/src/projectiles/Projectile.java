@@ -13,17 +13,17 @@ import scenes.GameScene;
 
 public class Projectile extends GameObject {
 
-	protected PhysicsComponent physicsComponent;
-	protected CircleBounds bounds;
+	private PhysicsComponent physicsComponent;
+	private CircleBounds bounds;
 	
-	protected int despawnTime;
-	protected final Timer despawnTimer;
-	protected List<String> hitList;
+	private int despawnTime;
+	private final Timer despawnTimer;
+	private List<String> hitList;
 	
-	protected ProjectileBehaviour behaviour;
-	protected int damage;
-	protected int pierce;
-	protected int currentPierce;
+	private ProjectileBehaviour behaviour;
+	private int damage;
+	private int pierce;
+	private int currentPierce;
 	
 	public Projectile(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data) {
 		super(scene, "Projectile", pos);
@@ -85,6 +85,7 @@ public class Projectile extends GameObject {
 	
 	public int getDamage() { return damage; }
 
+	public int getDespawnTime() { return despawnTime; }
 	public void setDespawnTime(int despawnTime) {
 		this.despawnTime = despawnTime;
 		despawnTimer.restart(despawnTime);
