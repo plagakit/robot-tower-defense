@@ -22,7 +22,7 @@ public class ScissorRobot extends Tower {
 					@Override
 					public void apply() {
 						tower.projectileData.addPierce(3);
-						tower.projectileData.addDamage(2);
+						tower.projectileData.addDamage(1);
 					}
 				},
 				// Upgrade2
@@ -51,8 +51,8 @@ public class ScissorRobot extends Tower {
 						new BuyInfo("Chakrams", "Allows the robot to shoot many deadly chakrams that slice bloons with ease!", 3000)) {
 					@Override
 					public void apply() {
-						tower.reloadTime /= 3;
-						tower.projectileData.addPierce(5);
+						tower.reloadTime /= 2;
+						tower.projectileData.addPierce(20);
 						tower.projectileData.setProjectileSpritePath("scissorupgrade2.png");
 					}
 				}
