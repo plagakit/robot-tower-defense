@@ -31,7 +31,7 @@ public class ScissorBehaviour extends ProjectileBehaviour {
 
 		// dividing 42.5 by speed gives time it takes for scissor to make 1 full circle
 		// ie. with speed of 0.05 (normal speed), 850 ms is about the time it takes for 1 full circle
-		parent.setDespawnTime((int)(42.5 / SPEED));
+		//parent.setDespawnTime((int)(42.5 / SPEED));
 		
 		Vector2 pos = parent.getPos();
 		direction = Vector2.direction(pos, target);

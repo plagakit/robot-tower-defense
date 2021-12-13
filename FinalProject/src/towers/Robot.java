@@ -3,6 +3,7 @@ package towers;
 import components.CircleBounds;
 import gameobjects.BuyInfo;
 import general.Vector2;
+import projectiles.Pellet;
 import projectiles.PelletBehaviour;
 import projectiles.ProjectileData;
 import scenes.GameScene;
@@ -15,6 +16,7 @@ public class Robot extends Tower {
 				new BuyInfo("TEST", "This is a test description. Wow!", 100));
 		
 		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
+		projectile = new Pellet(4);
 		
 		upgradePath = new UpgradePath(new Upgrade[][] {
 			{ // Branch 1

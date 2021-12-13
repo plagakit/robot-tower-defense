@@ -20,7 +20,7 @@ public class LightningBehaviour extends ProjectileBehaviour {
 	public ProjectileBehaviour connect(Projectile parent) {
 		LightningBehaviour copy = new LightningBehaviour(darkColour);
 		copy.parent = parent;
-		copy.fadeTime = parent.getDespawnTime();
+		//copy.fadeTime = parent.getDespawnTime();
 		return copy;
 	}
 

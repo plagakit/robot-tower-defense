@@ -11,7 +11,7 @@ import general.Timer;
 import general.Vector2;
 import scenes.GameScene;
 
-public class Projectile extends GameObject {
+public abstract class Projectile extends GameObject {
 
 	private PhysicsComponent physicsComponent;
 	private CircleBounds bounds;
@@ -20,18 +20,24 @@ public class Projectile extends GameObject {
 	private final Timer despawnTimer;
 	private List<String> hitList;
 	
-	private ProjectileBehaviour behaviour;
+	private ProjectileData data;
 	private int damage;
 	private int pierce;
 	private int currentPierce;
 	
-	public Projectile(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data) {
-		super(scene, "Projectile", pos);
+	public Projectile() {
+		super(null, "EmptyProjectile", null);
+		despawnTimer = null;
+	}
+	
+	public Projectile(GameScene scene, String name, Vector2 pos, Vector2 target, ProjectileData data) {
+		super(scene, name, pos);
 		
-		sprite = scene.getGame().getSpriteManager().getSprite(data.getProjectileSpritePath());
+		String spriteName = data.getProjectileSpritePath();
+		sprite = scene.getGame().getSpriteManager().getSprite(spriteName);
 		bounds = new CircleBounds(this, Math.min(sprite.getWidth(), sprite.getHeight()));
 		
-		behaviour = data.getBehaviour().connect(this);
+		this.data = data;
 		damage = data.getDamage();
 		pierce = data.getPierce();
 		currentPierce = pierce;
@@ -40,9 +46,9 @@ public class Projectile extends GameObject {
 		hitList = new ArrayList<String>();
 		
 		physicsComponent = new PhysicsComponent(this);
-		
-		behaviour.start(target);
 	}
+	
+	public abstract Projectile copy(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data);
 
 	@Override
 	public void update() {
@@ -64,8 +70,7 @@ public class Projectile extends GameObject {
 		despawnTimer.update();
 		if (despawnTimer.isDone())
 			despawn();
-		
-		behaviour.move();
+
 		physicsComponent.update();
 	}
 	
@@ -84,11 +89,4 @@ public class Projectile extends GameObject {
 	}
 	
 	public int getDamage() { return damage; }
-
-	public int getDespawnTime() { return despawnTime; }
-	public void setDespawnTime(int despawnTime) {
-		this.despawnTime = despawnTime;
-		despawnTimer.restart(despawnTime);
-	}
-	
 }
