@@ -48,7 +48,7 @@ public abstract class Projectile extends GameObject {
 		physicsComponent = new PhysicsComponent(this);
 	}
 	
-	public abstract Projectile copy(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data);
+	public abstract Projectile init(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data);
 
 	@Override
 	public void update() {

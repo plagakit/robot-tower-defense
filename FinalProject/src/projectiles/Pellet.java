@@ -12,22 +12,15 @@ public class Pellet extends Projectile {
 	}
 	
 	@Override
-	public Projectile copy(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data) {
+	public Projectile init(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data) {
 
-		Pellet copy = new Pellet(scene, pos, target, data);
+		Pellet copy = new Pellet(speed);
 		
 		Vector2 direction = Vector2.direction(pos, target);
-		vel = Vector2.multiply(direction, speed);
-		rotation = Vector2.lookAtAngle(pos, target);
+		copy.vel = Vector2.multiply(direction, speed);
+		copy.rotation = Vector2.lookAtAngle(pos, target);
+		
+		return copy;
 	}
-	
-	private Pellet(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data) {
-		super(scene, "Pellet", pos, target, data);
 
-		System.out.println(speed);
-		Vector2 direction = Vector2.direction(pos, target);
-		vel = Vector2.multiply(direction, speed);
-		rotation = Vector2.lookAtAngle(pos, target);
-	}
-	
 }
