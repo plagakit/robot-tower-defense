@@ -11,21 +11,19 @@ public class Pellet extends Projectile {
 		super();
 		this.speed = speed;
 	}
-	
-	public Pellet(GameScene scene, Vector2 pos, ProjectileData data) {
-		super(scene, "Pellet", pos, data);
-	}
 
 	@Override
 	public Projectile init(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data) {
-		Pellet copy = new Pellet(scene, pos, data);
-		copy.speed = speed;
+		Pellet copy = new Pellet(scene, pos, target, data, speed);
+		return copy;
+	}
+	
+	public Pellet(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data, float speed) {
+		super(scene, "Pellet", pos, data);
 		
 		Vector2 direction = Vector2.direction(pos, target);
-		copy.vel = Vector2.multiply(direction, speed);
-		copy.rotation = Vector2.lookAtAngle(pos, target);
-		
-		return copy;
+		vel = Vector2.multiply(direction, speed);
+		rotation = Vector2.lookAtAngle(pos, target);
 	}
 
 }

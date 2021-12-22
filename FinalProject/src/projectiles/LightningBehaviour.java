@@ -2,10 +2,7 @@ package projectiles;
 
 import java.awt.Color;
 
-import general.Vector2;
-import graphics.Renderer;
-
-public class LightningBehaviour extends ProjectileBehaviour {
+public class LightningBehaviour {
 
 	private Color darkColour;
 	private int fadeTime;
@@ -16,31 +13,21 @@ public class LightningBehaviour extends ProjectileBehaviour {
 		this.darkColour = darkColour;
 	}
 	
-	@Override
-	public ProjectileBehaviour connect(Projectile parent) {
-		LightningBehaviour copy = new LightningBehaviour(darkColour);
-		copy.parent = parent;
-		//copy.fadeTime = parent.getDespawnTime();
-		return copy;
-	}
+	//@Override
+	//public ProjectileBehaviour connect(Projectile parent) {
+	//	LightningBehaviour copy = new LightningBehaviour(darkColour);
+	//	copy.parent = parent;
+	//	//copy.fadeTime = parent.getDespawnTime();
+	//	return copy;
+	//}
 
-	@Override
-	public void start(Vector2 target) {
+	//@Override
+	//public void start(Vector2 target) {
 		
-		transparency = 1;
-		parent.getGameScene().getBloons().getList().get(0).handleCollision(parent);
-		
-		
-	}
-
-	@Override
-	public void move() {}
-	
-	@Override
-	public void render(Renderer r) {
+	//	transparency = 1;
+	//	parent.getGameScene().getBloons().getList().get(0).handleCollision(parent);
 		
 		
-		
-	}
+	//}
 
 }

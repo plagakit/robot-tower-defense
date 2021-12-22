@@ -6,7 +6,7 @@ import components.CircleBounds;
 import gameobjects.Bloon;
 import gameobjects.BuyInfo;
 import general.Vector2;
-import projectiles.PelletBehaviour;
+import projectiles.Pellet;
 import projectiles.ProjectileData;
 import scenes.GameScene;
 
@@ -14,7 +14,7 @@ public class IceRobot extends Tower {
 
 	public IceRobot(GameScene scene, Vector2 pos) {
 		super(scene, "Ice Robot", pos, 120, 2000,
-				new ProjectileData(new PelletBehaviour(5), 4, 5, "ice.png", 1000),
+				new ProjectileData(new Pellet(5), 4, 5, "ice.png", 1000),
 				new BuyInfo("Ice Robot", "Targets only the strongest bloons and snipes them with icicles.", 600));
 		sprite = scene.getGame().getSpriteManager().getSprite("icerobot.png");
 		
@@ -27,7 +27,7 @@ public class IceRobot extends Tower {
 					public void apply() {
 						tower.range = new CircleBounds(tower, 160);
 						tower.projectileData.addDamage(5);
-						tower.projectileData.setBehaviour(new PelletBehaviour(8));
+						tower.projectileData.setProjectileType(new Pellet(8));
 					}
 				},
 				// Upgrade2

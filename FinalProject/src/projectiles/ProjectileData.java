@@ -2,23 +2,23 @@ package projectiles;
 
 public class ProjectileData {
 
-	private ProjectileBehaviour behaviour;
+	private Projectile projectileType;
 	private int damage;
 	private int pierce;
 	private String projectileSpritePath;
 	private int despawnTime;
 	
-	public ProjectileData(ProjectileBehaviour behaviour, int damage, int pierce, String projectileSpritePath, int despawnTime) {
-		this.behaviour = behaviour;
+	public ProjectileData(Projectile projectileType, int damage, int pierce, String projectileSpritePath, int despawnTime) {
+		this.projectileType = projectileType;
 		this.damage = damage;
 		this.pierce = pierce;
 		this.projectileSpritePath = projectileSpritePath;
 		this.despawnTime = despawnTime;
 	}
 	
-	public ProjectileBehaviour getBehaviour() { return behaviour; }
-	public void setBehaviour(ProjectileBehaviour newBehaviour) { behaviour = newBehaviour; }
-	
+	public Projectile getProjectileType() { return projectileType; }
+	public void setProjectileType(Projectile p) { projectileType = p; }
+
 	public int getDamage() { return damage; }
 	public void addDamage(int amount) { damage += amount; }
 	

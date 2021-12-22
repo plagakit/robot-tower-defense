@@ -27,7 +27,6 @@ public abstract class Tower extends GameObject {
 	protected CircleBounds bounds;
 	protected CircleBounds range;
 	protected ProjectileData projectileData;
-	protected Projectile projectile;
 	
 	protected int reloadTime;
 	protected final Timer reloadTimer;
@@ -103,7 +102,9 @@ public abstract class Tower extends GameObject {
 
 	protected void fire(Vector2 target) {
 		rotation = Vector2.lookAtAngle(pos, target) + 90;
-		Projectile p = projectile.init(scene, pos, target, projectileData);
+		
+		Projectile blueprint = projectileData.getProjectileType();
+		Projectile p = blueprint.init(scene, pos, target, projectileData);
 		scene.getProjectiles().add(p);
 	}
 	
