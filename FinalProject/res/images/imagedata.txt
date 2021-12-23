@@ -31,6 +31,8 @@ icerobot.png
 ice.png
 iceupgrade1.png
 iceupgrade2.png
+lightningicon.png
+lightningrobot.png
 #
 # Bloons:
 pop.png
