@@ -23,6 +23,12 @@ public class Vector2 {
 		float y = end.y - start.y;
 		return (float)Math.abs(Math.sqrt((x*x) + (y*y)));
 	}
+	
+	public static Vector2 normalize(Vector2 v) {
+		float magnitude = (float)Math.abs(Math.sqrt((v.x*v.x) + (v.y*v.y)));
+		// TODO remove code duplication from this entire class
+		return new Vector2(v.x / magnitude, v.y / magnitude);
+	}
 
 	public static Vector2 direction(Vector2 start, Vector2 end) {
 		//https://www.khanacademy.org/computing/computer-programming/programming-natural-simulations/programming-vectors/a/vector-magnitude-normalization
