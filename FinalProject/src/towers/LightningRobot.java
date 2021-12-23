@@ -16,7 +16,7 @@ public class LightningRobot extends Tower {
 				new ProjectileData(new Lightning(Color.MAGENTA, 5), 1, 5, null, 500), 
 				new BuyInfo("Tesla Robot", "Shoots bolts of lightning that zap from bloon to bloon.", 700));
 		
-		sprite = scene.getGame().getSpriteManager().getSprite("robot.png");
+		sprite = scene.getGame().getSpriteManager().getSprite("lightningrobot.png");
 
 	}
 
