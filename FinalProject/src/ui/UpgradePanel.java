@@ -124,7 +124,7 @@ class Subpanel {
 			r.drawString(costStr, pos.x + 145 - costStrWidth, pos.y + 15);
 			
 			r.setFont(new Font("Arial", Font.PLAIN, 10));
-			r.drawWrappedString(info.getDescription(), pos.x + 5, pos.y + 30, 100);
+			r.drawWrappedString(info.getDescription(), pos.x + 5, pos.y + 30, 140);
 		
 			if (button.hovering) {
 				r.setColor(canBuy ? Color.GREEN : Color.RED);
