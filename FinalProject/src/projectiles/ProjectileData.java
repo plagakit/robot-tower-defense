@@ -18,8 +18,8 @@ public class ProjectileData {
 		this.effects = effects;
 	}
 	
-	public Projectile getProjectileType() { return projectileType; }
-	public void setProjectileType(Projectile p) { projectileType = p; }
+	public Projectile getType() { return projectileType; }
+	public void setType(Projectile p) { projectileType = p; }
 
 	public int getDamage() { return damage; }
 	public void addDamage(int amount) { damage += amount; }
@@ -27,8 +27,8 @@ public class ProjectileData {
 	public int getPierce() { return pierce; }
 	public void addPierce(int amount) { pierce += amount; }
 	
-	public String getProjectileSpritePath() { return projectileSpritePath; }
-	public void setProjectileSpritePath(String newSpritePath) { projectileSpritePath = newSpritePath; }
+	public String getSpritePath() { return projectileSpritePath; }
+	public void setSpritePath(String newSpritePath) { projectileSpritePath = newSpritePath; }
 	
 	public int getDespawnTime() { return despawnTime; }
 	public void setDespawnTime(int despawnTime) { this.despawnTime = despawnTime; }

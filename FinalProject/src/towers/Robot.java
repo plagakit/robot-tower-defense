@@ -51,7 +51,7 @@ public class Robot extends Tower {
 					public void apply() {
 						tower.projectileData.addDamage(1);
 						tower.projectileData.addPierce(1);
-						tower.projectileData.setProjectileSpritePath("pelletupgrade1.png");
+						tower.projectileData.setSpritePath("pelletupgrade1.png");
 					}
 				}
 			}

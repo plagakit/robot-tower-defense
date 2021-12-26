@@ -33,7 +33,7 @@ public class ScissorRobot extends Tower {
 					public void apply() {
 						tower.projectileData.addPierce(20);
 						tower.projectileData.addDamage(10);
-						tower.projectileData.setProjectileSpritePath("scissorupgrade1.png");
+						tower.projectileData.setSpritePath("scissorupgrade1.png");
 					}
 				}
 			},
@@ -54,7 +54,7 @@ public class ScissorRobot extends Tower {
 					public void apply() {
 						tower.reloadTime /= 2;
 						tower.projectileData.addPierce(20);
-						tower.projectileData.setProjectileSpritePath("scissorupgrade2.png");
+						tower.projectileData.setSpritePath("scissorupgrade2.png");
 					}
 				}
 			}

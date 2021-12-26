@@ -103,7 +103,7 @@ public abstract class Tower extends GameObject {
 	protected void fire(Vector2 target) {
 		rotation = Vector2.lookAtAngle(pos, target) + 90;
 		
-		Projectile blueprint = projectileData.getProjectileType();
+		Projectile blueprint = projectileData.getType();
 		Projectile p = blueprint.init(scene, pos, target, projectileData);
 		scene.getProjectiles().add(p);
 	}

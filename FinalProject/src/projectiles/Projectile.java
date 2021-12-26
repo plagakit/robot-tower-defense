@@ -31,7 +31,7 @@ public abstract class Projectile extends GameObject {
 	public Projectile(GameScene scene, String name, Vector2 pos, ProjectileData data) {
 		super(scene, name, pos);
 		
-		String spriteName = data.getProjectileSpritePath();
+		String spriteName = data.getSpritePath();
 		if (spriteName != null) {
 			sprite = scene.getGame().getSpriteManager().getSprite(spriteName);
 			bounds = new CircleBounds(this, Math.min(sprite.getWidth(), sprite.getHeight()));

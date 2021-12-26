@@ -27,7 +27,7 @@ public class IceRobot extends Tower {
 					public void apply() {
 						tower.range = new CircleBounds(tower, 160);
 						tower.projectileData.addDamage(5);
-						tower.projectileData.setProjectileType(new Pellet(8));
+						tower.projectileData.setType(new Pellet(8));
 					}
 				},
 				// Upgrade2
@@ -37,7 +37,7 @@ public class IceRobot extends Tower {
 					public void apply() {
 						tower.range = new CircleBounds(tower, 180);
 						tower.projectileData.addDamage(50);
-						tower.projectileData.setProjectileSpritePath("iceupgrade1.png");
+						tower.projectileData.setSpritePath("iceupgrade1.png");
 					}
 				}
 			},
@@ -55,7 +55,7 @@ public class IceRobot extends Tower {
 						new BuyInfo("Permafrost", "MOABs can be slowed too, and non-MOAB bloons are permanently slowed!", 5000)) {
 					@Override
 					public void apply() {
-						tower.projectileData.setProjectileSpritePath("iceupgrade2.png");
+						tower.projectileData.setSpritePath("iceupgrade2.png");
 					}
 				}
 			}

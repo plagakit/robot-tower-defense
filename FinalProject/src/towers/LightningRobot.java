@@ -61,7 +61,7 @@ public class LightningRobot extends Tower {
 						tower.projectileData.addPierce(5);
 						reloadTime /= 1.5f;
 						currentColor = new Color(187, 255, 0);
-						tower.projectileData.setProjectileType(new Lightning(currentColor, tower.projectileData.getPierce()));
+						tower.projectileData.setType(new Lightning(currentColor, tower.projectileData.getPierce()));
 					}
 				}
 			}
@@ -71,7 +71,7 @@ public class LightningRobot extends Tower {
 
 	@Override
 	protected void fire(Vector2 target) {		
-		Projectile blueprint = projectileData.getProjectileType();
+		Projectile blueprint = projectileData.getType();
 		Projectile p = blueprint.init(scene, pos, target, projectileData);
 		scene.getProjectiles().add(p);
 	}

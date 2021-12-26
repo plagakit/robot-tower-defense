@@ -24,7 +24,7 @@ public class FireRobot extends Tower {
 					public void apply() {
 						tower.projectileData.addDamage(1);
 						tower.projectileData.addPierce(1);
-						tower.projectileData.setProjectileSpritePath("fireupgrade1.png");
+						tower.projectileData.setSpritePath("fireupgrade1.png");
 					}
 				},
 				// Upgrade2
@@ -34,7 +34,7 @@ public class FireRobot extends Tower {
 					public void apply() {
 						tower.projectileData.addDamage(1);
 						tower.projectileData.addPierce(3);
-						tower.projectileData.setProjectileSpritePath("fireupgrade2.png");
+						tower.projectileData.setSpritePath("fireupgrade2.png");
 					}
 				}
 			},
