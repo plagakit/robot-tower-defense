@@ -1,6 +1,6 @@
 package projectiles;
 
-public enum ProjectileEffect {
+public enum Effect {
 
 	SLOW,
 	MOAB_SLOW,

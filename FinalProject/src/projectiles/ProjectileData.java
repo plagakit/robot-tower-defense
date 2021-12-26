@@ -7,9 +7,9 @@ public class ProjectileData {
 	private int pierce;
 	private String projectileSpritePath;
 	private int despawnTime;
-	private ProjectileEffect[] effects;
+	private Effect[] effects;
 	
-	public ProjectileData(Projectile projectileType, int damage, int pierce, String projectileSpritePath, int despawnTime, ProjectileEffect... effects) {
+	public ProjectileData(Projectile projectileType, int damage, int pierce, String projectileSpritePath, int despawnTime, Effect... effects) {
 		this.projectileType = projectileType;
 		this.damage = damage;
 		this.pierce = pierce;
@@ -33,6 +33,6 @@ public class ProjectileData {
 	public int getDespawnTime() { return despawnTime; }
 	public void setDespawnTime(int despawnTime) { this.despawnTime = despawnTime; }
 	
-	public ProjectileEffect[] getEffects() { return effects; }
-	public void setEffects(ProjectileEffect... effects) { this.effects = effects; }
+	public Effect[] getEffects() { return effects; }
+	public void setEffects(Effect... effects) { this.effects = effects; }
 }
