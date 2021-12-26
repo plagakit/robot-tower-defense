@@ -9,7 +9,6 @@ import general.Timer;
 import general.Vector2;
 import graphics.Renderer;
 import graphics.Sprite;
-import projectiles.Projectile;
 import scenes.GameScene;
 
 public class Bloon extends GameObject {
@@ -108,11 +107,11 @@ public class Bloon extends GameObject {
 			bounds.debugRender(r);
 	}
 
-	public boolean handleCollision(Projectile p) {
+	public boolean handleCollision(int damage) {
 		if (invulnerable || !active)
 			return false;
 		
-		currentHealth -= p.getDamage();
+		currentHealth -= damage;
 		
 		if (type == BloonType.CERAMIC || type == BloonType.MOAB) {
 			double percent = currentHealth / (double)health;

@@ -13,15 +13,15 @@ import scenes.GameScene;
 
 public abstract class Projectile extends GameObject {
 
-	private PhysicsComponent physicsComponent;
-	private CircleBounds bounds;
+	protected PhysicsComponent physicsComponent;
+	protected CircleBounds bounds;
 	
 	protected final Timer despawnTimer;
-	private List<String> hitList;
+	protected List<String> hitList;
 	
-	private int damage;
-	private int pierce;
-	private int currentPierce;
+	protected int damage;
+	protected int pierce;
+	protected int currentPierce;
 	
 	public Projectile() {
 		super(null, "EmptyProjectile", null);
@@ -79,7 +79,7 @@ public abstract class Projectile extends GameObject {
 	protected void handleCollision(Bloon b) {
 		currentPierce--;
 		
-		b.handleCollision(this);
+		b.handleCollision(damage);
 		
 		if (currentPierce == 0)
 			despawn();

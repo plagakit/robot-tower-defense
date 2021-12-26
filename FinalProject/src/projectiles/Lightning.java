@@ -61,7 +61,7 @@ public class Lightning extends Projectile {
 		
 		// Pop each bloon
 		for (Bloon b : targets)
-			b.handleCollision(this);
+			b.handleCollision(damage);
 		
 		initSquiggleLines(num);
 	}
