@@ -51,6 +51,8 @@ public class Renderer {
 		
 		g.setColor(innerColour);
 		g.fill(outline);
+		
+		g.translate(-x, -y);
 	}
 
 	public void drawImage(BufferedImage image, float x, float y, float width, float height) {
