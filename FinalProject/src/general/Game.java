@@ -14,6 +14,8 @@ public class Game {
 	private boolean running;
 	public static boolean DEBUG = true;
 	
+	private final int DEFAULT_WIDTH = 640;
+	private final int DEFAULT_HEIGHT = 360;
 	private int width;
 	private int height;
 	private int scale;
@@ -34,10 +36,10 @@ public class Game {
 	private Scene currentScene;
 	private GameScene gameScene;
 	
-	public Game(int width, int height, int scale) {
-		this.width = width;
-		this.height = height;
+	public Game(int scale) {
 		this.scale = scale;
+		width = DEFAULT_WIDTH;
+		height = DEFAULT_HEIGHT;
 		
 		init();
 		run();
