@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.font.GlyphVector;
 import java.awt.image.BufferedImage;
 
 // composition over inheritance
@@ -36,6 +38,19 @@ public class Renderer {
 
 	public void drawString(String s, float x, float y) {
 		g.drawString(s, x, y);
+	}
+	
+	public void drawOutlinedString(String s, float x, float y, Color innerColour, int thickness) {
+		//https://stackoverflow.com/questions/10016001/how-to-draw-an-outline-around-text-in-awt
+		GlyphVector gv = g.getFont().createGlyphVector(g.getFontRenderContext(), s);
+		Shape outline = gv.getOutline();
+
+		g.setStroke(new BasicStroke(thickness));
+		g.translate(x, y);
+		g.draw(outline);
+		
+		g.setColor(innerColour);
+		g.fill(outline);
 	}
 
 	public void drawImage(BufferedImage image, float x, float y, float width, float height) {
