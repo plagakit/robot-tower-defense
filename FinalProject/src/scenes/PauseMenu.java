@@ -12,8 +12,8 @@ import graphics.Renderer;
 
 public class PauseMenu {
 
-	GameScene scene;
-	boolean showedDialog;
+	private GameScene scene;
+	private boolean showedDialog;
 	
 	public PauseMenu(GameScene scene) {
 		this.scene = scene;
@@ -26,7 +26,6 @@ public class PauseMenu {
 			return;
 		
 		showedDialog = true;
-		
 		
 		// run the joptionpane on a separate thread
 		SwingUtilities.invokeLater(new Runnable() {
