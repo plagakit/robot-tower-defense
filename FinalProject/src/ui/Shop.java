@@ -27,7 +27,7 @@ public class Shop {
 	private Tower selectedTower;
 	private UpgradePanel upgradePanel;
 	
-	private PlayButton playButton; 
+	private Button playButton; 
 	private Button ffButton;
 	private Button settingsButton;
 
@@ -48,14 +48,41 @@ public class Shop {
 
 		upgradePanel = new UpgradePanel(scene, this);
 		
-		playButton = new PlayButton(scene, new Vector2(540, 340));
+		playButton = new Button(scene, "PlayButton", new Vector2(540, 340)) {
+			private boolean on;
+			private Sprite onSprite, offSprite;
+			Button init() {
+				onSprite = scene.getGame().getSpriteManager().getSprite("playon.png");
+				offSprite = scene.getGame().getSpriteManager().getSprite("playoff.png");
+				sprite = onSprite;
+				bounds = new BoxBounds(this, sprite);
+				on = true;
+				return this;
+			}
+			@Override
+			public void update() { 
+				super.update();
+				if (!on && !scene.inRound()) {
+					on = true;
+					sprite = onSprite;
+				}
+			}
+			@Override
+			protected void onClick() {
+				if (on) {
+					sprite = offSprite;
+					on = false;
+					scene.startNextRound();
+				}
+			}
+			protected void onMouseEnter() {}
+			protected void onMouseExit() {}
+		}.init();
 		
 		ffButton = new Button(scene, "FastForwardButton", new Vector2(500, 340)) {
 			private boolean on;
-			private final int DEFAULT_SPEED = 1;
-			private final int FF_SPEED = 2;
-			private Sprite sprite1;
-			private Sprite sprite2;
+			private final int DEFAULT_SPEED = 1, FF_SPEED = 2;
+			private Sprite sprite1, sprite2;
 			Button init() {
 				sprite1 = scene.getGame().getSpriteManager().getSprite("fastforwardoff.png");
 				sprite2 = scene.getGame().getSpriteManager().getSprite("fastforwardon.png");
