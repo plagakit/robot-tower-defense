@@ -3,6 +3,7 @@ package ui;
 import java.awt.Color;
 import java.awt.Font;
 
+import components.BoxBounds;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import graphics.Renderer;
@@ -27,7 +28,7 @@ public class Shop {
 	
 	private PlayButton playButton; 
 	private FastForwardButton ffButton;
-	private SettingsButton settingsButton;
+	private Button settingsButton;
 
 	private final Color BG_COLOUR = new Color(207, 168, 114);
 		
@@ -48,7 +49,20 @@ public class Shop {
 		
 		playButton = new PlayButton(scene, new Vector2(540, 340));
 		ffButton = new FastForwardButton(scene, new Vector2(500, 340));
-		settingsButton = new SettingsButton(scene, new Vector2(580, 340));
+		
+		settingsButton = new Button(scene, "SettingsButton", new Vector2(580, 340)) {
+			Button init() {
+				sprite = scene.getGame().getSpriteManager().getSprite("settings.png");
+				bounds = new BoxBounds(this, sprite);
+				return this;
+			}
+			@Override
+			protected void onClick() {
+				scene.setPaused(true);
+			}
+			protected void onMouseEnter() {}
+			protected void onMouseExit() {}
+		}.init();
 	}
 	
 	public void update() {
