@@ -1,5 +1,6 @@
 package scenes;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import gameobjects.Bloon;
@@ -7,11 +8,11 @@ import gameobjects.BloonSender;
 import gameobjects.ObjectGroup;
 import general.Difficulty;
 import general.Game;
+import general.Timer;
 import graphics.Renderer;
 import projectiles.Projectile;
 import towers.Tower;
 import tracks.Track;
-import tracks.TrackLoader;
 import ui.Shop;
 
 public class GameScene extends Scene {
@@ -30,7 +31,6 @@ public class GameScene extends Scene {
 	private Shop shop;
 	private float costModifier;
 	
-	private TrackLoader trackLoader;
 	private Track track;
 	
 	private BloonSender bloonSender;
@@ -41,8 +41,17 @@ public class GameScene extends Scene {
 	
 	private boolean inRound;
 	
-	public GameScene(Game game, Difficulty difficulty) {
+	enum State {
+		PLAYING,
+		WON,
+		LOST
+	}
+	private State gameState;
+	private Timer gameEndTimer = new Timer(game, 5000);
+	
+	public GameScene(Game game, Track track, Difficulty difficulty) {
 		super(game);
+		this.track = track;
 		this.difficulty = difficulty;
 		
 		switch (difficulty) {
@@ -63,7 +72,7 @@ public class GameScene extends Scene {
 		case HARD:
 			maxLives = 1;
 			maxRounds = 50;
-			startingMoney = 30000;
+			startingMoney = 300;
 			costModifier = 1.5f;
 			speedModifier = 1.2f;
 			break;
@@ -76,8 +85,9 @@ public class GameScene extends Scene {
 		paused = false;
 		
 		currentLives = maxLives;
-		currentRound = 49;
+		currentRound = 47;
 		inRound = false;
+		gameState = State.PLAYING;
 		
 		towers = new ObjectGroup<Tower>();
 		projectiles = new ObjectGroup<Projectile>();
@@ -85,8 +95,6 @@ public class GameScene extends Scene {
 		
 		shop = new Shop(this, startingMoney, costModifier);
 		
-		trackLoader = new TrackLoader();
-		track = new Track(game, trackLoader.get("testTrack.track"));
 		bloonSender = new BloonSender(this);
 	}
 	
@@ -99,11 +107,21 @@ public class GameScene extends Scene {
 	@Override
 	public void update() {
 		
-		if (paused) {
+		if (gameState != State.PLAYING) {
+			
+			gameEndTimer.update();
+			if (gameEndTimer.isDone())
+				game.setCurrentScene(new MainMenuScene(game));
+			
+			return;
+		} 
+		else if (paused) {
 			pauseMenu.update();
 			return;
 		}
 		
+		if (gameState == State.PLAYING && currentLives <= 0)
+			lose();
 		
 		if (inRound && !bloonSender.isSending() && bloons.getList().size() == 0)
 			finishRound();
@@ -130,9 +148,19 @@ public class GameScene extends Scene {
 		shop.render(r);
 		
 		r.setFont(new Font("Arial", Font.BOLD, 15));
-		r.drawString(String.format("Round: %d/%d  Lives: %d", currentRound, maxRounds, currentLives), 5, 15);
+		String info = String.format("Round: %d/%d  Lives: %d", currentRound, maxRounds, currentLives);
+		r.drawOutlinedString(info, 5, 15, Color.WHITE, 2);
 	
-		if (paused)
+		if (gameState != State.PLAYING) {
+			
+			r.setFont(new Font("Arial", Font.BOLD, 30));
+			String message = gameState == State.WON ? "You win!" : "Game Over!";
+			Color c = gameState == State.WON ? Color.GREEN : Color.RED;
+			r.setColor(Color.BLACK);
+			r.drawOutlinedString(message, 200, 170, c, 3);
+			
+		} 
+		else if (paused)
 			pauseMenu.render(r);
 	}
 	
@@ -146,6 +174,9 @@ public class GameScene extends Scene {
 		inRound = false;
 		shop.addMoney(currentRound + 99);
 		
+		if (gameState == State.PLAYING && currentRound >= maxRounds)
+			win();
+		
 		if (game.getSettings().getAutostart())
 			startNextRound();
 	}
@@ -156,6 +187,19 @@ public class GameScene extends Scene {
 	
 	public void onLeak(int RBE) {
 		currentLives -= RBE;
+	}
+	
+	private void win() {
+		System.out.println("Game won!");
+		gameState = State.WON;
+		gameEndTimer.restart();
+	}
+	
+	private void lose() {
+		System.out.println("Game lost!");
+		gameState = State.LOST;
+		gameEndTimer.restart();
+		
 	}
 	
 	public float getSpeedModifier() { return speedModifier; }
@@ -171,6 +215,8 @@ public class GameScene extends Scene {
 	public ObjectGroup<Projectile> getProjectiles() { return projectiles; }
 	
 	public ObjectGroup<Bloon> getBloons() { return bloons; }
+	
+	public State getGameState() { return gameState; }
 	
 	public boolean inRound() { return inRound; }
 	

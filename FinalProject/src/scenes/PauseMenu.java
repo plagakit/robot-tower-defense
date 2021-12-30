@@ -83,7 +83,7 @@ public class PauseMenu {
 			scene.onStart();
 			break;
 		case 2:
-			System.exit(0);
+			scene.getGame().setCurrentScene(new MainMenuScene(scene.getGame()));
 			break;
 		default:
 			showedDialog = false;

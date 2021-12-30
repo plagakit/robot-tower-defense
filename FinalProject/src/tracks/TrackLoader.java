@@ -16,16 +16,18 @@ public class TrackLoader {
 	}
 	
 	private void loadTracks() {
-		String dataPath = "trackdata.txt";
+		String dataPath = "tracks/trackdata.txt";
 		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
 		
 		while (sc.hasNextLine()) {
-			String path = sc.nextLine();
+			String line = sc.nextLine();
+			String name = line.replace(".track", "");
+			String path = "tracks/" + line;
 			
-			if (path.toCharArray()[0] == '#')
+			if (line.toCharArray()[0] == '#')
 				continue;
 			
-			System.out.println("Loading track " + path);
+			System.out.println("Loading track " + name);
 			
 			try {
 				ObjectInputStream objIn = new ObjectInputStream(ClassLoader.getSystemResourceAsStream(path));
@@ -38,7 +40,7 @@ public class TrackLoader {
 				*/
 				objIn.close();
 				
-				trackList.put(path, readData);
+				trackList.put(name, readData);
 			} catch (IOException | ClassNotFoundException e) { e.printStackTrace(); }
 
 		}
@@ -55,5 +57,9 @@ public class TrackLoader {
 		if (data == null)
 			System.out.println("Warning: track data " + name + " is null.");
 		return data;
+	}
+	
+	public String[] getTrackNames() {
+		return trackList.keySet().toArray(new String[trackList.size()]);
 	}
 }

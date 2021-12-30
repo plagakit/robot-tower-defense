@@ -3,3 +3,4 @@
 # Similar to imagedata.txt, hashtags are comments
 #
 testTrack.track
+testTrack2.track

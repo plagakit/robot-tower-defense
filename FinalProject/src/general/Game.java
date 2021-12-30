@@ -7,6 +7,7 @@ import graphics.Display;
 import graphics.Renderer;
 import graphics.SpriteManager;
 import scenes.GameScene;
+import scenes.MainMenuScene;
 import scenes.Scene;
 
 public class Game {
@@ -34,7 +35,6 @@ public class Game {
 	private Settings settings;
 	
 	private Scene currentScene;
-	private GameScene gameScene;
 	
 	public Game(int scale) {
 		this.scale = scale;
@@ -59,8 +59,7 @@ public class Game {
 		display.getCanvas().addMouseListener(inputManager);
 		display.getCanvas().addMouseMotionListener(inputManager);
 		
-		gameScene = new GameScene(this, Difficulty.HARD);
-		setCurrentScene(gameScene);
+		setCurrentScene(new MainMenuScene(this));
 	}
 	
 	private void run() {
@@ -137,6 +136,7 @@ public class Game {
 			currentScene.onStop();
 		currentScene = scene;
 		currentScene.onStart();
+		System.out.println("Switched scene to " + scene);
 	}
 	
 	public int getWidth() { return width; }
