@@ -13,7 +13,7 @@ public abstract class Upgrade {
 		this.buyInfo = buyInfo;
 	}
 
-	public abstract void apply();
+	public abstract void changeTower();
 	
 	public BuyInfo getBuyInfo() { return buyInfo; }
 	

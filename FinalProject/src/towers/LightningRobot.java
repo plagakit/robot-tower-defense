@@ -27,7 +27,7 @@ public class LightningRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Stronger Charge", "Strengthens the electromagnetism of the lightning, allowing it to hit more bloons!", 700)) {
 					@Override
-					public void apply() {
+					public void changeTower() {
 						tower.projectileData.addPierce(5);
 						tower.projectileData.addDamage(2);
 					}
@@ -36,7 +36,7 @@ public class LightningRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Plasma Beams", "Chaotic plasma beams melt right through bloons!", 4000)) {
 					@Override
-					public void apply() {
+					public void changeTower() {
 						currentColor = new Color(59, 0, 122);
 						tower.projectileData.addDamage(10);
 						tower.projectileData.addPierce(10);
@@ -48,7 +48,7 @@ public class LightningRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("AC/DC Current", "Increases both range and fire speed!", 600)) {
 					@Override
-					public void apply() {
+					public void changeTower() {
 						tower.range = new CircleBounds(tower, 80);
 						reloadTime /= 1.5f;
 					}
@@ -57,7 +57,7 @@ public class LightningRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Quantum Elec.", "New theoretical \"quantum electricity\" phases through the subatomic bloon particles!", 8000)) {
 					@Override
-					public void apply() {
+					public void changeTower() {
 						tower.projectileData.addPierce(5);
 						reloadTime /= 1.5f;
 						currentColor = new Color(187, 255, 0);
