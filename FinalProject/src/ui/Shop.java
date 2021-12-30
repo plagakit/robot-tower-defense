@@ -7,6 +7,7 @@ import components.BoxBounds;
 import gameobjects.BuyInfo;
 import general.Vector2;
 import graphics.Renderer;
+import graphics.Sprite;
 import scenes.GameScene;
 import towers.FireRobot;
 import towers.IceRobot;
@@ -27,7 +28,7 @@ public class Shop {
 	private UpgradePanel upgradePanel;
 	
 	private PlayButton playButton; 
-	private FastForwardButton ffButton;
+	private Button ffButton;
 	private Button settingsButton;
 
 	private final Color BG_COLOUR = new Color(207, 168, 114);
@@ -48,7 +49,29 @@ public class Shop {
 		upgradePanel = new UpgradePanel(scene, this);
 		
 		playButton = new PlayButton(scene, new Vector2(540, 340));
-		ffButton = new FastForwardButton(scene, new Vector2(500, 340));
+		
+		ffButton = new Button(scene, "FastForwardButton", new Vector2(500, 340)) {
+			private boolean on;
+			private final int DEFAULT_SPEED = 1;
+			private final int FF_SPEED = 2;
+			private Sprite sprite1;
+			private Sprite sprite2;
+			Button init() {
+				sprite1 = scene.getGame().getSpriteManager().getSprite("fastforwardoff.png");
+				sprite2 = scene.getGame().getSpriteManager().getSprite("fastforwardon.png");
+				sprite = sprite1;
+				bounds = new BoxBounds(this, sprite);
+				return this;
+			}
+			@Override
+			protected void onClick() {
+				sprite = on ? sprite1 : sprite2;
+				scene.getGame().setTimeScale(on ? DEFAULT_SPEED : FF_SPEED);
+				on = !on;
+			}
+			protected void onMouseEnter() {}
+			protected void onMouseExit() {}
+		}.init();
 		
 		settingsButton = new Button(scene, "SettingsButton", new Vector2(580, 340)) {
 			Button init() {
