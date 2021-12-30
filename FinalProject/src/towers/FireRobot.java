@@ -21,7 +21,7 @@ public class FireRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Hotter Flames", "Hotter flames roast bloons for more damage and pierce!", 400)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.projectileData.addDamage(1);
 						tower.projectileData.addPierce(1);
 						tower.projectileData.setSpritePath("fireupgrade1.png");
@@ -31,7 +31,7 @@ public class FireRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("New Fuel", "Experimental fuel sources make the fire burn even hotter!", 1500)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.projectileData.addDamage(1);
 						tower.projectileData.addPierce(3);
 						tower.projectileData.setSpritePath("fireupgrade2.png");
@@ -43,7 +43,7 @@ public class FireRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Servomotors", "Makes the robot spit flame faster!", 600)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.reloadTime /= 1.5;
 					}
 				},
@@ -51,7 +51,7 @@ public class FireRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Propellants", "Makes the robot shoot flames even faster!", 2000)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.reloadTime /= 1.5;
 					}
 				}

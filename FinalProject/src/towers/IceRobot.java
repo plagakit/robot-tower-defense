@@ -24,7 +24,7 @@ public class IceRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Crystal Vision", "Better vision allows the robot to shoot farther, harder, and deadlier.", 700)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.range = new CircleBounds(tower, 160);
 						tower.projectileData.addDamage(5);
 						tower.projectileData.setType(new Pellet(8));
@@ -34,7 +34,7 @@ public class IceRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Glacial Cannon", "Allows the robot to shoot powerful glacial icicles", 5000)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.range = new CircleBounds(tower, 180);
 						tower.projectileData.addDamage(50);
 						tower.projectileData.setSpritePath("iceupgrade1.png");
@@ -46,7 +46,7 @@ public class IceRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Bloon Freeze", "Bloons hit by ice are momentarily slowed by ice before thawing out!", 750)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						
 					}
 				},
@@ -54,7 +54,7 @@ public class IceRobot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Permafrost", "MOABs can be slowed too, and non-MOAB bloons are permanently slowed!", 5000)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.projectileData.setSpritePath("iceupgrade2.png");
 					}
 				}

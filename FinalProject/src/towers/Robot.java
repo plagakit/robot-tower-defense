@@ -22,7 +22,7 @@ public class Robot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Faster Motors", "Makes the robot shoot faster!", 300)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.reloadTime /= 1.5;
 					}
 				},
@@ -30,7 +30,7 @@ public class Robot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Rapid Fire", "Makes the robot shoot even faster!", 500)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.reloadTime /= 2;
 					}
 				}
@@ -40,7 +40,7 @@ public class Robot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Precise Sensors", "Increases the range of the robot!", 300)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.range = new CircleBounds(tower, 120);
 					}
 				},
@@ -48,7 +48,7 @@ public class Robot extends Tower {
 				new Upgrade(this, 
 						new BuyInfo("Nuclear Energy", "New power source makes the robot shoot a destructive energy beam.", 500)) {
 					@Override
-					public void changeTower() {
+					public void apply() {
 						tower.projectileData.addDamage(1);
 						tower.projectileData.addPierce(1);
 						tower.projectileData.setSpritePath("pelletupgrade1.png");
