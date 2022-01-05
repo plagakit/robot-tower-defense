@@ -119,6 +119,9 @@ public class Bloon extends GameObject {
 				sprite = damagedSprite1;
 			else if (percent < 0.33)
 				sprite = damagedSprite2;
+			
+			String damageSound = type == BloonType.CERAMIC ? "ceramicdamage.wav" : "moabdamage.wav";
+			scene.getGame().getAudioManager().playSound(damageSound);
 		}
 		
 		if (currentHealth <= 0)
@@ -139,9 +142,19 @@ public class Bloon extends GameObject {
 		popAnimTimer = new Timer(scene.getGame(), 100);
 		invulnerable = true;
 		vel = Vector2.zero();
-		// playSfx();
+		playRandomPopSound();
 		spawnChildren();
 		scene.onBloonPopped();
+	}
+	
+	private void playRandomPopSound() {
+		int randomNumFromOneToFour = (int)(Math.random() * 4 + 1);
+		String sound = "pop" + randomNumFromOneToFour + ".wav";
+		
+		if (type == BloonType.MOAB)
+			sound = "moabpop.wav";
+		
+		scene.getGame().getAudioManager().playSound(sound);
 	}
 
 	public void despawn() {

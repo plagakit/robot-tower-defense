@@ -32,6 +32,7 @@ public class Game {
 	
 	private InputManager inputManager;
 	private SpriteManager spriteManager;
+	private AudioManager audioManager;
 	private Settings settings;
 	
 	private Scene currentScene;
@@ -50,7 +51,8 @@ public class Game {
 		
 		inputManager = new InputManager(this);
 		spriteManager = new SpriteManager();
-		settings = new Settings();
+		audioManager = new AudioManager();
+		settings = new Settings(this);
 		
 		display = new Display(width, height, scale, title);
 		display.getJFrame().addKeyListener(inputManager);
@@ -154,6 +156,8 @@ public class Game {
 	public InputManager getInputManager() { return inputManager; }
 	
 	public SpriteManager getSpriteManager() { return spriteManager; }
+	
+	public AudioManager getAudioManager() { return audioManager; }
 	
 	public Settings getSettings() { return settings; }
 

@@ -9,6 +9,7 @@ import general.Vector2;
 import graphics.Renderer;
 import graphics.Sprite;
 import scenes.GameScene;
+import scenes.Scene;
 import towers.FireRobot;
 import towers.IceRobot;
 import towers.LightningRobot;
@@ -17,7 +18,7 @@ import towers.ScissorRobot;
 import towers.Tower;
 
 public class Shop {
-	
+
 	private long money;
 	private float costModifier;
 	
@@ -67,6 +68,7 @@ public class Shop {
 			@Override
 			protected void onClick() {
 				selectedTower.sell();
+				scene.getGame().getAudioManager().playSound("sell.wav");
 			}
 			protected void onMouseEnter() {}
 			protected void onMouseExit() {}
@@ -99,8 +101,10 @@ public class Shop {
 				if (on) {
 					sprite = offSprite;
 					on = false;
+					scene.getGame().getAudioManager().playSound("select.wav");
 					scene.startNextRound();
 				}
+				
 			}
 			protected void onMouseEnter() {}
 			protected void onMouseExit() {}
@@ -122,6 +126,7 @@ public class Shop {
 				sprite = on ? sprite1 : sprite2;
 				scene.getGame().setTimeScale(on ? DEFAULT_SPEED : FF_SPEED);
 				on = !on;
+				scene.getGame().getAudioManager().playSound("select.wav");
 			}
 			protected void onMouseEnter() {}
 			protected void onMouseExit() {}
@@ -135,6 +140,7 @@ public class Shop {
 			}
 			@Override
 			protected void onClick() {
+				scene.getGame().getAudioManager().playSound("select.wav");
 				scene.setPaused(true);
 			}
 			protected void onMouseEnter() {}
@@ -213,7 +219,7 @@ public class Shop {
 	}
 	
 	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }
-	
+
 	public long getMoney() { return money; }
 	
 	public float getCostModifier() { return costModifier; }

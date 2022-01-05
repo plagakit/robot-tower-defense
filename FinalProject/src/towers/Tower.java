@@ -61,13 +61,10 @@ public abstract class Tower extends GameObject {
 			validPos = validatePosition();
 			
 			if (!im.isLmbHeld()) {
-				if (validPos && scene.getShop().getMoney() >= info.getBaseCost()) {
-					placed = true;
-					int cost = (int)(info.getBaseCost() * scene.getShop().getCostModifier());
-					scene.getShop().subtractMoney(cost);
-					sellPrice = (int)(cost * SELL_RATE);
-				}
-				else scene.getTowers().remove(this);
+				if (validPos && scene.getShop().getMoney() >= info.getBaseCost())
+					place();
+				else
+					scene.getTowers().remove(this);
 				
 				selected = false;
 				im.setDragging(false);
@@ -83,6 +80,7 @@ public abstract class Tower extends GameObject {
 					} else {
 						selected = true;
 						scene.getShop().selectTower(this);
+						scene.getGame().getAudioManager().playSound("select.wav");
 					}
 				}
 			}
@@ -91,6 +89,14 @@ public abstract class Tower extends GameObject {
 			if (reloadTimer.isDone())
 				target();
 		}
+	}
+	
+	private void place() {
+		placed = true;
+		int cost = (int)(info.getBaseCost() * scene.getShop().getCostModifier());
+		scene.getShop().subtractMoney(cost);
+		sellPrice = (int)(cost * SELL_RATE);
+		scene.getGame().getAudioManager().playSound("placetower.wav");
 	}
 	
 	protected void target() {

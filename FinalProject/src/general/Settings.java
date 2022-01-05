@@ -2,10 +2,12 @@ package general;
 
 public class Settings {
 
+	private Game game;
 	private boolean autostart;
 	private int volume;
 	
-	public Settings() {
+	public Settings(Game game) {
+		this.game = game;
 		this.autostart = false;
 		this.volume = 50;
 	}
@@ -21,6 +23,8 @@ public class Settings {
 			this.volume = 100;
 		else
 			this.volume = volume;
+		
+		game.getAudioManager().setVolume(volume);
 	}
 	
 }
