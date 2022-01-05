@@ -13,7 +13,14 @@ public abstract class Upgrade {
 		this.buyInfo = buyInfo;
 	}
 
-	public abstract void apply();
+	public void upgrade() {
+		// TODO make method in shop called "adjust for difficulty" or somethingh
+		int cost = (int)(buyInfo.getBaseCost() * tower.getGameScene().getShop().getCostModifier());
+		tower.addSellPrice(cost);
+		apply();
+	}
+	
+	protected abstract void apply();
 	
 	public BuyInfo getBuyInfo() { return buyInfo; }
 	

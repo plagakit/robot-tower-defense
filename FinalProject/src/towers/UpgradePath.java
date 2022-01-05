@@ -49,7 +49,7 @@ public class UpgradePath {
 		State state = getNextState(branchIndex);
 		
 		if (state == State.OPEN) {
-			upgrades[branchIndex][progressions[branchIndex]].apply();
+			upgrades[branchIndex][progressions[branchIndex]].upgrade();
 			progressions[branchIndex]++;
 			return true;
 		}
