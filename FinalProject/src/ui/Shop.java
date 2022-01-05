@@ -25,6 +25,7 @@ public class Shop {
 	private BuyInfo tbInfo;
 	
 	private Tower selectedTower;
+	private Button sellButton;
 	private UpgradePanel upgradePanel;
 	
 	private Button playButton; 
@@ -37,6 +38,7 @@ public class Shop {
 		this.money = startingMoney;
 		this.costModifier = costModifier;
 		
+		// Tower buttons
 		towerButtons = new TowerButton[] {
 			new TowerButton(scene, this, new Vector2(515, 24), new Robot(scene, null), "roboticon.png"),
 			new TowerButton(scene, this, new Vector2(560, 24), new ScissorRobot(scene, null), "scissoricon.png"),
@@ -46,9 +48,35 @@ public class Shop {
 			//new TowerButton(scene, this, new Vector2(605, 68), new Robot(scene, null), "roboticon.png")
 		};
 
+		// Sell button & upgrade panel
+		sellButton = new Button(scene, "SellButton", new Vector2(597, 323)) {
+			Button init() {
+				sprite = scene.getGame().getSpriteManager().getSprite("sell.png");
+				bounds = new BoxBounds(this, 0, 0, 38, 34);
+				return this;
+			}
+			@Override
+			public void render(Renderer r) {
+				r.setColor(new Color(255, 103, 92));
+				r.fillRect(pos.x, pos.y, 38, 34);
+				r.setColor(Color.WHITE);
+				r.setFont(new Font("Arial", Font.BOLD, 13));
+				r.drawString("SELL", pos.x + 2, pos.y + 13);
+				r.setFont(new Font("Arial", Font.BOLD, 10));
+				r.drawString("$"+selectedTower.getSellPrice(), pos.x + 1, pos.y + 28);
+			}
+			@Override
+			protected void onClick() {
+				selectedTower.sell();
+			}
+			protected void onMouseEnter() {}
+			protected void onMouseExit() {}
+		}.init();
+		
 		upgradePanel = new UpgradePanel(scene, this);
 		
-		playButton = new Button(scene, "PlayButton", new Vector2(540, 340)) {
+		// Lower buttons
+		playButton = new Button(scene, "PlayButton", new Vector2(538, 340)) {
 			private boolean on;
 			private Sprite onSprite, offSprite;
 			Button init() {
@@ -100,7 +128,7 @@ public class Shop {
 			protected void onMouseExit() {}
 		}.init();
 		
-		settingsButton = new Button(scene, "SettingsButton", new Vector2(580, 340)) {
+		settingsButton = new Button(scene, "SettingsButton", new Vector2(576, 340)) {
 			Button init() {
 				sprite = scene.getGame().getSpriteManager().getSprite("settings.png");
 				bounds = new BoxBounds(this, sprite);
@@ -118,7 +146,12 @@ public class Shop {
 	public void update() {
 		for (Button b : towerButtons)
 			b.update();
-		upgradePanel.update();
+		
+		if (selectedTower != null) {
+			sellButton.update();
+			upgradePanel.update();
+		}
+		
 		playButton.update();
 		ffButton.update();
 		settingsButton.update();
@@ -138,7 +171,12 @@ public class Shop {
 		// Buttons
 		for (Button b : towerButtons)
 			b.render(r);
-		upgradePanel.render(r);
+		
+		if (selectedTower != null) {
+			sellButton.render(r);
+			upgradePanel.render(r);
+		}
+		
 		playButton.render(r);
 		ffButton.render(r);
 		settingsButton.render(r);
@@ -161,7 +199,6 @@ public class Shop {
 		r.setFont(new Font("Arial", Font.BOLD, 15));
 		if (selectedTower != null)
 			r.drawString(selectedTower.getName(), 485, 155);
-		
 		
 		String moneyStr = "$" + money;
 		int moneyStrWidth = r.getFontMetrics().stringWidth(moneyStr);

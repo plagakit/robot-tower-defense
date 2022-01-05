@@ -18,6 +18,8 @@ import scenes.GameScene;
 public abstract class Tower extends GameObject {
 	
 	protected final BuyInfo info;
+	protected int sellPrice;
+	public final float SELL_RATE = 0.70f;
 	
 	private boolean placed;
 	private boolean validPos;
@@ -61,8 +63,9 @@ public abstract class Tower extends GameObject {
 			if (!im.isLmbHeld()) {
 				if (validPos && scene.getShop().getMoney() >= info.getBaseCost()) {
 					placed = true;
-					scene.getShop().subtractMoney(
-							(int)(info.getBaseCost() * scene.getShop().getCostModifier()));
+					int cost = (int)(info.getBaseCost() * scene.getShop().getCostModifier());
+					scene.getShop().subtractMoney(cost);
+					sellPrice = (int)(cost * SELL_RATE);
 				}
 				else scene.getTowers().remove(this);
 				
@@ -141,5 +144,14 @@ public abstract class Tower extends GameObject {
 	public UpgradePath getUpgradePath() { return upgradePath; }
 	
 	public void setSelected(boolean selected) { this.selected = selected; }
+
+	public int getSellPrice() { return sellPrice; }
+	public void addSellPrice(int amount) { sellPrice += amount; } 
+	
+	public void sell() {
+		scene.getShop().addMoney(sellPrice);
+		scene.getShop().selectTower(null);
+		scene.getTowers().remove(this);
+	}
 
 }

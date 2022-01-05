@@ -15,7 +15,6 @@ import towers.UpgradePath.State;
 
 public class UpgradePanel {
 	
-
 	private UpgradePath path;
 	private Subpanel panel1, panel2;
 	
