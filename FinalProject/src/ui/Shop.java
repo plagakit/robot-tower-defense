@@ -51,7 +51,6 @@ public class Shop {
 		// Sell button & upgrade panel
 		sellButton = new Button(scene, "SellButton", new Vector2(597, 323)) {
 			Button init() {
-				sprite = scene.getGame().getSpriteManager().getSprite("sell.png");
 				bounds = new BoxBounds(this, 0, 0, 38, 34);
 				return this;
 			}
