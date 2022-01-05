@@ -1,0 +1,15 @@
+# Made by Thomas P.
+# File where all audio names are listed
+# Hashtags are comments (ignored)
+#
+ceramicdamage.wav
+moabdamage.wav
+moabpop.wav
+placetower.wav
+pop1.wav
+pop2.wav
+pop3.wav
+pop4.wav
+select.wav
+sell.wav
+upgrade.wav
