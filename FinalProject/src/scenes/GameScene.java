@@ -85,7 +85,7 @@ public class GameScene extends Scene {
 		paused = false;
 		
 		currentLives = maxLives;
-		currentRound = 47;
+		currentRound = 0;
 		inRound = false;
 		gameState = State.PLAYING;
 		

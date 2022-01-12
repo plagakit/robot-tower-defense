@@ -40,6 +40,7 @@ public class LightningRobot extends Tower {
 						currentColor = new Color(59, 0, 122);
 						tower.projectileData.addDamage(10);
 						tower.projectileData.addPierce(10);
+						tower.projectileData.setType(new Lightning(currentColor, tower.projectileData.getPierce()));
 					}
 				}
 			},
