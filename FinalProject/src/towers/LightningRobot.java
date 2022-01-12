@@ -70,7 +70,7 @@ public class LightningRobot extends Tower {
 		
 	}
 
-	@Override
+	@Override // overridden to not rotate lightning tower when firing
 	protected void fire(Vector2 target) {		
 		Projectile blueprint = projectileData.getType();
 		Projectile p = blueprint.init(scene, pos, target, projectileData);
