@@ -1,0 +1,40 @@
+# Made by Thomas P
+#
+# The data for each tip is listed here.
+# Tips are listed at the start of a round.
+# They will instruct the player on how to play the game along with various tips on how to win
+# Each line represents that round's tip, starting at round 0:
+#
+# 0-10
+Welcome to Robot Tower Defense, made by Thomas P. To start, buy a Robot tower from the shop on your right and place it anywhere near the track. Then, hit the play button.
+Towers will attack any bloon within their range. To see their range, click on them! When you click on them, you can also purchase upgrades on the right.
+Bloons are similar to nesting dolls. Red bloons are the weakest type of bloons, and pop easily. Blue bloons, when popped, release a red bloon!
+Money is rewarded when you pop a bloon, and also at the end of a round. You can choose to spend money on new towers, or to save it up for an expensive upgrade!
+When popped, green bloons release one blue bloon. It would take 3 pops in total to completely pop a green bloon!
+If you don't like clicking the play button every time a round finishes, you can turn on auto start in the settings.
+Bloons will always move towards the end of the track. When they reach the end, they take one life for every red bloon in them. Don't let your lives drop to 0!
+The Scissor Robot tower always throws scissors that curve either to the left or the right. It can pop many bloons at once, but it needs proper positioning.
+It might get really loud in later rounds when many bloons are popped at once. You can always go to settings to adjust the volume.
+The next level of bloons is here: yellow bloons! They are speedy, and release 2 green bloons when popped.
+#
+# 11-20
+#
+There are three difficulties: easy, medium, and hard. As the difficulty increases, prices and bloon speed increase, but lives and money rewarded at the end of the round decrease.
+
+A new type of bloon: pink bloons! They are very fast, and release 2 yellows.
+
+The Flamethrower Robot has have a short range, but is powerful at popping groups of bloons. Consider placing one in tight areas where it can cover a lot of track.
+
+The fast-forward button can be used to fast-forward the game. Useful for pro gamers who already know what they're doing.
+
+
+New bloons incoming: black bloons and white bloons! They are small but deadly, and release 2 pinks when popped.
+#
+# 21-30
+#
+
+
+
+
+
+A new type of bloon approaches... the zebra bloon! A mixture of black and white, they release a black bloon and a white bloon upon pop.
