@@ -17,6 +17,7 @@ public class Game {
 	
 	private final int DEFAULT_WIDTH = 640;
 	private final int DEFAULT_HEIGHT = 360;
+	private final int DEFAULT_SCALE = 2;
 	private int width;
 	private int height;
 	private int scale;
@@ -37,10 +38,10 @@ public class Game {
 	
 	private Scene currentScene;
 	
-	public Game(int scale) {
-		this.scale = scale;
+	public Game() {
 		width = DEFAULT_WIDTH;
 		height = DEFAULT_HEIGHT;
+		scale = DEFAULT_SCALE;
 		
 		init();
 		run();
