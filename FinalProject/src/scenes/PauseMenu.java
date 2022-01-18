@@ -3,6 +3,7 @@ package scenes;
 import java.awt.Color;
 
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
@@ -44,7 +45,18 @@ public class PauseMenu {
 				volumeSlider.setPaintTicks(true);
 				volumeSlider.setValue(settings.getVolume());
 				
-				Object[] menu = { autostartCheckbox, "\nVolume:", volumeSlider };	
+				JComboBox<String> displaySizes = new JComboBox<String>(new String[] {
+					"1 - 640 x 360",
+					"2 - 1280 x 720",
+					"3 - 1920 x 1080"
+				});
+				displaySizes.setSelectedIndex(settings.getDisplaySize() - 1); //starts at 0, have to minus 1
+				
+				Object[] menu = { 
+						autostartCheckbox, 
+						"\nVolume:", volumeSlider,
+						"\nDisplay sizes:", displaySizes };
+				
 				Object[] options = {"Back", "Restart", "Exit to Main Menu"};
 				
 				int choice = JOptionPane.showOptionDialog(null,
@@ -58,6 +70,7 @@ public class PauseMenu {
 				
 				settings.setAutostart(autostartCheckbox.isSelected());
 				settings.setVolume(volumeSlider.getValue());
+				settings.setDisplaySize(displaySizes.getSelectedIndex() + 1); // index starts at 0, have to add 1
 				
 				setChoice(choice);
 			}	

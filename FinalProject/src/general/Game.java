@@ -13,7 +13,7 @@ import scenes.Scene;
 public class Game {
 
 	private boolean running;
-	public static boolean DEBUG = true;
+	public static boolean DEBUG = false;
 	
 	private final int DEFAULT_WIDTH = 640;
 	private final int DEFAULT_HEIGHT = 360;
@@ -145,7 +145,11 @@ public class Game {
 	
 	public int getHeight() { return height; }
 	
-	public int getScale() { return scale; } 
+	public int getScale() { return scale; }
+	public void setScale(int newScale) {
+		scale = newScale;
+		display.changeScale(newScale);
+	}
 	
 	public long getTime() { return currentNanoTime; }
 	

@@ -5,11 +5,13 @@ public class Settings {
 	private Game game;
 	private boolean autostart;
 	private int volume;
+	private int displaySize;
 	
 	public Settings(Game game) {
 		this.game = game;
 		this.autostart = false;
 		this.volume = 50;
+		this.displaySize = game.getScale();
 	}
 	
 	public boolean getAutostart() { return autostart; }
@@ -25,6 +27,12 @@ public class Settings {
 			this.volume = volume;
 		
 		game.getAudioManager().setVolume(volume);
+	}
+	
+	public int getDisplaySize() { return displaySize; }
+	public void setDisplaySize(int displaySize) {
+		this.displaySize = displaySize;
+		game.setScale(displaySize);
 	}
 	
 }
