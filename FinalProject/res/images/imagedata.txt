@@ -8,6 +8,7 @@ playoff.png
 fastforwardoff.png
 fastforwardon.png
 settings.png
+tipbutton.png
 #
 # Towers & Projectiles:
 smile.png
