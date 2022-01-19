@@ -6,7 +6,7 @@
 # Each line represents that round's tip, starting at round 0:
 #
 # 0-10
-Welcome to Robot Tower Defense, made by Thomas P. To start, buy a Robot tower from the shop on your right and place it anywhere near the track. Then, hit the play button.
+Welcome to Robot Tower Defense, made by Thomas P. To start, buy a Robot tower from the shop on your right and place it anywhere near the track. Then, hit the play button. (BTW, this is a tip. click to make it disappear, or turn them off in settings!)
 Towers will attack any bloon within their range. To see their range, click on them! When you click on them, you can also purchase upgrades on the right.
 Bloons are similar to nesting dolls. Red bloons are the weakest type of bloons, and pop easily. Blue bloons, when popped, release a red bloon!
 Money is rewarded when you pop a bloon, and also at the end of a round. You can choose to spend money on new towers, or to save it up for an expensive upgrade!
