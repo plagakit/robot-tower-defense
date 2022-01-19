@@ -14,6 +14,7 @@ import projectiles.Projectile;
 import towers.Tower;
 import tracks.Track;
 import ui.Shop;
+import ui.Tip;
 
 public class GameScene extends Scene {
 
@@ -28,6 +29,7 @@ public class GameScene extends Scene {
 	private int startingMoney;
 	private float speedModifier;
 
+	private Tip tip;
 	private Shop shop;
 	private float costModifier;
 	
@@ -93,6 +95,8 @@ public class GameScene extends Scene {
 		projectiles = new ObjectGroup<Projectile>();
 		bloons = new ObjectGroup<Bloon>();
 		
+		tip = new Tip(this);
+		tip.showTip(currentRound);
 		shop = new Shop(this, startingMoney, costModifier);
 		
 		bloonSender = new BloonSender(this);
@@ -126,6 +130,7 @@ public class GameScene extends Scene {
 		if (inRound && !bloonSender.isSending() && bloons.getList().size() == 0)
 			finishRound();
 		
+		tip.update();
 		shop.update();
 		
 		bloonSender.update();
@@ -145,6 +150,7 @@ public class GameScene extends Scene {
 		projectiles.render(r);
 		towers.render(r);
 		
+		tip.render(r);
 		shop.render(r);
 		
 		r.setFont(new Font("Arial", Font.BOLD, 15));
@@ -168,6 +174,7 @@ public class GameScene extends Scene {
 		inRound = true;
 		currentRound++;
 		bloonSender.sendRound(currentRound);
+		tip.startFade();
 	}
 	
 	public void finishRound() {
@@ -176,6 +183,8 @@ public class GameScene extends Scene {
 		
 		if (gameState == State.PLAYING && currentRound >= maxRounds)
 			win();
+		else
+			tip.showTip(currentRound);
 		
 		if (game.getSettings().getAutostart())
 			startNextRound();
