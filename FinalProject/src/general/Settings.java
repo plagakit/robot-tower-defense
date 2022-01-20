@@ -4,6 +4,7 @@ public class Settings {
 
 	private Game game;
 	private boolean autostart;
+	private boolean showTips;
 	private int volume;
 	private int displaySize;
 	
@@ -12,10 +13,14 @@ public class Settings {
 		this.autostart = false;
 		this.volume = 50;
 		this.displaySize = game.getScale();
+		this.showTips = true;
 	}
 	
 	public boolean getAutostart() { return autostart; }
 	public void setAutostart(boolean autostart) { this.autostart = autostart; }
+	
+	public boolean getShowTips() { return showTips; }
+	public void setShowTips(boolean showTips) { this.showTips = showTips; }
 	
 	public int getVolume() { return volume; }
 	public void setVolume(int volume) {

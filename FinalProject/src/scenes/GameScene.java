@@ -130,7 +130,8 @@ public class GameScene extends Scene {
 		if (inRound && !bloonSender.isSending() && bloons.getList().size() == 0)
 			finishRound();
 		
-		tip.update();
+		if (game.getSettings().getShowTips())
+			tip.update();
 		shop.update();
 		
 		bloonSender.update();
@@ -150,7 +151,8 @@ public class GameScene extends Scene {
 		projectiles.render(r);
 		towers.render(r);
 		
-		tip.render(r);
+		if (game.getSettings().getShowTips())
+			tip.render(r);
 		shop.render(r);
 		
 		r.setFont(new Font("Arial", Font.BOLD, 15));

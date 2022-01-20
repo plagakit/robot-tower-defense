@@ -38,6 +38,9 @@ public class PauseMenu {
 				JCheckBox autostartCheckbox = new JCheckBox(" Auto-start rounds");
 				autostartCheckbox.setSelected(settings.getAutostart());
 				
+				JCheckBox showTipsCheckbox = new JCheckBox(" Display tips at the start of rounds");
+				showTipsCheckbox.setSelected(settings.getShowTips());
+				
 				JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
 				volumeSlider.setMajorTickSpacing(50);
 				volumeSlider.setMinorTickSpacing(5);
@@ -53,7 +56,8 @@ public class PauseMenu {
 				displaySizes.setSelectedIndex(settings.getDisplaySize() - 1); //starts at 0, have to minus 1
 				
 				Object[] menu = { 
-						autostartCheckbox, 
+						autostartCheckbox,
+						showTipsCheckbox,
 						"\nVolume:", volumeSlider,
 						"\nDisplay sizes:", displaySizes };
 				
@@ -69,6 +73,7 @@ public class PauseMenu {
 					    options[0]);
 				
 				settings.setAutostart(autostartCheckbox.isSelected());
+				settings.setShowTips(showTipsCheckbox.isSelected());
 				settings.setVolume(volumeSlider.getValue());
 				settings.setDisplaySize(displaySizes.getSelectedIndex() + 1); // index starts at 0, have to add 1
 				

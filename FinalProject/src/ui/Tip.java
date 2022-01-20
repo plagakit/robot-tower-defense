@@ -35,9 +35,12 @@ public class Tip extends Button {
 		int counter = 0;
 		while (sc.hasNextLine()) {
 			String line = sc.nextLine();
-			if (line.length() == 0 || line.charAt(0) == '#')
-				continue;
-			else {
+			if (line.length() == 0) {
+				tipData[counter] = "";
+				counter++;
+			} else if (line.charAt(0) == '#') {
+				continue; 
+			} else {
 				tipData[counter] = line;
 				counter++;
 			}
