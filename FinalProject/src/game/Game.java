@@ -9,11 +9,13 @@ import graphics.SpriteManager;
 import scenes.MainMenuScene;
 import scenes.Scene;
 
+/** The main Game class where the game is initialized and played. */
 public class Game {
 
 	private boolean running;
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = false; // if on, allows various debug options
 	
+	// window options
 	private final int DEFAULT_WIDTH = 640;
 	private final int DEFAULT_HEIGHT = 360;
 	private final int DEFAULT_SCALE = 2;
@@ -22,6 +24,7 @@ public class Game {
 	private int scale;
 	private final String title = "Tower Defense";
 	
+	// time options
 	private final int FPS = 144;
 	private long currentNanoTime = 0;
 	private float timeScale = 1;
@@ -46,7 +49,8 @@ public class Game {
 		run();
 	}
 	
-	
+	/** Initializes the game, its components, and its files. To be used only in the 
+	 * constructor. */
 	private void init() {
 		
 		inputManager = new InputManager(this);
@@ -64,6 +68,9 @@ public class Game {
 		setCurrentScene(new MainMenuScene(this));
 	}
 	
+	/** Runs the game in a main loop that is timed to update and render every frame of 
+	 * time. If debug is on, the FPS will be printed to the console. Only to be used in 
+	 * the constructor after init() has been called. */
 	private void run() {
 		running = true;
 		
@@ -75,13 +82,14 @@ public class Game {
 		long timer = 0;
 		int updates = 0;
 		
+		// main game loop
 		while (running) {
 			currentTime = System.nanoTime();
 			long diff = currentTime - lastTime;
 			
-			deltaTime += diff / timePerUpdate;
+			deltaTime += diff / timePerUpdate; // how long the loop took. perfect loop equals a delta of 1, but laggy loop might be something like 1.6 (0.6 extra delta time taken to complete loop)
 			timer += diff;
-			currentNanoTime += (long)(diff * timeScale);
+			currentNanoTime += (long)(diff * timeScale); // timeScale adjusts the speed of the loop, allows for fastforward or pausing
 			
 			lastTime = currentTime;
 			
@@ -95,6 +103,7 @@ public class Game {
 				render();
 			}
 			
+			// if the timer exceeds 1 second in nanoseconds, print FPS
 			if (timer >= 1000000000) {
 				if (DEBUG)
 					System.out.format("FPS: %d\n", updates);			
@@ -104,7 +113,7 @@ public class Game {
 		}
 	}
 	
-	
+	/** Updates the Game's components and, if it exists, the current scene. */
 	private void update() {
 		inputManager.update();
 		
@@ -115,9 +124,12 @@ public class Game {
 			currentScene.update();
 	}
 	
+	/** Creates a Renderer and, if it exists, renders the current scene. */
 	private void render() {
 		bs = display.getCanvas().getBufferStrategy();
 		if (bs == null) {
+			/* a buffer strategy prevents flickering, because it makes it so that the 
+			 * renderer draws images onto its buffers before displaying to the screen */
 			display.getCanvas().createBufferStrategy(2);
 			return;
 		}
@@ -133,12 +145,16 @@ public class Game {
 		r.dispose();
 	}
 
+	/** Sets the current scene, calls its onStart method, and calls the previous scene's onStop method. 
+	 * @param scene The new scene to be set to.
+	 */
 	public void setCurrentScene(Scene scene) {
 		if (currentScene != null)
 			currentScene.onStop();
 		currentScene = scene;
 		currentScene.onStart();
-		System.out.println("Switched scene to " + scene);
+		if (DEBUG)
+			System.out.println("Switched scene to " + scene);
 	}
 	
 	public int getWidth() { return width; }
