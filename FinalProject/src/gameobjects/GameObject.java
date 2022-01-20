@@ -1,7 +1,7 @@
 package gameobjects;
 
-import components.RenderComponent;
-import general.Vector2;
+import game.Vector2;
+import gameobjects.components.RenderComponent;
 import graphics.Renderer;
 import graphics.Sprite;
 import scenes.GameScene;

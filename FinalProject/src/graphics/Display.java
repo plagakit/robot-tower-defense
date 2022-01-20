@@ -9,7 +9,6 @@ public class Display {
 	private int height;
 	private int scale;
 	private String title;
-	private boolean fullscreen = false;
 	
 	private JFrame jframe;
 	private Canvas canvas;

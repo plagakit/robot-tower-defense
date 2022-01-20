@@ -1,7 +1,6 @@
 package gameobjects;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import graphics.Renderer;
 

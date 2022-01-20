@@ -3,25 +3,24 @@ package scenes;
 import java.awt.Color;
 import java.awt.Font;
 
-import gameobjects.Bloon;
-import gameobjects.BloonSender;
+import game.Game;
+import game.Timer;
+import gameobjects.Difficulty;
 import gameobjects.ObjectGroup;
-import general.Difficulty;
-import general.Game;
-import general.Timer;
+import gameobjects.bloons.Bloon;
+import gameobjects.bloons.BloonSender;
+import gameobjects.projectiles.Projectile;
+import gameobjects.towers.Tower;
+import gameobjects.tracks.Track;
+import gameobjects.ui.Shop;
+import gameobjects.ui.Tip;
 import graphics.Renderer;
-import projectiles.Projectile;
-import towers.Tower;
-import tracks.Track;
-import ui.Shop;
-import ui.Tip;
 
 public class GameScene extends Scene {
 
 	private boolean paused;
 	private PauseMenu pauseMenu;
 	
-	private Difficulty difficulty;
 	private int maxRounds;
 	private int currentRound;
 	private int maxLives;
@@ -54,7 +53,6 @@ public class GameScene extends Scene {
 	public GameScene(Game game, Track track, Difficulty difficulty) {
 		super(game);
 		this.track = track;
-		this.difficulty = difficulty;
 		
 		switch (difficulty) {
 		case EASY:

@@ -9,11 +9,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import general.Difficulty;
-import general.Game;
+import game.Game;
+import gameobjects.Difficulty;
+import gameobjects.tracks.Track;
+import gameobjects.tracks.TrackLoader;
 import graphics.Renderer;
-import tracks.Track;
-import tracks.TrackLoader;
 
 public class MainMenuScene extends Scene {
 

@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
-import general.Settings;
+import game.Settings;
 import graphics.Renderer;
 
 public class PauseMenu {

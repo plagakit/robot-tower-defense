@@ -1,6 +1,6 @@
 package scenes;
 
-import general.Game;
+import game.Game;
 import graphics.Renderer;
 
 public abstract class Scene {
