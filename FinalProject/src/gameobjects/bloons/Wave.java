@@ -1,6 +1,4 @@
-package gameobjects;
-
-import gameobjects.bloons.BloonType;
+package gameobjects.bloons;
 
 public class Wave {
 

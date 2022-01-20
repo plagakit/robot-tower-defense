@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import game.Timer;
 import game.Vector2;
-import gameobjects.Wave;
 import scenes.GameScene;
 
 public class BloonSender {
