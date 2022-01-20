@@ -33,8 +33,37 @@ New bloons incoming: black bloons and white bloons! They are small but deadly, a
 # 21-30
 #
 
+Bloons only pop when projectiles actually hit them. Even when a robot's aim is perfect, a slow moving projectile might miss a fast bloon!
 
-
-
+Upgrades have two branches and two stages. When you upgrade one branch to its max upgrade, the other branch's max upgrade becomes locked. Choose your max upgrade wisely!
 
 A new type of bloon approaches... the zebra bloon! A mixture of black and white, they release a black bloon and a white bloon upon pop.
+
+Playing this game is fun, but remember to take a break and go outside every once in a while, then come back once you want to play again!
+
+In the original BTD series, the towers that pop bloons were monkeys! Robots are much cooler though...
+#
+# 31-40
+#
+Rainbow bloons! They're colourful, fast, and release two zebra bloons when popped. Make sure to pop them before they speed through the track.
+
+
+Speed round!
+
+Ceramic bloons are two rainbow bloons encased in a hard and brittle ceramic. They take a few hits to fully pop.
+
+
+
+Incoming... the Mother Of All Bloons (also known as MOAB). This giant bloon is slow but tanky, and releases 4 ceramic bloons when burst. It has a lot of health, so it will take a while to pop it.
+#
+# 41-50
+#
+The final ten rounds are much harder than the previous ones. Can you beat them?
+
+
+
+
+
+If you have played the game this project is based on, BTD6, then you might know about its infamous "round 68", where tight packs of ceramic bloons easily blow through your defenses. Why bring this up right before the next round? Who knows...
+The end is near...
+The final round... good luck!
