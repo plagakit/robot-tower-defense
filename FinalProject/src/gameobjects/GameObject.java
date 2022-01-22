@@ -6,6 +6,8 @@ import graphics.Renderer;
 import graphics.Sprite;
 import scenes.GameScene;
 
+/** An abstract class defining a game object - an object that exists
+ * and interacts with other game objects inside of a game scene. */
 public abstract class GameObject {
 
 	protected GameScene scene;
@@ -20,6 +22,7 @@ public abstract class GameObject {
 	private RenderComponent renderComponent;
 	protected Sprite sprite;
 	
+	/** Creates a gameobject with the specified parameters. */
 	public GameObject(GameScene scene, String name, Vector2 pos) {
 		this.scene = scene;
 		this.name = name;
@@ -32,8 +35,11 @@ public abstract class GameObject {
 		active = true;
 	}
 	
+	/** An abstract method that should be called every frame in
+	 * order to update the game object. */
 	public abstract void update();
 	
+	/** Renders the current sprite with a render component. */
 	public void render(Renderer r) {
 		renderComponent.render(r, sprite);
 	}

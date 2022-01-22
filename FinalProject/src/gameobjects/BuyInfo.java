@@ -1,5 +1,8 @@
 package gameobjects;
 
+/** A container class for defining various parts of an object
+ * that is purchaseable, namely the title, description, and base
+ * cost (before modifiers). */
 public class BuyInfo {
 
 	private String title;
