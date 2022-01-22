@@ -217,11 +217,13 @@ public class Shop {
 		upgradePanel.selectTower(t);
 	}
 	
+	public int modifyPrice(float price) {
+		return (int)(price * costModifier);
+	}
+	
 	public void setCurrentTowerButtonInfo(BuyInfo info) { tbInfo = info; }
 
 	public long getMoney() { return money; }
-	
-	public float getCostModifier() { return costModifier; }
 	
 	public void addMoney(long add) { money += add; }
 	

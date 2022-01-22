@@ -93,7 +93,7 @@ public abstract class Tower extends GameObject {
 	
 	private void place() {
 		placed = true;
-		int cost = (int)(info.getBaseCost() * scene.getShop().getCostModifier());
+		int cost = scene.getShop().modifyPrice(info.getBaseCost());
 		scene.getShop().subtractMoney(cost);
 		sellPrice = (int)(cost * SELL_RATE);
 		scene.getGame().getAudioManager().playSound("placetower.wav");

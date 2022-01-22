@@ -33,7 +33,7 @@ public class TowerButton extends Button {
 	}
 	
 	private void spawnTower() {
-		if (shop.getMoney() < (tower.getInfo().getBaseCost() * shop.getCostModifier()))
+		if (shop.getMoney() < shop.modifyPrice(tower.getInfo().getBaseCost()))
 			return;
 		
 		try {

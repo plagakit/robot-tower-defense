@@ -88,7 +88,7 @@ class Subpanel {
 		UpgradePath.State state = path.getNextState(branchNum);
 		if (state == UpgradePath.State.OPEN && canBuy) {
 			boolean success = path.advanceToNextUpgrade(branchNum);
-			shop.subtractMoney((int)(info.getBaseCost() * shop.getCostModifier()));
+			shop.subtractMoney(shop.modifyPrice(info.getBaseCost()));
 			
 			if (Game.DEBUG)
 				System.out.format("Upgrade in branch %d successful: %b\n", branchNum, success);
@@ -96,7 +96,7 @@ class Subpanel {
 	}
 	
 	public void update() {
-		canBuy = shop.getMoney() >= info.getBaseCost() * shop.getCostModifier();
+		canBuy = shop.getMoney() >= shop.modifyPrice(info.getBaseCost());
 		
 		UpgradePath.State state = path.getNextState(branchNum);
 		if (state == UpgradePath.State.OPEN)
@@ -117,7 +117,7 @@ class Subpanel {
 			r.setColor(Color.BLACK);
 			r.drawString(info.getTitle(), pos.x + 5, pos.y + 15);
 			
-			String costStr = "$" + (int)(info.getBaseCost() * shop.getCostModifier());
+			String costStr = "$" + shop.modifyPrice(info.getBaseCost());
 			int costStrWidth = r.getFontMetrics().stringWidth(costStr);
 			r.drawString(costStr, pos.x + 145 - costStrWidth, pos.y + 15);
 			

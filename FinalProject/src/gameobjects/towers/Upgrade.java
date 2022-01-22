@@ -15,7 +15,7 @@ public abstract class Upgrade {
 
 	public void upgrade() {
 		// TODO make method in shop called "adjust for difficulty" or somethingh
-		int cost = (int)(buyInfo.getBaseCost() * tower.getGameScene().getShop().getCostModifier() * tower.SELL_RATE);
+		int cost = tower.getGameScene().getShop().modifyPrice(buyInfo.getBaseCost() * tower.SELL_RATE);
 		tower.addSellPrice(cost);
 		tower.getGameScene().getGame().getAudioManager().playSound("upgrade.wav");
 		apply();
