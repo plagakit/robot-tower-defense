@@ -44,18 +44,20 @@ public class IceRobot extends Tower {
 			{ // Branch 2
 				// Upgrade 1
 				new Upgrade(this, 
-						new BuyInfo("Bloon Freeze", "Bloons hit by ice are momentarily slowed by ice before thawing out!", 750)) {
+						new BuyInfo("Sharper Icicles", "Icicles pierce more bloons with each shot!", 750)) {
 					@Override
 					protected void apply() {
-						
+						tower.projectileData.addPierce(5);
 					}
 				},
 				// Upgrade 2
 				new Upgrade(this, 
-						new BuyInfo("Permafrost", "MOABs can be slowed too, and non-MOAB bloons are permanently slowed!", 5000)) {
+						new BuyInfo("Permafrost", "Converts the ice robot's powerful but slow icicles into fast spraying ice fragments!", 5000)) {
 					@Override
 					protected void apply() {
+						tower.projectileData.addDamage(-3);
 						tower.projectileData.setSpritePath("iceupgrade2.png");
+						tower.reloadTime /= 5;
 					}
 				}
 			}
@@ -64,8 +66,6 @@ public class IceRobot extends Tower {
 	
 	@Override
 	protected void target() {
-		
-		// TODO dont do this
 		
 		ArrayList<Bloon> bloons = scene.getBloons().getList();
 		bloons.sort((b1, b2) -> Float.compare(b2.getRank(), b1.getRank()));
