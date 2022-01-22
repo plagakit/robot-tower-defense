@@ -12,7 +12,7 @@ public class InputManager implements KeyListener, MouseListener, MouseMotionList
 	/* i made this class at the start of the project, intending to use 
 	 * key presses. i spent a long time creating the keys, justPressed, and 
 	 * cantPress system but ironically i found later that i only needed the mouse
-	 * for input. */
+	 * for input :'( */
 	
 	private Game game;
 	

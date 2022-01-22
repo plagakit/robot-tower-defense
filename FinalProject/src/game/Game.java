@@ -162,6 +162,8 @@ public class Game {
 	public int getHeight() { return height; }
 	
 	public int getScale() { return scale; }
+	
+	/** Sets the scale but also sets the display's scale automatically. */
 	public void setScale(int newScale) {
 		scale = newScale;
 		display.changeScale(newScale);

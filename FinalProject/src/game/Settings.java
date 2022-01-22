@@ -1,5 +1,6 @@
 package game;
 
+/** A container class for holding the settings of the game. */
 public class Settings {
 
 	private Game game;
@@ -8,6 +9,7 @@ public class Settings {
 	private int volume;
 	private int displaySize;
 	
+	/** Initializes all settings to their default values. */
 	public Settings(Game game) {
 		this.game = game;
 		this.autostart = false;
@@ -23,6 +25,7 @@ public class Settings {
 	public void setShowTips(boolean showTips) { this.showTips = showTips; }
 	
 	public int getVolume() { return volume; }
+	/** Sets the volume to a value between 0-100 and updates the AudioManager. */
 	public void setVolume(int volume) {
 		if (volume < 0)
 			this.volume = 0;
