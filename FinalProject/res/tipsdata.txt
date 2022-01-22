@@ -16,6 +16,7 @@ Bloons will always move towards the end of the track. When they reach the end, t
 The Scissor Robot tower always throws scissors that curve either to the left or the right. It can pop many bloons at once, but it needs proper positioning.
 It might get really loud in later rounds when many bloons are popped at once. You can always go to settings to adjust the volume.
 The next level of bloons is here: yellow bloons! They are speedy, and release 2 green bloons when popped.
+
 #
 # 11-20
 #
