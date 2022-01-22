@@ -8,6 +8,10 @@ import gameobjects.bloons.Bloon;
 import graphics.Renderer;
 import scenes.GameScene;
 
+/** A projectile that the lightning robot uses. Does not have
+ * a physical projectile that moves, and is instead a chain
+ * of lighting that goes back and forth between bloons and fades
+ * away. */
 public class Lightning extends Projectile {
 
 	private Color darkColour;
@@ -113,6 +117,7 @@ public class Lightning extends Projectile {
 	public void render(Renderer r) {
 		r.setTransparency(transparency);
 		
+		// draw dark outside lines
 		r.setColor(darkColour);
 		r.setStroke(6);
 		Vector2 prev = pos;
@@ -122,6 +127,7 @@ public class Lightning extends Projectile {
 			prev = next;
 		}
 		
+		// draw white inside lines
 		r.setStroke(3);
 		r.setColor(Color.WHITE);
 		prev = pos;

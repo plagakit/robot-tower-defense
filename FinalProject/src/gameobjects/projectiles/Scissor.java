@@ -3,6 +3,8 @@ package gameobjects.projectiles;
 import game.Vector2;
 import scenes.GameScene;
 
+/** The projectile that the scissor robot uses. Moves in a
+ * circular arc towards its target. */
 public class Scissor extends Projectile {
 
 	private final float SPEED = 0.05f;

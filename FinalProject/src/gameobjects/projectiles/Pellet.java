@@ -3,6 +3,8 @@ package gameobjects.projectiles;
 import game.Vector2;
 import scenes.GameScene;
 
+/** The basic projectile type. Moves in a straight line at
+ * a constant velocity. */
 public class Pellet extends Projectile {
 
 	private float speed;

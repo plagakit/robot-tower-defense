@@ -1,5 +1,6 @@
 package gameobjects.projectiles;
 
+/** A container class used to store the data of a projectile. */
 public class ProjectileData {
 
 	private Projectile projectileType;

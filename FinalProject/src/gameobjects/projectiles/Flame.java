@@ -3,6 +3,9 @@ package gameobjects.projectiles;
 import game.Vector2;
 import scenes.GameScene;
 
+/** The projectile that the fire robot uses. Moves in a straight
+ * line but deccelerates until it stops it moving, which is when
+ * it despawns. */
 public class Flame extends Projectile {
 
 	private Vector2 direction;

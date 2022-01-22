@@ -11,6 +11,8 @@ import gameobjects.components.CircleBounds;
 import gameobjects.components.PhysicsComponent;
 import scenes.GameScene;
 
+/** An abstract class that defines projectiles, which are moving
+ * objects that pop bloons. */
 public abstract class Projectile extends GameObject {
 
 	protected PhysicsComponent physicsComponent;
@@ -23,11 +25,13 @@ public abstract class Projectile extends GameObject {
 	protected int pierce;
 	protected int currentPierce;
 	
+	/** The constructor for an empty projectile, only for cloning. */
 	public Projectile() {
 		super(null, "EmptyProjectile", null);
 		despawnTimer = null;
 	}
 	
+	/** The constructor for a projectile. */
 	public Projectile(GameScene scene, String name, Vector2 pos, ProjectileData data) {
 		super(scene, name, pos);
 		
@@ -50,6 +54,7 @@ public abstract class Projectile extends GameObject {
 		physicsComponent = new PhysicsComponent(this);
 	}
 	
+	/** An abstract copy constructor for a projectile to initialize it. */
 	public abstract Projectile init(GameScene scene, Vector2 pos, Vector2 target, ProjectileData data);
 
 	@Override
@@ -76,6 +81,8 @@ public abstract class Projectile extends GameObject {
 		physicsComponent.update();
 	}
 	
+	/** Handles collision with a bloon by calling its method and
+	 * decrementing the projectile's pierce. */
 	protected void handleCollision(Bloon b) {
 		currentPierce--;
 		
@@ -85,6 +92,7 @@ public abstract class Projectile extends GameObject {
 			despawn();
 	}
 
+	/** Removes the projectile from the game scene. */
 	protected void despawn() {
 		active = false;
 		scene.getProjectiles().remove(this);
