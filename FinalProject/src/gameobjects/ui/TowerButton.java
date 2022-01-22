@@ -8,6 +8,10 @@ import gameobjects.components.BoxBounds;
 import gameobjects.towers.Tower;
 import scenes.GameScene;
 
+/** A button used in the shop to purchase and place towers, and
+ * also to display their info and price. Uses java reflect to create
+ * tower objects from their class.
+ * @see https://docs.oracle.com/javase/tutorial/reflect/ */
 public class TowerButton extends Button {
 	
 	private Shop shop;
@@ -15,6 +19,7 @@ public class TowerButton extends Button {
 	private Tower tower;
 	private Constructor<? extends Tower> towerConstructor;
 	
+	/** Creates a tower button with the specified tower as its product. */
 	public TowerButton(GameScene scene, Shop shop, Vector2 pos, Tower tower, String iconName) {
 		super(scene, "TowerButton", pos);
 		this.shop = shop;
@@ -32,6 +37,8 @@ public class TowerButton extends Button {
 	
 	}
 	
+	/** Creates a new tower using java reflect and the tower's constructor,
+	 * and subtracts money from the shop. */
 	private void spawnTower() {
 		if (shop.getMoney() < shop.modifyPrice(tower.getInfo().getBaseCost()))
 			return;

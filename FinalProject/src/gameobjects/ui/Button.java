@@ -8,6 +8,8 @@ import gameobjects.components.BoxBounds;
 import graphics.Renderer;
 import scenes.GameScene;
 
+/** An abstract class for defining a clickable box-shaped button
+ * game object. */
 public abstract class Button extends GameObject {
 
 	protected boolean hovering;
@@ -47,10 +49,16 @@ public abstract class Button extends GameObject {
 			bounds.debugRender(r);
 	}
 	
+	/** A method that is called when the button is clicked. */
 	protected abstract void onClick();
 	
+	
+	/** A method that is called when the mouse enters the bounds
+	 * of the button. */
 	protected abstract void onMouseEnter();
 	
+	/** A method that is called when the mouse exits the bounds
+	 * of the button. */
 	protected abstract void onMouseExit();
 	
 	public BoxBounds getBounds() { return bounds; }

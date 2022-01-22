@@ -16,13 +16,18 @@ import graphics.Renderer;
 import graphics.Sprite;
 import scenes.GameScene;
 
+/** The object for defining the shop within the game. Holds all
+ * of the purchaseable towers, upgrades, and miscellaneous buttons.
+ * Most buttons in the shop are anonymous classes to reduce complexity.
+ * @see https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html
+ * @see Button */
 public class Shop {
 
 	private long money;
 	private float costModifier;
 	
 	private TowerButton[] towerButtons;
-	private BuyInfo tbInfo;
+	private BuyInfo tbInfo; // current tb that is hovered over
 	
 	private Tower selectedTower;
 	private Button sellButton;
@@ -33,7 +38,7 @@ public class Shop {
 	private Button settingsButton;
 
 	private final Color BG_COLOUR = new Color(207, 168, 114);
-		
+	
 	public Shop(GameScene scene, long startingMoney, float costModifier) {
 		this.money = startingMoney;
 		this.costModifier = costModifier;
@@ -147,6 +152,7 @@ public class Shop {
 		}.init();
 	}
 	
+	/** Updates all of the buttons in the shop. */
 	public void update() {
 		for (Button b : towerButtons)
 			b.update();
@@ -161,6 +167,8 @@ public class Shop {
 		settingsButton.update();
 	}
 	
+	/** Renders the shop at the right of the screen and all of
+	 * the buttons within it. */
 	public void render(Renderer r) {
 		// TODO remove magic numbers
 		// Bg & outline
@@ -210,6 +218,8 @@ public class Shop {
 		
 	}
 	
+	/** Sets the currently selected tower so that the shop can
+	 * display its available upgrades. */
 	public void selectTower(Tower t) { 
 		if (selectedTower != null)
 			selectedTower.setSelected(false);
@@ -217,6 +227,9 @@ public class Shop {
 		upgradePanel.selectTower(t);
 	}
 	
+	/** Adjusts the passed in price for any cost modifiers that
+	 * are present within the game, for example the difficulty
+	 * cost modifier. */
 	public int modifyPrice(float price) {
 		return (int)(price * costModifier);
 	}

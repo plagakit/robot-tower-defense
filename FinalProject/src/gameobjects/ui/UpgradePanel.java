@@ -12,6 +12,8 @@ import gameobjects.towers.UpgradePath;
 import graphics.Renderer;
 import scenes.GameScene;
 
+/** A panel to provide purchaseable upgrades for the selected
+ * tower. */
 public class UpgradePanel {
 	
 	private UpgradePath path;
@@ -48,7 +50,7 @@ public class UpgradePanel {
 
 }
 
-
+/** A panel for each branch in the tower's upgrade path. */
 class Subpanel {
 	
 	private Shop shop;
@@ -69,6 +71,7 @@ class Subpanel {
 		this.branchNum = branchNum;
 		this.pos = pos;
 		
+		// anonymous upgrade button
 		button = new Button(scene, "UpgradeButton" + branchNum, pos) {
 			Button init() {
 				bounds = new BoxBounds(this, 0, 0, WIDTH, HEIGHT);

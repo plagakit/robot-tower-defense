@@ -8,6 +8,9 @@ import gameobjects.components.BoxBounds;
 import graphics.Renderer;
 import scenes.GameScene;
 
+/** A button that appears at the bottom of the game scene to
+ * provide tips and instructions on how to play the game. Reads
+ * all the tips from the tip data text file. */
 public class Tip extends Button {
 
 	private final float FADE = 0.015f;
@@ -26,6 +29,8 @@ public class Tip extends Button {
 		loadTipText();
 	}
 	
+	/** Reads the tipsdata.txt file and loads every tip from that
+	 * file into an array of strings. */
 	private void loadTipText() {
 		
 		final String dataPath = "tipsdata.txt";
@@ -49,6 +54,8 @@ public class Tip extends Button {
 		sc.close();
 	}
 	
+	/** Shows the tip of a specific round to the screen by
+	 * turning the transparency opaque. */
 	public void showTip(int round) {
 		currentRound = round;
 		transparency = 1;
@@ -84,6 +91,7 @@ public class Tip extends Button {
 		r.setTransparency(transparency);
 		super.render(r);
 		
+		// writes tip text inside the box
 		r.setColor(Color.BLACK);
 		r.drawWrappedString(tipData[currentRound], 
 				pos.x - bounds.getWidth()/2 + 15, 
@@ -94,13 +102,9 @@ public class Tip extends Button {
 	}
 
 	@Override
-	protected void onMouseEnter() {
-		
-	}
+	protected void onMouseEnter() {}
 	
 	@Override
-	protected void onMouseExit() {
-		
-	}
+	protected void onMouseExit() {}
 
 }
