@@ -8,15 +8,16 @@ import gameobjects.GameObject;
 import graphics.Renderer;
 import graphics.Sprite;
 
-// https://gameprogrammingpatterns.com/component.html
-
-
+/** A component that renders the game object, its sprite, and
+ * other rendering-related things to the Renderer. */
 public class RenderComponent extends Component {
 	
 	public RenderComponent(GameObject parent) {
 		super(parent);
 	}
 
+	/** Renders the sprite that is passed in to the game object's
+	 * position. */
 	public void render(Renderer r, Sprite sprite) {
 		if (!parent.getActive() || sprite == null)
 			return;
