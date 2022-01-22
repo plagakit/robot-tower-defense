@@ -3,6 +3,7 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
+/** A class for creating a JFrame to display the game. */
 public class Display {
 
 	private int width;
@@ -22,6 +23,8 @@ public class Display {
 		createDisplay();
 	}
 	
+	/** Creates the JFrame and the Canvas in which the graphics
+	 * are drawn to. */
 	private void createDisplay() {
 		Dimension size = new Dimension(width * scale, height * scale);
 		
@@ -29,7 +32,6 @@ public class Display {
 		jframe.setSize(size);
 		jframe.setResizable(false);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//jframe.setIconImage(getIcon());
 		
 		jframe.setVisible(true);
 		
@@ -44,6 +46,9 @@ public class Display {
 		jframe.setLocationRelativeTo(null);
 	}
 	
+	/** Changes the display size of the JFrame by the specified
+	 * scale. The normal resolution is 640x360 and the default
+	 * scale is 2, so it will result in a JFrame of size 1280x720. */
 	public void changeScale(int newScale) {
 		scale = newScale;
 		Dimension size = new Dimension(width * scale, height * scale);

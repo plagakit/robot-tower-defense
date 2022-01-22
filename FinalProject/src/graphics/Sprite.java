@@ -2,6 +2,8 @@ package graphics;
 
 import java.awt.image.BufferedImage;
 
+/** A class that represents a sprite, an image to be drawn to
+ * the screen. */
 public class Sprite {
 
 	private String name;

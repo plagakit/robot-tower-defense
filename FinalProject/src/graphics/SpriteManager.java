@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
+/** The class that handles the loading and managing of all game
+ * sprites. */
 public class SpriteManager {
 
 	private HashMap<String, Sprite> spriteList;
@@ -16,6 +18,9 @@ public class SpriteManager {
 		loadSprites();
 	}
 	
+	/** Loads all images from the image data text file, converts
+	 * them into sprite objects, and adds them to an internal
+	 * list of sprites. */
 	private void loadSprites() {
 		final String folder = "images/";
 		final String dataPath = folder + "imagedata.txt";
@@ -39,6 +44,9 @@ public class SpriteManager {
 		sc.close();
 	}
 	
+	/** Gets a sprite with the specified name from the internal
+	 * list of sprites. If the sprite is not found, a warning will
+	 * be written to the console and null is returned. */
 	public Sprite getSprite(String name) {
 		Sprite s = spriteList.get(name);
 		if (s == null)
