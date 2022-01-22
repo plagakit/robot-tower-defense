@@ -48,6 +48,7 @@ public class Scissor extends Projectile {
 		
 		rotation += ROT_SPEED * timeScale;
 		
+		// move in circle
 		counter += SPEED * timeScale;
 		float sin = (float)Math.sin(counter);
 		float cos = (float)Math.cos(counter);
