@@ -15,6 +15,8 @@ import gameobjects.projectiles.ProjectileData;
 import graphics.Renderer;
 import scenes.GameScene;
 
+/** The abstract class for a tower - a buyable and placeable
+ * object that defends against bloons by shooting projectiles. */
 public abstract class Tower extends GameObject {
 	
 	protected final BuyInfo info;
@@ -35,6 +37,7 @@ public abstract class Tower extends GameObject {
 	
 	protected UpgradePath upgradePath;
 	
+	/** The constructor for creating a tower. */
 	public Tower(GameScene scene, String name, Vector2 pos, int range, int reloadTime, ProjectileData projectileData, BuyInfo info) {
 		super(scene, name, pos);
 		this.info = info;
@@ -49,18 +52,19 @@ public abstract class Tower extends GameObject {
 		placed = false;
 		selected = true;
 	}
-	
+
 	@Override
 	public void update() {
 		InputManager im = scene.getGame().getInputManager();
 		
+		// if being held after being bought from the shop
 		if (!placed) {
 			pos.x = im.getMousePos().x;
 			pos.y = im.getMousePos().y;
 			
 			validPos = validatePosition();
 			
-			if (!im.isLmbHeld()) {
+			if (!im.isLmbHeld()) { // stopped dragging
 				if (validPos && scene.getShop().getMoney() >= info.getBaseCost())
 					place();
 				else
@@ -72,6 +76,7 @@ public abstract class Tower extends GameObject {
 		} 
 		else {
 			
+			// if tower is clicked
 			if (im.isLmbJustPressed()) {
 				if (bounds.isInside(im.getMousePos())) {
 					if (selected) {
@@ -85,12 +90,15 @@ public abstract class Tower extends GameObject {
 				}
 			}
 			
+			// fire
 			reloadTimer.update();
 			if (reloadTimer.isDone())
 				target();
 		}
 	}
 	
+	/** Places the tower onto the track and subtracts the amount
+	 * of money it costs. */
 	private void place() {
 		placed = true;
 		int cost = scene.getShop().modifyPrice(info.getBaseCost());
@@ -99,6 +107,8 @@ public abstract class Tower extends GameObject {
 		scene.getGame().getAudioManager().playSound("placetower.wav");
 	}
 	
+	/** Targets the nearest bloon and attempts to call the fire 
+	 * method with its position. */
 	protected void target() {
 		for (Bloon b : scene.getBloons().getList()) {
 			if (!b.isInvulnerable() && range.collides(b.getBounds())) {
@@ -109,6 +119,8 @@ public abstract class Tower extends GameObject {
 		}
 	}
 
+	/** Fires a projectile at the passed in target and turns
+	 * towards it. */
 	protected void fire(Vector2 target) {
 		rotation = Vector2.lookAtAngle(pos, target) + 90;
 		
@@ -117,6 +129,8 @@ public abstract class Tower extends GameObject {
 		scene.getProjectiles().add(p);
 	}
 	
+	/** Determines if the tower is in a valid position on the
+	 * track and does not overlap over any other towers. */
 	private boolean validatePosition() {
 		for (Tower t : scene.getTowers().getList())	
 			if (t == this) 
@@ -137,7 +151,7 @@ public abstract class Tower extends GameObject {
 		if (Game.DEBUG)
 			bounds.debugRender(r);
 
-		if (selected)
+		if (selected) // render the tower's range
 			range.render(r, validPos ? Color.GRAY : Color.RED);
 	}
 	
@@ -154,6 +168,8 @@ public abstract class Tower extends GameObject {
 	public int getSellPrice() { return sellPrice; }
 	public void addSellPrice(int amount) { sellPrice += amount; } 
 	
+	/** Removes the tower from the scene and adds money to the
+	 * shop. */
 	public void sell() {
 		scene.getShop().addMoney(sellPrice);
 		scene.getShop().selectTower(null);

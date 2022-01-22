@@ -10,6 +10,7 @@ import gameobjects.projectiles.Pellet;
 import gameobjects.projectiles.ProjectileData;
 import scenes.GameScene;
 
+/** The long-range sniper robot that shoots ice at bloons. */
 public class IceRobot extends Tower {
 
 	public IceRobot(GameScene scene, Vector2 pos) {
@@ -64,6 +65,8 @@ public class IceRobot extends Tower {
 		});
 	}
 	
+	/** Targets the strongest bloons in the scene instead of
+	 * the first ones. */
 	@Override
 	protected void target() {
 		

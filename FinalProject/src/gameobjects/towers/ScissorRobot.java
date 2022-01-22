@@ -6,6 +6,7 @@ import gameobjects.projectiles.ProjectileData;
 import gameobjects.projectiles.Scissor;
 import scenes.GameScene;
 
+/** A robot that shoots scissor projectiles. */
 public class ScissorRobot extends Tower {
 
 	public ScissorRobot(GameScene scene, Vector2 pos) {

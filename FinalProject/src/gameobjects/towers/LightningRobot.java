@@ -10,6 +10,7 @@ import gameobjects.projectiles.Projectile;
 import gameobjects.projectiles.ProjectileData;
 import scenes.GameScene;
 
+/** The lightning robot that zaps bloons that come into its range. */
 public class LightningRobot extends Tower {
 
 	private Color currentColor = Color.MAGENTA;
@@ -70,7 +71,8 @@ public class LightningRobot extends Tower {
 		
 	}
 
-	@Override // overridden to not rotate lightning tower when firing
+	/** Prevents rotation when the robot fires. */
+	@Override
 	protected void fire(Vector2 target) {		
 		Projectile blueprint = projectileData.getType();
 		Projectile p = blueprint.init(scene, pos, target, projectileData);

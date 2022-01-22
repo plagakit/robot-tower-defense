@@ -7,6 +7,7 @@ import gameobjects.projectiles.Pellet;
 import gameobjects.projectiles.ProjectileData;
 import scenes.GameScene;
 
+/** The basic robot that shoots pellets towards bloons. */
 public class Robot extends Tower {
 	
 	public Robot(GameScene scene, Vector2 pos) {

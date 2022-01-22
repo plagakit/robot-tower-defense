@@ -6,6 +6,7 @@ import gameobjects.projectiles.Flame;
 import gameobjects.projectiles.ProjectileData;
 import scenes.GameScene;
 
+/** The short range fire robot that spews fire towards bloons. */
 public class FireRobot extends Tower {
 
 	public FireRobot(GameScene scene, Vector2 pos) {
