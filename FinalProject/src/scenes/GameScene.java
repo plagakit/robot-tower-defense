@@ -11,10 +11,10 @@ import gameobjects.bloons.Bloon;
 import gameobjects.bloons.BloonSender;
 import gameobjects.projectiles.Projectile;
 import gameobjects.towers.Tower;
-import gameobjects.tracks.Track;
 import gameobjects.ui.Shop;
 import gameobjects.ui.Tip;
 import graphics.Renderer;
+import tracks.Track;
 
 public class GameScene extends Scene {
 

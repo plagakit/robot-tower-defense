@@ -11,9 +11,9 @@ import javax.swing.JRadioButton;
 
 import game.Game;
 import gameobjects.Difficulty;
-import gameobjects.tracks.Track;
-import gameobjects.tracks.TrackLoader;
 import graphics.Renderer;
+import tracks.Track;
+import tracks.TrackLoader;
 
 public class MainMenuScene extends Scene {
 

@@ -1,4 +1,4 @@
-package gameobjects.tracks;
+package tracks;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,13 +16,13 @@ public class TrackLoader {
 	}
 	
 	private void loadTracks() {
-		String dataPath = "tracks/trackdata.txt";
+		String dataPath = "trackfiles/trackdata.txt";
 		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
 		
 		while (sc.hasNextLine()) {
 			String line = sc.nextLine();
 			String name = line.replace(".track", "");
-			String path = "tracks/" + line;
+			String path = "trackfiles/" + line;
 			
 			if (line.toCharArray()[0] == '#')
 				continue;

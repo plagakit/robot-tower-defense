@@ -1,4 +1,4 @@
-package gameobjects.tracks;
+package tracks;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
