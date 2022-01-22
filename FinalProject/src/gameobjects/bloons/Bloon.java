@@ -12,13 +12,15 @@ import graphics.Renderer;
 import graphics.Sprite;
 import scenes.GameScene;
 
+/** The Bloon class, representing a balloon and the main enemy
+ * of the game. */
 public class Bloon extends GameObject {
 	
 	private final BloonType type;
 	private final int rank;
 	private final String id;
 	
-	private final int RBE;
+	private final int RBE; // red bloon equivalent
 	private final int health;
 	private int currentHealth;
 	private final float speed;
@@ -36,11 +38,12 @@ public class Bloon extends GameObject {
 	private Vector2[] trackPoints;
 	private int goalPointIndex;
 	
+	/** Creates a bloon with the specified parameters. */
 	public Bloon(GameScene scene, Vector2 pos, BloonType type) {
 		super(scene, "Bloon", pos);
 		this.type = type;
 		this.rank = type.rank;
-		this.id = UUID.randomUUID().toString();
+		this.id = UUID.randomUUID().toString(); // gives a random id
 		
 		name = type.name;
 		health = type.health;
@@ -66,6 +69,7 @@ public class Bloon extends GameObject {
 		distanceTravelled = 0;
 	}
 	
+	/** Creates a child bloon, with the same position as its parent.*/
 	public Bloon(Bloon parent, BloonType type) {
 		this(parent.getGameScene(), parent.getPos(), type);
 		this.goalPointIndex = parent.goalPointIndex;
@@ -108,6 +112,9 @@ public class Bloon extends GameObject {
 			bounds.debugRender(r);
 	}
 
+	/** Handles collsion with a projectile by the amount of damage
+	 * that the projectile would have dealt to it. Usually pops
+	 * the bloon. */
 	public boolean handleCollision(int damage) {
 		if (invulnerable || !active)
 			return false;
@@ -131,6 +138,7 @@ public class Bloon extends GameObject {
 		return true;
 	}
 	
+	/** Spawns child bloons at its position. */
 	private void spawnChildren() {
 		for (BloonType childType : type.children) {
 			Bloon newBloon = new Bloon(this, childType);
@@ -138,6 +146,7 @@ public class Bloon extends GameObject {
 		}
 	}
 	
+	/** Pops the bloon and plays all its related animations and sounds. */
 	private void pop() {
 		sprite = popSprite;
 		popAnimTimer = new Timer(scene.getGame(), 100);
@@ -148,6 +157,7 @@ public class Bloon extends GameObject {
 		scene.onBloonPopped();
 	}
 	
+	/** Plays one of three random pop sounds. */
 	private void playRandomPopSound() {
 		int randomNumFromOneToFour = (int)(Math.random() * 4 + 1);
 		String sound = "pop" + randomNumFromOneToFour + ".wav";
@@ -158,6 +168,7 @@ public class Bloon extends GameObject {
 		scene.getGame().getAudioManager().playSound(sound);
 	}
 
+	/** Removes the bloon from the game scene. */
 	public void despawn() {
 		active = false;
 		scene.getBloons().remove(this);

@@ -6,6 +6,8 @@ import game.Timer;
 import game.Vector2;
 import scenes.GameScene;
 
+/** A class that adds bloons to the game scene based on the wave
+ * data text file. */
 public class BloonSender {
 
 	private GameScene scene;
@@ -17,6 +19,7 @@ public class BloonSender {
 	private Timer bloonSpawnTimer;
 	private Vector2 spawnPoint;
 	
+	/** Creates the bloon sender and initializes the wave data. */
 	public BloonSender(GameScene scene) { 
 		this.scene = scene;
 		
@@ -25,6 +28,8 @@ public class BloonSender {
 		spawnPoint = scene.getTrack().getPoints()[0];
 	}
 	
+	/** Gets the wave data text file and reads its contents, adding
+	 * the bloons to its list in Wave objects. */
 	private void initWaves() { 
 		final String dataPath = "wavedata.txt";
 		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
@@ -47,6 +52,7 @@ public class BloonSender {
 		sc.close();
 	}
 	
+	/** Adds bloons to the game scene according to the wave data. */
 	public void update() { 
 		
 		if (sending) {
@@ -66,6 +72,8 @@ public class BloonSender {
 		
 	}
 	
+	/** Loads the specified round and the wave that it is associated
+	 * with, and starts sending the bloons in its wave when updated. */
 	public void sendRound(int round) { 
 		
 		if (round > waves.length || round < 0)

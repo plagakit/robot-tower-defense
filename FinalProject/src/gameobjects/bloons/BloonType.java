@@ -1,6 +1,8 @@
 package gameobjects.bloons;
 
+/** The enum for different bloon types (much cleaner than individual bloon classes & inheritance). */
 public enum BloonType {
+	
 	EMPTY(-1,"EmptyBloon", 0, null, 0, 0),
 	RED(0,"RedBloon", 0.3f, "redbloon.png", 1, 1),
 	BLUE(1,"BlueBloon", 0.4f, "bluebloon.png", 1, 2, RED),
