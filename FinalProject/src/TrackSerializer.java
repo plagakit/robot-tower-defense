@@ -1,5 +1,3 @@
-package tracks;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -25,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import game.Vector2;
+import tracks.TrackData;
 
 /** A custom application for serializing tracks into .track files
  * that can be used in the robot tower defense game. */
