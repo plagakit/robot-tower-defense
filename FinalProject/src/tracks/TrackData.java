@@ -12,6 +12,10 @@ import javax.imageio.ImageIO;
 
 import game.Vector2;
 
+/** A serializable object that represents the three main parts of
+ * a track: background image, mask image, and list of points that
+ * the bloons move along. This class is serialized by the TrackSerializer
+ * and deserialized by the TrackLoader to be used in game. */
 public class TrackData implements Serializable {
 
 	private static final long serialVersionUID = 1L;

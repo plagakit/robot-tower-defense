@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/** A class that loads all of the .track files in resources to be
+ * used in game. */
 public class TrackLoader {
 	
 	private HashMap<String, TrackData> trackList;
@@ -15,6 +17,8 @@ public class TrackLoader {
 		loadCustomTracks();
 	}
 	
+	/** Loads the tracks in the trackdata.txt file and places
+	 * them into its internal memory. */
 	private void loadTracks() {
 		String dataPath = "trackfiles/trackdata.txt";
 		Scanner sc = new Scanner(ClassLoader.getSystemClassLoader().getResourceAsStream(dataPath));
@@ -52,6 +56,8 @@ public class TrackLoader {
 		// did not have enough time to make this
 	}
 	
+	/** Gets a TrackData from its internal memory. If not found,
+	 * a warning is put to the console and null is returned. */
 	public TrackData get(String name) {
 		TrackData data = trackList.get(name);
 		if (data == null)
@@ -59,6 +65,7 @@ public class TrackLoader {
 		return data;
 	}
 	
+	/** Returns an array of all of the track names. */
 	public String[] getTrackNames() {
 		return trackList.keySet().toArray(new String[trackList.size()]);
 	}

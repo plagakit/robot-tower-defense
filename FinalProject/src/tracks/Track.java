@@ -8,6 +8,8 @@ import game.Vector2;
 import gameobjects.towers.Tower;
 import graphics.Renderer;
 
+/** The track object defines the "map" of the game, where bloons
+ * enter, exit, and move along, and where towers can be placed. */
 public class Track {
 	
 	private int width;
@@ -33,6 +35,8 @@ public class Track {
 		initTrackPoints(dataPath);
 	} */
 	
+	/** The constructor for a track, created from TrackData. Creates
+	 * the track so that it is ready for use in the game scene. */
 	public Track(Game game, TrackData data) {
 		background = data.getBackground();
 		mask = data.getMask();
@@ -47,9 +51,12 @@ public class Track {
 		initMaskValues();
 	}
 	
+	/** Initializes the mask values for the track, so that it knows
+	 * where towers can and cannot be placed. */
 	private void initMaskValues() {
 		maskValues = new boolean[width][height];
 		
+		// green represents can be placed, other represents no
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				int pixel = mask.getRGB(x, y);
@@ -60,6 +67,9 @@ public class Track {
 		}
 	}
 	
+	/** Determines whether a tower and its bounds can be placed
+	 * within a certain plot of the track. Returns true if it
+	 * can be placed there, and false if it cannot. */
 	public boolean validateTowerPosition(Tower tower) {
 		Vector2 pos = tower.getPos();
 		int rad = tower.getBounds().getRadius();
@@ -84,6 +94,7 @@ public class Track {
 		return true;
 	}
 	
+	/** Draws the background map of the track to the screen. */
 	public void render(Renderer r) {
 		r.drawImage(background, 0, 0, width, height);
 		

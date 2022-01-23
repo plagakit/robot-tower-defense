@@ -26,6 +26,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import game.Vector2;
 
+/** A custom application for serializing tracks into .track files
+ * that can be used in the robot tower defense game. */
 public class TrackSerializer implements ActionListener {
 
 	public static void main(String[] args) {
