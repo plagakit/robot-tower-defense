@@ -4,3 +4,4 @@
 #
 testTrack.track
 testTrack2.track
+Volcano.track
