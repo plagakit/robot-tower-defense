@@ -3,6 +3,10 @@ package scenes;
 import game.Game;
 import graphics.Renderer;
 
+/** An abstract Scene object that allows for different parts 
+ * of the game, for example the main menu, game area, pause menu, 
+ * etc. The game uses a scene switcher in the Game object, and has 
+ * methods for when it starts and stops.*/
 public abstract class Scene {
 
 	protected Game game;

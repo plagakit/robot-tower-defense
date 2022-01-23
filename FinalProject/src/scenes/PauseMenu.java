@@ -11,6 +11,8 @@ import javax.swing.SwingUtilities;
 import game.Settings;
 import graphics.Renderer;
 
+/** The pause menu scene, which allows players to pause the game
+ * and change a variety of settings. */
 public class PauseMenu {
 
 	private GameScene scene;

@@ -15,6 +15,8 @@ import graphics.Renderer;
 import tracks.Track;
 import tracks.TrackLoader;
 
+/** The main menu scene, where various tracks can be loaded
+ * and played. */
 public class MainMenuScene extends Scene {
 
 	private TrackLoader trackLoader;

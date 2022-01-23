@@ -16,6 +16,9 @@ import gameobjects.ui.Tip;
 import graphics.Renderer;
 import tracks.Track;
 
+/** A scene for the main game of robot tower defense. This is the
+ * scene where the player can play the game, place towers, defend
+ * against bloons, etc. */
 public class GameScene extends Scene {
 
 	private boolean paused;

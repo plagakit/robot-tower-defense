@@ -129,7 +129,9 @@ public class Game {
 		bs = display.getCanvas().getBufferStrategy();
 		if (bs == null) {
 			/* a buffer strategy prevents flickering, because it makes it so that the 
-			 * renderer draws images onto its buffers before displaying to the screen */
+			 * renderer draws images onto its buffers before displaying to the screen 
+			 * the first part of this article goes into more depth about frame buffering:
+			 * https://gameprogrammingpatterns.com/double-buffer.html */
 			display.getCanvas().createBufferStrategy(2);
 			return;
 		}
