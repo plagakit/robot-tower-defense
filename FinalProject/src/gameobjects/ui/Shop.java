@@ -214,8 +214,8 @@ public class Shop {
 		
 		String moneyStr = "$" + money;
 		int moneyStrWidth = r.getFontMetrics().stringWidth(moneyStr);
-		r.drawString(moneyStr, 475 - moneyStrWidth, 15);
-		
+		r.drawOutlinedString(moneyStr, 475 - moneyStrWidth, 15, Color.WHITE, 2);
+		r.setColor(Color.BLACK);
 	}
 	
 	/** Sets the currently selected tower so that the shop can
